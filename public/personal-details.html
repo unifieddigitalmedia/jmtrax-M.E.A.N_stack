@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"> 
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" type="text/css" href="/styles/normal.css">
+
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+
+<link rel="icon" 
+      type="image/png" 
+      href="/images/jmtrax_icon.png">
+
+
+
+<title> Just Money Transfers | Personal Details </title>
+
+
+</head>
+
+<body ng-cloak ng-app="justmoneytransfers" >
+
+  
+
+<header>
+
+
+<ul class="topnav">
+
+<li class="logo_link"> <a href="index.html"><img src="/images/logo.png" class="logo" ></a> </li>
+
+<li class="dropdown-link"> <a href="money-transfer-calculator.html" class="dropbtn"> Transfer Calculator</a>  
+
+</li>  
+
+<li class="dropdown-link"> <a class="dropbtn" >My Account</a> 
+
+<div class="dropdown-content">
+
+  <a > Personal Details </a>  
+
+   <a href="beneficiary-details.html"> Beneficiaries </a>  
+
+ 
+
+</div>
+
+
+</li>  
+
+<li class="dropdown-link"> <a class="dropbtn" href="settings.html" >Settings</a>  
+
+
+</li>  
+
+<li class="dropdown-link"> <a href="index.html" class="dropbtn" >Log Out</a> 
+
+
+</li>  
+
+<li class="icon">
+    <a href="javascript:void(0);" style="font-size:15px;" onclick="showResponsivemenu()">☰</a>
+</li>
+
+
+
+</ul></header>
+
+
+  
+<div class="container-fluid"  ng-controller='dashboard' >
+
+
+&nbsp;
+<div class="row" >
+
+<div class="col-sm-6" style="">
+
+<h6>SENDERS DETAILS</h6> <span class='redtext' > *search is case sensitive </span>
+
+</br>
+
+
+<form role="form" name="sendersmobileform" >
+
+<div class="form-group" style='height:100px;'>
+
+
+  <div class="row">
+
+    <div class="col-sm-6" >
+
+<input type="text"  class="form-control input-sm"   id="customerfirstname" ng-model='FirstName' placeholder="* First Name :" />
+
+
+</div>
+    <div class="col-sm-6" >
+
+
+<input type="text"  class="form-control input-sm"  id="customerlastname" ng-model='LastName' placeholder="* LAST NAME :" />
+
+
+</div>
+    
+
+
+  </div>
+
+&nbsp;
+
+  <div class="row">
+
+    <div class="col-sm-3" ><input type="text"  class="form-control input-sm"  value ='+44' disabled style='font-weight:bold;color:red;' ></div>
+    <div class="col-sm-2" ><input type="sendersmobile"  class="form-control input-sm"  value ='0'  disabled style='font-weight:bold;color:red;'></div>
+    <div class="col-sm-7" ><input type="text"  class="form-control input-sm redtext"   name='sendersmobile' placeholder='Senders Mobile' required  id="customermobile" ng-model='MobilePhone' /></div>
+  </div>
+
+</div>
+
+
+
+</form>
+
+
+
+<p class="redtext"> {{sendererror}}  </p>
+
+
+<div class="row">
+
+   <div class="col-sm-4">
+
+
+      <div class="form-group">
+     <label for="usr"></label>
+      <input type="text"  class="form-control input-sm"   id="postcode" ng-model='SenderPostcode' placeholder="* POSTCODE :">
+      </div>
+
+
+   </div>
+
+    <div class="col-sm-4">
+
+      <div class="form-group">
+     <label for="usr"></label>
+      <button type='button'  id='find'  ng-click='searchpostcode()' class="btn btn-primary btn-block" > Find </button>
+      
+      </div>
+
+   </div>
+
+    <div class="col-sm-4">
+
+      <div class="form-group">
+    <label for="usr"></label>
+      <select name='building' id='building' ng-change='popform()' style='width:100%;' ng-model='streetvalue'> </select>
+      </div>
+
+
+   </div>
+
+
+</div>
+
+
+<div class="row">
+
+   <div class="col-sm-4">
+
+ <div class="form-group">
+ <label for="usr"></label>
+      <input type="text"  class="form-control input-sm" id="line1" ng-model='line1' placeholder="* 1ST LINE :">
+      </div>
+
+   </div>
+
+    <div class="col-sm-4">
+
+
+<div class="form-group">
+  <label for="usr"></label>
+      <input type="text" class="form-control input-sm" id="line2" ng-model='line2' placeholder="2ND LINE :" />
+      </div>
+
+
+
+   </div>
+
+    <div class="col-sm-4">
+
+
+<div class="form-group">
+    <label for="usr"></label>
+     <input type="text" class="form-control input-sm" id="line3" ng-model='line3' placeholder="3RD LINE :">
+      </div>
+
+
+
+   </div>
+
+
+</div>
+
+
+
+<div class="row">
+
+   <div class="col-sm-4">
+
+ <div class="form-group">
+ <label for="usr"></label>
+      <input type="text" class="form-control input-sm" id="town" ng-model='TOWN' placeholder="* TOWN :">
+      </div>
+
+
+   </div>
+
+    <div class="col-sm-4">
+
+ <div class="form-group">
+ <label for="usr"></label>
+      <input type="text" class="form-control input-sm" id="county" ng-model='COUNTY' placeholder="COUNTY :" >
+      </div>
+
+   </div>
+
+    <div class="col-sm-4">
+
+ <div class="form-group">
+    <label for="usr"></label>
+      <select  class="form-control input-sm"  ng-options="occupation as occupation.occupation for occupation in occupations "  ng-model='occupation' style="position:relative; " ></select>
+
+      </div>
+
+   </div>
+
+
+</div>
+
+
+<div class="row">
+
+
+   <div class="col-sm-4">
+
+ <div class="form-group">
+     
+      </div>
+
+
+   </div>
+
+    <div class="col-sm-4">
+
+ <div class="form-group">
+
+<!-- <button type="button" class="btn btn-primary btn-block" ng-hide="senderdetail.USERID" ng-click='convertcustomer()'> ENABLE CUSTOMER</button> --> 
+
+
+
+
+      </div>
+
+   </div>
+
+    <div class="col-sm-4">
+
+
+ <button type="button" class="btn btn-primary btn-block"  ng-click='updatesender()' > UPDATE </button>
+
+
+   </div>
+
+
+</div>
+
+
+&nbsp;
+
+
+
+
+
+
+<table class="table table-bordered " ng-hide='senderdetails'>
+<thead>
+
+
+<th> TYPE OF ID </th>
+<th> ID NUM </th>
+<th> COUNTRY OF ISSUE  </th>
+
+
+
+</thead>
+<tbody>
+
+
+<tr>
+
+<td><input type="text"  ng-model="TYPEOFID" /></td>
+<td><input type="text"  ng-model="IDNUM" /></td>
+<td><input type="text"  ng-model="COUNTRYOFISSUE" /></td>
+
+</tr>
+
+<tr>
+<th> EXPIRY DATE </th>
+</tr>
+<tr>
+<td><input type="text"  ng-model="EXPIRYDATE" /></td>
+</tr>
+<tr>
+
+<th> PROOF OF INCOME </th>
+<th> TYPE OF ID </th>
+<th> PROOF OF ADDRESS </th>
+
+</tr>
+
+
+<tr>
+
+<td><a href='{{senderdetail.INCOME}}' target='_blank'>  <img src='http://www.jmtrax.net/identifications/ic_launcher.png' style='position:relative; width:16px;height:16px' /> </a></td>
+<td><a href='{{senderdetail.ID}}' target='_blank'>  <img src='http://www.jmtrax.net/identifications/ic_launcher.png' style='position:relative; width:16px;height:16px' /> </a></td>
+<td><a href='{{senderdetail.ADDRESS}}' target='_blank'>  <img src='http://www.jmtrax.net/identifications/ic_launcher.png' style='position:relative; width:16px;height:16px' /> </a></td>
+
+</tr>
+
+
+
+
+</tbody>
+</table>
+
+
+
+<table class="table table-bordered " ng-hide='senderdetails'>
+<thead>
+
+
+<th> USERNAME </th>
+<th> PASSWORD </th>
+
+
+
+</thead>
+<tbody>
+
+
+<tr>
+
+<td><input type="text" disabled ng-model="USERNAME" id="username" /> </td>
+<td><input type="text" disabled ng-model="PASSWORD" id="password"/></td></tr>
+
+<tr> <th> SECRET QUESTION </th>
+<th> SECRET ANSWER </th></tr>
+<tr><td><input type="text" disabled ng-model="SECRETQUESTION" id="secretquestion"/></td>
+<td><input type="text" disabled ng-model="ANSWER" id="secretanswer"/></td>
+</tr>
+
+
+</tbody>
+</table>
+
+
+
+</div>
+
+
+<div class="col-sm-6" style="">
+
+
+
+
+<div  >
+
+
+
+
+
+
+&nbsp;
+
+
+
+</div>
+
+</div>
+
+</div>
+
+
+
+</div>
+
+
+
+<footer>
+<div class="row">
+
+  <div class="col-sm-6" id="footer_column_1">  
+
+
+<p>Authorised User can log into JM Transfers by entering correct account information on the right hand side. The activity of authorized users may be monitored. If monitoring reveals evidence of criminal activity, systems personnel may provide the evidence to management and/or law enforcement officials. Just Computers trading as JM Transfer and JM Trax have a comprehensive compliance program within the organisation to ensure compliance with government rules, regulations and approved guidance. We do not want JM Transfer and JM Trax services to be used in illegal money laundering activities or terrorist activities. It is our policy that we follow both the letter and the spirit of the law and the regulations of both the United Kingdom and Nigeria in which JM Transfer and JM Trax operates. All remittances processed by JM Transfer and JM Trax are screened with enhanced controls to prevent money laundering and terrorist financing. It is JM Transfer and JM Trax policy to follow both the letter and spirit of the law and regulations. Throughout the world, Governments have reinforced their commitment to the fight against money laundering and terrorist financing. New laws have imposed additional obligations on firms and individuals in the financial services sector to join in the fight. JM Transfer and JM Trax has an extensive training and awareness programme, a rigorous transaction monitoring system and a robust culture of compliance. JM Transfer and JM Trax works closely with regulatory bodies.</p>
+
+
+ </div>
+
+  <div class="col-sm-6" id="footer_column_2" style="text-align:center;">  
+
+<img src='/images/Photo2_small.png' class="footerimage"/>
+
+   </div>
+
+   
+
+</div>
+
+</footer>
+
+
+<section class="copywright">
+
+<p style='color:white;'>&copy; UNIFIED DIGITAL MEDIA  - http://www.unifieddigitalmedia.co.uk</p>
+
+  </section>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js" ></script>
+
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" ></script>
+
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js" ></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular-resource.js" ></script>
+
+<script src="scripts/main.js"> </script>
+
+
+
+
+<script type="text/javascript">
+
+
+var app = angular.module('justmoneytransfers', ['ngResource']);
+
+
+app.factory('Senders_Service', ['$resource', function($resource) {
+
+var resource = $resource('http://localhost:3000/api/senders',{
+
+id:"@id",
+firstname:"@firstname",
+lastname:"@lastname",
+mobile:"@mobile",
+postcode:"@postcode",
+line1:"@line1",
+line2:"@line2",
+line3:"@line3",
+town:"@town",
+county:"@county",
+email:"@email",
+username_field:"@username",
+password_field:"@password",
+user_limit:"@user_limit",
+shop_name:"@shop_name",
+answer:"@answer",
+secretquestion:"@secretquestion",
+user_type:"@user_type",
+IDtype:"@IDtype",
+IDnumber:"@IDnumber",
+IDexpiry:"@IDexpiry",
+IDcountry:"@IDcountry",
+occupation:"@occupation"
+
+
+
+
+},{ 'update': { method:'PUT' } } );
+
+
+
+
+
+return resource;
+
+
+}]);
+
+
+app.controller('dashboard', function($scope,Senders_Service,$http,$resource) {
+
+$scope.shopaccdiv = true;
+
+$scope.thirdpartydiv = true;
+
+
+$scope.senderdetails = true;
+
+
+
+var init = function () {
+   
+
+$scope.agentid = getCookie('agentid') ;
+
+$scope.agentusername = getCookie('agentusername') ;
+
+$scope.agentemail = getCookie('agentemail') ;
+
+$scope.agenttype = getCookie('agenttype') ;
+
+$scope.creditlimit = getCookie('agentcredit') ;
+
+
+$http.get("http://localhost:3000/api/senders.php?id="+getCookie('agentid')).then(function(response) {
+
+$scope.senderslist = response.data;
+
+
+
+$scope.selectsender(0);
+
+    });
+
+
+$http.get("http://localhost:3000/api/banks").then(function(response) {
+
+
+
+ $scope.banklist = response.data;
+
+ 
+
+    });
+
+
+$http.get("http://localhost:3000/api/getoccupations").then(function(response) {
+
+
+
+ $scope.occupations = response.data;
+
+ 
+
+    });
+
+if(!getCookie('agentusername') )
+
+{
+
+
+window.location = "http://localhost:3000/index.html" ;
+
+
+}
+
+var counter = 0;
+
+setInterval(function(){ counter = counter + 1 ;
+
+
+window.addEventListener("mousemove",function getcoords() {
+
+
+counter = 0;
+
+});
+
+if (counter == '1800')
+
+{
+
+
+
+
+window.location = "http://localhost:3000/index.html" ;
+
+
+
+} },1000);
+
+
+};
+
+init();
+
+function getCookie(cname) {
+
+    var name = cname + "=";
+  
+    var ca = document.cookie.split(';');
+  
+    for(var i=0; i<ca.length; i++) {
+  
+        var c = ca[i];
+  
+        while (c.charAt(0)==' ') c = c.substring(1);
+  
+        if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+  
+    }
+  
+    return "";
+
+}
+
+
+
+
+
+
+
+$scope.selectsender = function (para) {
+
+
+
+$scope.index = para;
+
+
+$scope.FirstName = $scope.senderslist[para].SendersFirstName;
+$scope.LastName = $scope.senderslist[para].SendersLastName;
+$scope.MobilePhone = $scope.senderslist[para].Mobile;
+$scope.SenderPostcode = $scope.senderslist[para].Postcode;
+$scope.line1 = $scope.senderslist[para].Line1;
+$scope.line2 = $scope.senderslist[para].Line2;
+$scope.line3 = $scope.senderslist[para].Line3;
+$scope.TOWN = $scope.senderslist[para].Town;
+$scope.COUNTY = $scope.senderslist[para].County;
+$scope.EMAIL = $scope.senderslist[para].Email;
+$scope.sendersid = $scope.senderslist[para].id;
+
+
+$scope.USERNAME = $scope.senderslist[para].username;
+$scope.PASSWORD = $scope.senderslist[para].password;
+$scope.SECRETQUESTION = $scope.senderslist[para].secretquestion;
+$scope.ANSWER = $scope.senderslist[para].secretanswer;
+
+$scope.occupation = $scope.senderslist[para].Occupation;
+
+}
+
+
+
+$scope.addsender = function() {
+
+$scope.sendersid = undefined;
+
+$scope.savesender();
+
+}
+
+$scope.updatesender = function() {
+
+
+
+$scope.savesender();
+
+  }
+
+
+$scope.savesender = function() {
+
+
+if(angular.isUndefined($scope.occupation.occupation))
+
+{
+
+
+$scope.sendererror = 'Senders occupation is needed';
+
+
+}
+
+else
+
+{
+
+
+
+if($scope.MobilePhone.length < 10  || angular.isUndefined($scope.MobilePhone) ) 
+
+{
+
+
+$scope.sendererror = 'This is not a valid UK number. Must be 10 digits without the leading zero';
+
+
+}
+
+else
+{
+
+
+var line1 = document.getElementById("line1").value;
+
+var line2 = document.getElementById("line2").value;
+
+var line3 = document.getElementById("line3").value;
+
+var town = document.getElementById("town").value;
+
+var county = document.getElementById("county").value;
+
+var postcode = document.getElementById("postcode").value;
+
+if(line1 == '' || line2 =='' || town=='' || postcode =='')
+
+{
+
+$scope.sendererror = 'All fields are required marked with an asterick * are requiered '; 
+
+
+
+}
+else
+
+{
+
+
+$scope.sendererror = '';
+
+
+if(angular.isUndefined($scope.sendersid))
+
+{
+
+
+
+var log = Senders_Service.save(
+
+
+{
+
+
+
+firstname:$scope.FirstName,
+lastname:$scope.LastName,
+mobile:$scope.MobilePhone,
+postcode:document.getElementById("postcode").value,
+line1:document.getElementById("line1").value,
+line2:document.getElementById("line2").value,
+line3:document.getElementById("line3").value,
+town:document.getElementById("town").value,
+county:document.getElementById("county").value,
+email:"",
+user_limit:"",
+shop_name:"",
+answer:"",
+secretquestion:"",
+user_type:"customer",
+IDtype:$scope.IDtype,
+IDnumber:$scope.IDnumber,
+IDexpiry:$scope.IDexpiry,
+IDcountry:$scope.IDcountry,
+occupation:$scope.occupation.occupation,
+
+}, function() {
+
+
+if(log.ERROR){ alert(log.ERROR);}
+
+$scope.sendersid = log._id;
+
+document.cookie = "sendersid=" + log._id;
+
+$scope.getsenderslist();
+
+  });
+
+
+
+}
+
+else
+
+
+{
+
+
+var log = Senders_Service.update(
+
+{
+
+
+id:$scope.sendersid,
+firstname:$scope.FirstName,
+lastname:$scope.LastName,
+mobile:$scope.MobilePhone,
+postcode:document.getElementById("postcode").value,
+line1:document.getElementById("line1").value,
+line2:document.getElementById("line2").value,
+line3:document.getElementById("line3").value,
+town:document.getElementById("town").value,
+county:document.getElementById("county").value,
+email:"",
+username:document.getElementById("username").value,
+password:document.getElementById("password").value,
+secretquestion:document.getElementById("secretquestion").value,
+answer:document.getElementById("secretanswer").value,
+user_limit:"",
+shop_name:"",
+user_type:"customer",
+IDtype:$scope.IDtype,
+IDnumber:$scope.IDnumber,
+IDexpiry:$scope.IDexpiry,
+IDcountry:$scope.IDcountry,
+occupation:$scope.occupation.occupation,
+
+
+
+}, function() {
+
+
+if(log.ERROR){ alert(log.ERROR);}
+
+$scope.getsenderslist();
+
+  });
+
+
+
+
+
+}
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+}
+
+
+}
+
+
+
+
+
+
+
+
+}
+
+
+
+$scope.deletethissender = function () {
+
+
+}
+
+
+
+$scope.deletesender = function () {
+
+
+
+var r = confirm("You are about to delete this sender");
+
+
+if (r == true) {
+
+
+if($scope.sendersid !== undefined || $scope.sendersid  != "" )
+
+{
+
+alert($scope.sendersid);
+
+
+
+var log = Senders_Service.save(
+
+{
+
+
+
+id:$scope.sendersid,
+firstname:$scope.FirstName,
+lastname:$scope.LastName,
+mobile:$scope.MobilePhone,
+postcode:document.getElementById("postcode").value,
+line1:document.getElementById("line1").value,
+line2:document.getElementById("line2").value,
+line3:document.getElementById("line3").value,
+town:document.getElementById("town").value,
+county:document.getElementById("county").value,
+email:email,
+user_limit:"",
+shop_name:"",
+answer:"",
+secretquestion:"",
+user_type:"customer",
+IDtype:document.getElementById("IDtype").value,
+IDnumber:$scope.IDnumber,
+IDexpiry:document.getElementById("IDexpiry").value,
+IDcountry:$scope.IDcountry,
+
+
+
+}, function() {
+
+
+
+alert(log.ERROR);
+
+
+$scope.FirstName = "";
+$scope.LastName = "";
+$scope.MobilePhone = "";
+$scope.SenderPostcode = "";
+$scope.line1 = "";
+$scope.line2 = "";
+$scope.ANSWER = "";
+$scope.line3 = "";
+$scope.TOWN = "";
+$scope.COUNTY = "";
+$scope.EMAIL = "";
+$scope.sendersid = "";
+$scope.receipentlist = [];
+$scope.transactionlist = [];
+$scope.senderslist= [];
+$scope.USERNAME = "";
+$scope.PASSWORD = "";
+$scope.SECRETQUESTION = "";
+document.getElementById("IDtype").value = "";
+$scope.IDnumber = "";
+document.getElementById("IDexpiry").value = "";
+$scope.IDcountry = "";
+  
+
+  });
+
+
+
+}
+else
+{
+
+alert("You need to select a sender to delete");
+
+}
+
+
+
+
+
+}
+else
+{
+
+
+
+}
+
+}
+
+
+
+
+$scope.popform = function ()
+
+{
+
+
+var sendermobile = document.getElementById("building").value;
+
+PostcodeAnywhere_Interactive_RetrieveById_v1_30Begin ('JJ14-GM21-XW16-FU78',sendermobile,'');
+
+
+}
+
+$scope.searchpostcode = function ()
+
+{
+
+var sendermobile = document.getElementById("postcode").value;
+
+
+
+PostcodeAnywhere_Interactive_Find_v1_10Begin('JJ14-GM21-XW16-FU78',sendermobile);
+
+}
+
+
+});
+
+
+function PostcodeAnywhere_Interactive_Find_v1_10Begin(Key,Postcode)
+
+{
+
+
+var scriptTag = document.getElementById("PCAe4b2e7e1d8a241dead6229b29fb22327");
+var headTag = document.getElementsByTagName("head").item(0);
+var strUrl = "";
+
+strUrl = "http://services.postcodeanywhere.co.uk/PostcodeAnywhere/Interactive/Find/v1.10/json.ws?";
+strUrl += "&Key=" + encodeURI(Key);
+strUrl += "&SearchTerm=" + encodeURI(Postcode);
+strUrl += "&CallbackFunction=PostcodeAnywhere_Interactive_Find_v1_10End";
+
+if (scriptTag)
+{
+try
+{
+headTag.removeChild(scriptTag);
+}
+catch (e)
+{
+//Ignore
+}
+}
+scriptTag = document.createElement("script");
+scriptTag.src = strUrl
+scriptTag.type = "text/javascript";
+scriptTag.id = "PCAe4b2e7e1d8a241dead6229b29fb22327";
+headTag.appendChild(scriptTag);
+
+}
+
+
+
+function PostcodeAnywhere_Interactive_Find_v1_10End(response)
+{
+var i = 0;
+
+
+//Test for an error
+if (response.length==1 && typeof(response[0].Error) != 'undefined')
+{
+//Show the error message
+alert(response[0].Description);
+}
+else
+{
+//Check if there were any items found
+if (response.length==0)
+{
+alert("Sorry, no matching items found");
+}
+else
+{
+document.getElementById('building').options.length= response.length;
+while (i < response.length)
+{
+document.getElementById('building').options[i].label= response[i].StreetAddress;
+document.getElementById('building').options[i].value= response[i].Id;
+i++;                }
+}
+}
+}
+
+
+function PostcodeAnywhere_Interactive_RetrieveById_v1_30Begin(Key,Id, UserName)
+{
+
+var scriptTag = document.getElementById("PCAb9b445072c50417b82ad4204c2ec66c1");
+var headTag = document.getElementsByTagName("head").item(0);
+var strUrl = "";
+//Build the url
+strUrl = "http://services.postcodeanywhere.co.uk/PostcodeAnywhere/Interactive/RetrieveById/v1.30/json.ws?";
+strUrl += "&Key=" + encodeURI(Key);
+strUrl += "&Id=" + encodeURI(Id);
+strUrl += "&UserName=" + encodeURI(UserName);
+strUrl += "&CallbackFunction=PostcodeAnywhere_Interactive_RetrieveById_v1_30End";
+//Make the request
+if (scriptTag)
+{
+try
+{
+headTag.removeChild(scriptTag);
+}
+catch (e)
+{
+//Ignore
+}
+}
+scriptTag = document.createElement("script");
+scriptTag.src = strUrl
+scriptTag.type = "text/javascript";
+scriptTag.id = "PCAb9b445072c50417b82ad4204c2ec66c1";
+headTag.appendChild(scriptTag);
+}
+
+function PostcodeAnywhere_Interactive_RetrieveById_v1_30End(response)
+{
+//Test for an error
+if (response.length==1 && typeof(response[0].Error) != 'undefined')
+{
+//Show the error message
+alert(response[0].Description);
+}
+else
+{
+//Check if there were any items found
+if (response.length==0)
+{
+alert("Sorry, no matching items found");
+}
+else
+{
+
+document.getElementById("line1").value= response[0].Line1;
+document.getElementById("line2").value= response[0].Line2;
+document.getElementById("line3").value= response[0].Line3;
+document.getElementById("town").value= response[0].PostTown;
+document.getElementById("county").value= response[0].County;
+document.getElementById("postcode").value= response[0].Postcode;
+
+}
+
+}
+
+}
+
+</script>
+
+
+
+</body>
+
+</html>

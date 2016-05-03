@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"> 
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" type="text/css" href="/styles/normal.css">
+
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+
+<link rel="icon" 
+      type="image/png" 
+      href="/images/jmtrax_icon.png">
+
+<title> Just Money Transfers | Senders Transaction Statement </title>
+
+</head>
+
+<body ng-cloak ng-app="justmoneytransfers" >
+  
+<div class="container-fluid"  ng-controller='transactions'   >
+
+<div class="table-responsive" >
+
+<h1> Statement summary for  {{sendersname}}</h1>
+
+&nbsp;
+
+ <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>DATE</th>
+        <th>T NO.</th>
+        <th>RECIPIENT F.NAME</th>
+        <th>RECIPIENT L.NAME</th>
+        <th>AMT £ </th>
+        <th>FEES £</th>
+        <th>GBP DUE £</th>
+        <th>NGN DUE  £</th>
+        <th>STAFF REF</th>
+        <th>STATUS</th>
+      </tr>
+    </thead>
+
+
+
+    <tbody>
+      <tr ng-repeat='daily in dailytransactionlist '>
+        <td class="tablecell">{{daily.date}}</td>
+        <td style='tablecells'>JM{{daily.id}}</td>
+        <td class="tablecell">{{daily.recipientfirstname}}</td>
+        <td class="tablecell">{{daily.recipientsurname}}</td>
+        <td class="tablecell">{{daily.amount}}</td>
+        <td class="tablecell">{{daily.fee}}</td>
+        <td class="tablecell">{{daily.totalgbp}}</td>
+        <td class="tablecell">{{daily.totalngn}}</td>
+        <td class="tablecell">{{daily.agentusername}}</td>
+        <td class="tablecell">{{daily.status}}</td>
+      </tr>
+ 
+ <tr>
+        <td colspan='4'></td>
+        <td>AMOUNT £</td>
+        <td>FEES £</td>
+        <td>TOTAL GBP DUE £</td>
+        <td>TOTAL NGN DUE</td>
+         <td> </td>
+        <td> </td>
+       
+      </tr>
+
+ <tr>
+         <td colspan='4'></td>
+        <td>{{ TOTALAMOUNT }}</td>
+        <td>{{ TOTALFEE }}</td>
+        <td>{{ TOTALGBP }}</td>
+        <td>{{ TOTALNGN }}</td>
+         <td> </td>
+        <td> </td>
+     
+      </tr>
+
+    </tbody>
+
+  </table>
+
+</div>
+
+</div>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js" ></script>
+
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" ></script>
+
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js" ></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular-resource.js" ></script>
+
+<script src="scripts/main.js"> </script>
+
+<script type="text/javascript">
+
+
+var app = angular.module('justmoneytransfers', ['ngResource']);
+
+
+app.factory('Transactions_Service', ['$resource', function($resource) {
+
+var resource = $resource('http://localhost:3000/api/transactions',{});
+
+return resource;
+
+
+}]);
+
+
+app.controller('transactions', function($scope,Transactions_Service,$http,$resource) {
+
+
+
+var init = function () {
+   
+$scope.sendersname = getCookie('sender_firstname') + "  " + getCookie('sender_lastname') ;
+
+
+$http.get("http://localhost:3000/api/sender_transactions.php?username="+getCookie('sender_username')+"&usertype=customer" ).then(function(response) {
+
+$scope.dailytransactionlist = response.data;
+
+
+ $scope.calculatetotals(response.data);
+
+    });
+
+
+
+};
+
+init();
+
+function getCookie(cname) {
+
+    var name = cname + "=";
+  
+    var ca = document.cookie.split(';');
+  
+    for(var i=0; i<ca.length; i++) {
+  
+        var c = ca[i];
+  
+        while (c.charAt(0)==' ') c = c.substring(1);
+  
+        if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+  
+    }
+  
+    return "";
+
+}
+
+
+
+
+
+$scope.calculatetotals = function (para) {
+
+
+
+$scope.TOTALAMOUNT = 0 ;
+
+$scope.TOTALFEE = 0 ;
+
+$scope.TOTALGBP = 0 ;
+
+$scope.TOTALNGN  = 0 ;
+
+var log = [];
+
+angular.forEach(para, function(value, key) {
+
+$scope.TOTALAMOUNT += parseInt(value.amount.replace(",", "")) ;
+
+$scope.TOTALFEE += parseInt(value.fee.replace(",", ""));
+
+$scope.TOTALGBP += parseInt(value.totalgbp.replace(",", "")) ;
+
+$scope.TOTALNGN += parseInt(value.totalngn.replace(",", "")) ;
+
+}, log );
+
+
+
+$scope.TOTALAMOUNT = $scope.tocurrency(Number($scope.TOTALAMOUNT).toFixed(2));
+
+$scope.TOTALFEE = $scope.tocurrency(Number($scope.TOTALFEE).toFixed(2));
+
+$scope.TOTALGBP = $scope.tocurrency(Number($scope.TOTALGBP).toFixed(2));
+
+$scope.TOTALNGN = $scope.tocurrency(Number($scope.TOTALNGN).toFixed(2));
+
+
+}
+
+
+$scope.tocurrency = function (para) {
+
+
+var number = para.toString();
+
+var dollars = number.split('.')[0];
+
+var  cents = (number.split('.')[1] || '') +'00';
+
+var dollars = dollars.split('').reverse().join('').replace(/(\d{3}(.php?!$))/g, '$1,').split('').reverse().join('');
+
+var cent = cents.slice(0, 2);
+
+var decimal = ".";
+
+var cent2 = decimal.concat(cent);
+
+var dollars = dollars.concat(cent2);
+
+return dollars;
+
+
+
+
+}
+
+});
+
+
+</script>
+
+
+
+</body>
+
+</html>

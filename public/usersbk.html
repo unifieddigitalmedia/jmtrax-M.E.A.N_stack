@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"> 
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" type="text/css" href="/styles/normal.css">
+
+<link rel="stylesheet" href="bootstrap/dist/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+
+<link rel="icon" 
+      type="image/png" 
+      href="/images/jmtrax_icon.png">
+
+
+
+<title> Just Money Transfers | Users </title>
+
+
+</head>
+
+<body ng-cloak ng-app="justmoneytransfers" >
+
+  
+
+ 
+<header>
+
+<ul class="link">
+
+<li class="logo_link"> <a href="index.html"><img src="/images/logo.png" class="logo" ></a> </li>
+
+<li class="dropdown-link"> <a href="dashboard.php" class="dropbtn"> Dashboard</a>  
+
+</li>  
+
+<li class="dropdown-link"> <a class="dropbtn" >Administration</a> 
+
+<div class="dropdown-content">
+
+  <a href="banks.html"> Banks </a>  
+
+  <a href="commission-fees.php"> Commission Fees</a>  
+
+  <a href="customers.html"> Customers </a>
+
+  <a href="exchange-rates.html"> Exchange Rates</a>  
+
+  <a href="shops.html"> Shops </a> 
+
+  <a href=""> Users </a>   
+
+</div>
+
+
+</li>  
+
+<li class="dropdown-link"> <a class="dropbtn" >Reports</a>  
+
+<nav class="dropdown-content">
+
+  <a href="banking.html"> Banking</a> 
+
+  <a href="daily-transactions-receipients.html"> Daily Transactions </a>
+
+  <a href="daily-transactions-senders.html"> Daily Transactions </a>   
+
+   <a href="receipients.html"> Recipients </a> 
+
+    <a href="sales-report.html"> Sales Report </a> 
+
+  <a href="senders.html"> Senders </a> 
+
+  <a href="transactions.php"> Transactions </a>  
+
+</nav>
+
+</li>  
+
+<li class="dropdown-link"> <a href="offers.html" class="dropbtn" >Log Out</a> 
+
+
+</li>  
+
+<li class="icon">
+    <a href="javascript:void(0);" style="font-size:15px;" onclick="showResponsivemenu()">☰</a>
+</li>
+
+
+
+</ul>
+
+</header>
+
+
+<div class="container-fluid"  ng-controller='users' ng-init="getuserlist()">
+
+
+&nbsp;
+
+
+<div class="row" >
+
+<div class="col-sm-6" style="">
+
+<h6>USER DETAILS</h6>
+
+</br>
+
+<form role="form" name="sendersmobileform" >
+
+<div class="row">
+
+    <div class="col-sm-6" >
+<input type="text" class="form-control input-sm" id="customerid" ng-model="user_ID"  disabled placeholder="ID NUMBER">
+
+</div>
+
+ <div class="col-sm-6" > <span style='color:red;' > *search is case sensitive </span>
+ </div>
+
+</div>
+&nbsp;
+
+
+
+<div class="row">
+
+    <div class="col-sm-6" >
+
+    <input type="text" class="form-control input-sm" id="inputsm"  id="customerfirstname" ng-model='userfirstname' required placeholder="* FIRST NAME :" />
+
+    </div>
+
+    <div class="col-sm-6" >
+
+    <input type="text" class="form-control input-sm" id="inputsm"  id="customerlastname" ng-model='userlastname' required  placeholder="* LAST NAME :" />
+
+    </div>
+ 
+</div>
+
+&nbsp;
+
+<div class="row">
+
+    <div class="col-sm-6" ><input type="text" class="form-control input-sm" ng-model='userusername' required  placeholder='USERNAME'/></div>
+
+ <div class="col-sm-6" ><input type="text" class="form-control input-sm" ng-model='useremail' id='email' required placeholder='EMAIL' /></div>
+  
+ </div>
+
+&nbsp;
+<span id="sendererror" style='color:red;font-weight:bold;'> {{usererror}}  </span>
+
+<div class="row">
+
+<div class="col-sm-6" style=""> <button type="submit" class="btn ban-primary btn-block" ng-click='searchmobilenumber()' ng-disabled="sendersmobileform.$invalid" >SEARCH</button></div>
+
+<div class="col-sm-6" style="">   </div>
+
+</div>
+
+&nbsp;
+
+</form>
+
+<div class="row">
+
+
+  <div class="col-sm-2"> <input type='text'  placeholder='44' class="form-control"/> </div>
+  <div class="col-sm-2"> <input type='text' placeholder='0' class="form-control"/> </div>
+  <div class="col-sm-8"> <input type='text'  name='mobile' id='mobile' placeholder='xxxxxxxxxx' class="form-control" ng-model='mobile'/> </div>
+
+</div>
+
+<div class="row">
+
+   <div class="col-sm-4">
+
+
+      <div class="form-group">
+     <label for="usr"></label>
+      <input type="text" class="form-control input-sm" ng-model='userpassword' required placeholder="PASSWORD">
+      </div>
+
+
+   </div>
+
+    <div class="col-sm-4">
+
+      <div class="form-group">
+     <label for="usr"></label>
+       <input type="text" class="form-control input-sm" id="inputsm"  ng-model='userpasswordconfirm' required placeholder="CONFIRM PASSWORD">
+      
+      </div>
+
+   </div>
+
+    <div class="col-sm-4">
+
+      <div class="form-group">
+    <label for="usr"></label>
+   
+  <input type="text" class="form-control input-sm" id="inputsm"  ng-model='limit' required placeholder="CREDIT LIMIT £">
+
+      </div>
+
+
+   </div>
+
+
+</div>
+
+
+<div class="row">
+
+   <div class="col-sm-8">
+
+ <div class="form-group">
+ <label for="usr"></label>
+     <label for="usr"></label>
+
+<select name='secretquestion' id='secretquestion' style='position:relative; font-family:Arial, Helvetica, sans-serif;' ng-model='question' required ><option value='' > Your secret question </option>
+
+
+
+
+</select>
+
+      </div>
+
+   </div>
+
+   
+
+    <div class="col-sm-4">
+
+
+<div class="form-group">
+    <label for="usr"></label>
+     <input type="text" class="form-control input-sm" id="inputsm" ng-model='useranswer' required placeholder="SECRET ANSWER">
+      </div>
+
+
+
+   </div>
+
+
+</div>
+
+
+
+<div class="row">
+
+   <div class="col-sm-4">
+
+ <div class="form-group">
+ <label for="usr"></label>
+ <label for="usr">ACCESS RIGHTS</label>
+   
+      </div>
+
+
+   </div>
+
+    <div class="col-sm-4">
+
+ <div class="form-group">
+ <label for="usr"></label>
+     <select name='shop'  ng-model="useraccess" style='width:100%'>
+<option value='' ></option>
+<option value='Administrator' > Administrator </option>
+<option value='User' > User </option>
+<option value='Customer' > Customer </option>
+</select>
+      </div>
+
+   </div>
+
+    <div class="col-sm-4">
+
+ <div class="form-group">
+    <label for="usr"></label>
+   
+      </div>
+
+   </div>
+
+
+</div>
+
+
+<div class="row">
+
+   <div class="col-sm-4">
+
+ <div class="form-group">
+ <label for="usr"></label>
+   <input type="text" class="form-control input-sm" ng-model='usershop' id='selectedshop' placeholder='*SHOP' >
+      </div>
+
+
+   </div>
+
+    <div class="col-sm-4">
+
+ <div class="form-group">
+ <label for="usr"></label>
+    <select name='shop' id='chooseshop' 'chooseshop' style='width:100%'><option value='' ></option>
+
+
+
+</select>
+      </div>
+
+   </div>
+
+    <div class="col-sm-4">
+
+ <div class="form-group">
+    <label for="usr"></label>
+  <button type="button" class="btn btn-primary btn-block" ng-click='deletesender()' >DELETE USER</button>
+      </div>
+
+   </div>
+
+
+</div>
+
+
+
+
+
+
+<div class="row">
+
+   <div class="col-sm-4">
+
+ <div class="form-group">
+ 
+   <button type="button" class="btn btn-primary btn-block" ng-click='addsender()' ng-disabled='userform.$invalid' >ADD NEW USER</button>
+
+
+      </div>
+
+
+   </div>
+
+    <div class="col-sm-4">
+
+ <div class="form-group">
+
+<button type="button" class="btn btn-primary btn-block" ng-click='updatesender()' ng-disabled='userform.$invalid' >UPDATE USER</button>
+
+      </div>
+
+   </div>
+
+    <div class="col-sm-4">
+
+<button type="button" class="btn btn-primary ban-block" ng-click='sendemail()' >EMAIL USER REPORT</button>
+
+
+
+   </div>
+
+
+</div>
+
+
+
+</div>
+
+
+<div class="col-sm-6" style="">
+
+<table ng-init='getusers()' class='table borderless'>
+    
+      <tr>
+     <th> USERNAME </th>
+     <th> ACCESS RIGHT </th>
+     <th>  </th>
+      </tr>
+</table>
+
+
+<div class="userlist"  >
+
+
+<table class='table borderless'>
+
+ <tbody>
+
+    <tr ng-repeat='user in userlist'>
+        <td>{{user.username}}</td>
+        <td>{{user.usertype}}</td>
+        <td><button type="button" class="btn btn-link" ng-click='selectuser($index)'>select</button></td>
+      </tr>
+    
+
+    </tbody>
+  </table>
+
+
+
+</div>
+
+</div>
+
+</div>
+
+
+
+</div>
+
+<footer>
+<div class="row">
+
+  <div class="col-sm-6" id="footer_column_1">  
+
+
+<p>Authorised User can log into JM Transfers by entering correct account information on the right hand side. The activity of authorized users may be monitored. If monitoring reveals evidence of criminal activity, systems personnel may provide the evidence to management and/or law enforcement officials. Just Computers trading as JM Transfer and JM Trax have a comprehensive compliance program within the organisation to ensure compliance with government rules, regulations and approved guidance. We do not want JM Transfer and JM Trax services to be used in illegal money laundering activities or terrorist activities. It is our policy that we follow both the letter and the spirit of the law and the regulations of both the United Kingdom and Nigeria in which JM Transfer and JM Trax operates. All remittances processed by JM Transfer and JM Trax are screened with enhanced controls to prevent money laundering and terrorist financing. It is JM Transfer and JM Trax policy to follow both the letter and spirit of the law and regulations. Throughout the world, Governments have reinforced their commitment to the fight against money laundering and terrorist financing. New laws have imposed additional obligations on firms and individuals in the financial services sector to join in the fight. JM Transfer and JM Trax has an extensive training and awareness programme, a rigorous transaction monitoring system and a robust culture of compliance. JM Transfer and JM Trax works closely with regulatory bodies.</p>
+
+
+ </div>
+
+  <div class="col-sm-6" id="footer_column_2">  
+
+<img src='http://jmtrax.net/images/Photo2.png' />
+
+   </div>
+
+   
+
+</div>
+
+</footer>
+
+
+
+<section class="copywright">
+
+<p style='color:white;'>&copy; UNIFIED DIGITAL MEDIA  - http://www.unifieddigitalmedia.co.uk</p>
+
+  </section>
+
+
+
+
+
+<script src="/jquery/dist/jquery.min.js" ></script>
+
+<script src="/bootstrap/dist/js/bootstrap.min.js" ></script>
+
+<script src="/angular/angular.min.js" ></script>
+
+<script src="/angular-resource/angular-resource.min.js" ></script>
+
+
+
+<script type="text/javascript">
+
+
+var app = angular.module('justmoneytransfers', ['ngResource']);
+
+
+app.factory('Users_Service', ['$resource', function($resource) {
+
+var resource = $resource('http://localhost:3000/routes/user',{});
+
+return resource;
+
+
+}]);
+
+
+app.controller('users', function($scope,Users_Service,$http) {
+
+
+$scope.selectuser = function (para) {
+
+
+
+$scope.user_ID = $scope.userlist[para]._id;
+$scope.userfirstname = $scope.userlist[para].senderdetails.SendersFirstName;
+$scope.userlastname = $scope.userlist[para].senderdetails.SendersLastName;
+$scope.userusername = $scope.userlist[para].username;
+$scope.useranswer = $scope.userlist[para].secretanswer;
+$scope.useremail = $scope.userlist[para].senderdetails.Email;
+$scope.mobile = $scope.userlist[para].senderdetails.Mobile;
+$scope.userpassword = $scope.userlist[para].password;
+$scope.exrights = $scope.userlist[para].usertype;
+$scope.usershop = $scope.userlist[para].shop.name;
+$scope.limit = $scope.userlist[para].limit;
+
+
+
+}
+
+
+$scope.getuserlist = function () {
+
+
+
+$http.get("http://localhost:3000/routes/user").then(function(response) {
+
+$scope.userlist = response.data;
+ 
+    });
+
+
+
+  }
+
+
+
+$scope.update_user = function () {
+
+
+if($scope.user_ID === undefined)
+
+{
+
+alert('You need to select a user');
+
+}
+else
+{
+
+
+$scope.add_new_user();
+
+
+
+}
+
+
+
+
+}
+
+$scope.delete_user = function () {
+
+
+var r = confirm("You are about to delete this user");
+
+
+if (r == true) {
+
+
+var log = User_Service.delete(
+
+{
+
+id:$scope.user_ID,
+
+}, function() {
+
+
+$scope.getuserlist();
+
+  
+  });
+
+
+
+}
+else
+{
+
+
+
+}
+
+
+
+
+
+  }
+
+$scope.add_new_user = function () {
+
+var EmailRegex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+
+var email = document.getElementById("email").value;
+
+
+
+if(EmailRegex.test(email))
+{
+
+if($scope.userpassword === $scope.userpasswordconfirm  )
+
+{
+
+
+if($scope.userpassword === undefined || $scope.userpasswordconfirm === undefined )
+
+{
+
+$scope.usererror = 'Password is needed';
+
+}
+else
+{
+if ($scope.useraccess === undefined )
+
+{
+
+
+$scope.usererror = 'Select users access rights';
+
+}
+else
+{
+
+
+var log = User_Service.delete(
+
+{
+
+id:$scope.user_ID,
+username:$scope.username,
+password:$scope.password,
+secretquestion:$scope.secretquestion,
+secretanswer:$scope.secretanswer,
+usertype:$scope.usertype,
+limit:$scope.limit,
+mobile:$scope.mobile
+
+}, function() {
+
+
+$scope.getuserlist();
+
+  
+  });
+
+
+
+
+
+}
+
+}
+
+}
+else {  $scope.usererror = 'Passwords do not match'; }
+
+
+
+
+}
+else
+{
+
+$scope.usererror = 'Not a valid email';
+
+
+
+}
+
+
+
+
+
+
+
+}
+
+
+
+});
+
+
+
+
+</script>
+
+
+</body>
+
+</html>

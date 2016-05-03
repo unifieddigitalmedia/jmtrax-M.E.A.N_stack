@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" type="text/css" href="/styles/normal.css">
+
+
+
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+
+<link rel="icon" 
+      type="image/png" 
+      href="/images/jmtrax_icon.png">
+
+</head>
+
+<body ng-cloak>
+
+<header> 
+<ul class="topnav">
+
+<li class="logo_link"> <a href="index.html"><img src="/images/logo.png" class="logo" ></a> </li>
+
+<li class="dropdown-link"> <a href="" class="dropbtn"> Dashboard</a>  
+
+</li>  
+
+<li class="dropdown-link"> <a class="dropbtn" >Administration</a> 
+
+<div class="dropdown-content">
+
+  <a href="banks.html"> Banks </a>  
+
+  <a href="commission-fees.php"> Commission Fees</a>  
+
+  <a href="customers.html"> Customers </a>
+
+  <a href="exchange-rates.html"> Exchange Rates</a>  
+
+  <a href="shops.html"> Shops </a> 
+
+  <a href=""> Users </a>   
+
+</div>
+
+
+</li>  
+
+<li class="dropdown-link"> <a class="dropbtn" >Reports</a>  
+
+<nav class="dropdown-content">
+
+  <a href="banking.html"> Banking</a> 
+
+  <a href="daily-transactions-receipients.html"> Daily Transactions </a>
+
+  <a href="daily-transactions-senders.html"> Daily Transactions </a>   
+
+   <a href="receipients.html"> Recipients </a> 
+
+    <a href="sales-report.html"> Sales Report </a> 
+
+  <a href="senders.html"> Senders </a> 
+
+  <a href="transactions.php"> Transactions </a>  
+
+</nav>
+
+</li>  
+
+<li class="dropdown-link"> <a href="index.html" class="dropbtn" >Log Out</a> 
+
+
+</li>  
+
+<li class="icon">
+    <a href="javascript:void(0);" style="font-size:15px;" onclick="showResponsivemenu()">☰</a>
+</li>
+
+
+
+</ul>
+
+
+</header>
+
+<div class="container-fluid"  ng-controller='dashboard' >
+
+&nbsp;
+<div class="row" >
+
+<div class="col-sm-6" style="">
+
+<h6>SENDERS DETAILS</h6> <span style='color:red;' > </span>
+
+</br>
+
+
+<form role="form" name="sendersmobileform" >
+
+<div class="form-group" style='height:100px;'>
+
+
+  <div class="row">
+
+    <div class="col-sm-6" >
+<input type="text" class="form-control input-sm" id="customerid" ng-model="user_ID"  disabled placeholder="ID NUMBER">
+
+</div>
+
+ <div class="col-sm-6" > <span style='color:red;' > *search is case sensitive </span>
+
+
+
+</div>
+    
+
+
+  </div>
+
+&nbsp;
+
+  <div class="row">
+
+    <div class="col-sm-6" >
+
+<input type="text"  class="form-control input-sm"   id="customerfirstname" ng-model='FirstName' placeholder="* First Name :" />
+
+
+</div>
+    <div class="col-sm-6" >
+
+
+<input type="text"  class="form-control input-sm"  id="customerlastname" ng-model='LastName' placeholder="* LAST NAME :" />
+
+
+</div>
+    
+
+
+  </div>
+
+&nbsp;
+
+  <div class="row">
+
+    <div class="col-sm-3" ><input type="text"  class="form-control input-sm"  value ='+44' disabled style='font-weight:bold;color:red;' ></div>
+    <div class="col-sm-2" ><input type="sendersmobile"  class="form-control input-sm"  value ='0'  disabled style='font-weight:bold;color:red;'></div>
+    <div class="col-sm-7" ><input type="text"  class="form-control input-sm"   name='sendersmobile' placeholder='Senders Mobile' required style='font-weight:bold;color:red;' id="customermobile" ng-model='MobilePhone' /></div>
+  </div>
+
+
+
+
+</div>
+
+&nbsp;
+
+<div class="row">
+<div class="col-sm-6" style=""> 
+
+<button type="submit" class="btn btn-primary btn-block" ng-click='getsenderslist()'  >SEARCH</button>
+
+
+</div>
+<div class="col-sm-6" style="">  
+
+
+
+</div>
+
+
+
+</div>
+
+&nbsp;
+
+</form>
+
+
+
+<p> {{senderrror}}  </p>
+
+
+
+<div class="row">
+<div class="col-sm-6" style=""> 
+
+<label for="usr"></label>
+      <input type="text"  ng-model="USERNAME" id="username" class="form-control input-sm" placeholder="* USERNAME :"/>
+
+</div>
+<div class="col-sm-6" style="">  
+
+<label for="usr"></label>
+      <input type="text" class="form-control input-sm" id="customeremail" ng-model='EMAIL' placeholder="* EMAIL :">
+    
+
+</div>
+
+
+
+</div>
+
+&nbsp;
+
+
+<div class="row">
+
+   <div class="col-sm-4">
+
+
+      <div class="form-group">
+     <label for="usr"></label>
+      <input type="text" class="form-control input-sm" ng-model='PASSWORD' required placeholder="PASSWORD">
+      </div>
+
+
+   </div>
+
+    <div class="col-sm-4">
+
+      <div class="form-group">
+     <label for="usr"></label>
+       <input type="text" class="form-control input-sm" id="inputsm"  ng-model='PASSWORDconfirm' required placeholder="CONFIRM PASSWORD">
+      
+      </div>
+
+   </div>
+
+    <div class="col-sm-4">
+
+      <div class="form-group">
+    <label for="usr"></label>
+   
+  <input type="text" class="form-control input-sm" id="creditlimit"  ng-model='limit' required placeholder="CREDIT LIMIT £">
+
+      </div>
+
+
+   </div>
+
+
+</div>
+
+
+<div class="row">
+
+   <div class="col-sm-8">
+
+ <div class="form-group">
+ <label for="usr"></label>
+     <label for="usr"></label>
+
+<select name='secretquestion' id='secretquestion' style='position:relative; font-family:Arial, Helvetica, sans-serif;' ng-model='question' required ><option value='' > Your secret question </option>
+
+
+
+
+</select>
+
+      </div>
+
+   </div>
+
+   
+
+    <div class="col-sm-4">
+
+
+<div class="form-group">
+    <label for="usr"></label>
+     <input type="text" class="form-control input-sm" id="secretanswer" ng-model='ANSWER' required placeholder="SECRET ANSWER">
+      </div>
+
+
+
+   </div>
+
+
+</div>
+
+
+
+<div class="row">
+
+   <div class="col-sm-4">
+
+ <div class="form-group">
+ <label for="usr"></label>
+ <label for="usr">ACCESS RIGHTS</label>
+   
+      </div>
+
+
+   </div>
+
+    <div class="col-sm-4">
+
+ <div class="form-group">
+ <label for="usr"></label>
+     <select name='shop'  ng-model="useraccess" id="accessrights" style='width:100%'>
+<option value='' ></option>
+<option value='Administrator' > Administrator </option>
+<option value='User' > User </option>
+<option value='Customer' > Customer </option>
+</select>
+      </div>
+
+   </div>
+
+    <div class="col-sm-4">
+
+ <div class="form-group">
+    <label for="usr"></label>
+   
+      </div>
+
+   </div>
+
+
+</div>
+
+
+<div class="row">
+
+   <div class="col-sm-4">
+
+ <div class="form-group">
+ <label for="usr"></label>
+   <input type="text" class="form-control input-sm" ng-model='usershop' id='selectedshop' placeholder='*SHOP' >
+      </div>
+
+
+   </div>
+
+    <div class="col-sm-4">
+
+ <div class="form-group">
+ <label for="usr"></label>
+    <select name='shop' id='chooseshop'  style='width:100%'><option value='' ></option>
+
+
+
+</select>
+      </div>
+
+   </div>
+
+    <div class="col-sm-4">
+
+ <div class="form-group">
+    <label for="usr"></label>
+  <button type="button" class="btn btn-primary btn-block" ng-click='deletesender()' >DELETE USER</button>
+      </div>
+
+   </div>
+
+
+</div>
+
+
+<div class="row">
+
+
+   <div class="col-sm-4">
+
+ <div class="form-group">
+ <button type="button" class="btn btn-primary btn-block"  ng-click='savesender()' > ADD </button>
+
+     
+      </div>
+
+
+   </div>
+
+    <div class="col-sm-4">
+
+ <div class="form-group">
+
+<!-- <button type="button" class="btn btn-primary btn-block" ng-hide="senderdetail.USERID" ng-click='convertcustomer()'> ENABLE CUSTOMER</button> --> 
+
+<button type="button" class="btn btn-primary btn-block" ng-click='deletesender()'>UPDATE</button>
+
+      </div>
+
+   </div>
+
+    <div class="col-sm-4">
+
+<form action='http://www.justcomputersparts.co.uk/senderstransactions' method='POST'>  <button type='submit' name='printsenders' class="btn btn-primary btn-block"  >EMAIL USER REPORT </button>  <input type='hidden' name='sendersID' value='{{sendersid}}' /> </form>
+
+
+
+
+   </div>
+
+
+</div>
+
+
+</div>
+
+
+<div class="col-sm-6" style="">
+
+<table ng-init='getsenderslist()' class='table borderless'>
+    
+      <tr>
+     <th> USERNAME </th>
+     <th> ACCESS RIGHT </th>
+     <th>  </th>
+      </tr>
+</table>
+
+
+<div class="userlist"  >
+
+
+<table class='table borderless'>
+
+ <tbody>
+
+    <tr ng-repeat='user in senderslist'>
+        <td>{{user.username}}</td>
+        <td>{{user.usertype}}</td>
+        <td><button type="button" class="btn btn-link" ng-click='selectsender($index)'>select</button></td>
+      </tr>
+    
+
+    </tbody>
+  </table>
+
+
+
+
+
+
+
+
+&nbsp;
+
+
+
+</div>
+
+</div>
+
+</div>
+
+
+</div>
+
+</body>
+</html>

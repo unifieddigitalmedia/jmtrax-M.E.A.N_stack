@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"> 
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" type="text/css" href="/styles/normal.css">
+
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+
+<link rel="icon" 
+      type="image/png" 
+      href="/images/jmtrax_icon.png">
+
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+
+<link rel="icon" 
+      type="image/png" 
+      href="/images/jmtrax_icon.png">
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+
+<title> Just Money Transfers | Daily Senders Transactions </title>
+
+
+</head>
+
+<body ng-cloak ng-app="justmoneytransfers" >
+
+  
+
+ 
+
+
+<header ng-controller="menucontroller">
+
+
+<ul class="topnav">
+
+<li class="logo_link"> <a href="index.html"><img src="/images/logo.png" class="logo" ></a> </li>
+
+<li class="dropdown-link"> <a href="dashboard.php" class="dropbtn"> Dashboard</a>  
+
+</li>  
+
+<li class="dropdown-link" ng-hide="usertype"> <a class="dropbtn" >Administration</a> 
+
+<div class="dropdown-content">
+
+  <a href="banks.html"> Banks </a>  
+
+  <a href="commission-fees.php"> Commission Fees</a>  
+
+  <a href="customers.html"> Customers </a>
+
+  <a href="exchange-rates.html"> Exchange Rates</a>  
+
+  <a href="shops.html"> Shops </a> 
+
+  <a href="users.html"> Users </a>   
+
+</div>
+
+
+</li>  
+
+<li class="dropdown-link"> <a class="dropbtn" >Reports</a>  
+
+<nav class="dropdown-content">
+
+  <a href="banking.html"> Banking</a> 
+
+  <a href="daily-transactions-receipients.html"> Daily Transactions </a>
+
+  <a > Daily Transactions </a>   
+
+   <a href="receipients.html"> Recipients </a> 
+
+    <a href="sales-report.html"> Sales Report </a> 
+
+  <a href="senders.html"> Senders </a> 
+
+  <a href="transactions.php"> Transactions </a>  
+
+</nav>
+
+</li>  
+
+<li class="dropdown-link"> <a href="index.html" class="dropbtn" >Log Out</a> 
+
+
+</li>  
+
+<li class="icon">
+    <a href="javascript:void(0);" style="font-size:15px;" onclick="showResponsivemenu()">☰</a>
+</li>
+
+
+
+</ul></header>
+
+  
+<div class="container-fluid"  ng-controller='menucontroller'   >
+
+
+&nbsp;
+
+
+
+<div class="table-responsive"  ng-init="getdaily()">
+
+
+ <table class="table table-bordered">
+    <thead>
+
+   <tr>
+        <th style='tablecells'>STAFF REF.</th>
+        <th style='tablecells'>SHOP</th>
+        <th  style='tablecells'>DATE</th>
+        <th style='tablecells' >TRANS. NO.</th>
+        <th style='tablecells'>SENDER FIRST NAME</th>
+        <th style='tablecells'>SENDER LAST NAME</th>
+        <th style='tablecells'>AMOUNT £</th>
+        <th style='tablecells'>FEES £</th>
+        <th style='tablecells'>TOTAL GBP DUE £</th>
+        <th style='tablecells'>TOTAL NGN DUE</th>
+        <th style='tablecells'>STATUS</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat='daily in ( filteredTransactions = ( dailytransactionlist |  todaystransfers  ) )' ng-click="selecttransfer($index)" style="cursor:pointer">
+        <td style='tablecells'>{{daily.agentusername}}</td>
+        <td style='tablecells'>{{daily.shop}}</td>
+        <td style='tablecells'>{{daily.date}}</td>
+         <td style='tablecells'>JM{{daily.id}}</td>
+        <td style='tablecells'>{{daily.senderfirstname}}</td>
+        <td style='tablecells'>{{daily.senderlasttname}}</td>
+        <td style='tablecells'>{{tocurrency(daily.amount)}}</td>
+        <td style='tablecells' >{{daily.fee}}</td>
+        <td style='tablecells'>{{tocurrency(daily.totalgbp)}}</td>
+        <td style='tablecells'>{{tocurrency(daily.totalngn)}}</td>
+        <td style='tablecells'>{{tocurrency(daily.status)}}</td>
+
+      </tr>
+
+ <tr>
+        <td colspan='6'></td>
+        <td>AMOUNT £</td>
+        <td>FEES £</td>
+        <td>TOTAL GBP DUE £</td>
+        <td>TOTAL NGN DUE</td>
+        
+      </tr>
+
+ <tr>
+        <td colspan='6'></td>
+        <td>{{ filteredTransactions | sumByKey:'amount' }}</td>
+        <td>{{ filteredTransactions | sumByKey:'fee' }}</td>
+        <td>{{ filteredTransactions | sumByKey:'totalgbp' }}</td>
+        <td>{{ filteredTransactions | sumByKey:'totalngn' }}</td>
+  
+        
+      </tr>
+
+
+    </tbody>
+  </table>
+
+</div>
+
+</div>
+
+
+<footer>
+<div class="row">
+
+  <div class="col-sm-6" id="footer_column_1">  
+
+
+<p>Authorised User can log into JM Transfers by entering correct account information on the right hand side. The activity of authorized users may be monitored. If monitoring reveals evidence of criminal activity, systems personnel may provide the evidence to management and/or law enforcement officials. Just Computers trading as JM Transfer and JM Trax have a comprehensive compliance program within the organisation to ensure compliance with government rules, regulations and approved guidance. We do not want JM Transfer and JM Trax services to be used in illegal money laundering activities or terrorist activities. It is our policy that we follow both the letter and the spirit of the law and the regulations of both the United Kingdom and Nigeria in which JM Transfer and JM Trax operates. All remittances processed by JM Transfer and JM Trax are screened with enhanced controls to prevent money laundering and terrorist financing. It is JM Transfer and JM Trax policy to follow both the letter and spirit of the law and regulations. Throughout the world, Governments have reinforced their commitment to the fight against money laundering and terrorist financing. New laws have imposed additional obligations on firms and individuals in the financial services sector to join in the fight. JM Transfer and JM Trax has an extensive training and awareness programme, a rigorous transaction monitoring system and a robust culture of compliance. JM Transfer and JM Trax works closely with regulatory bodies.</p>
+
+
+ </div>
+
+  <div class="col-sm-6" id="footer_column_2" style="text-align:center">  
+
+<img src='/images/Photo2_small.png' class="footerimage"alt="Collection of logo representing Nigeria Banks that Jm Trax are associated with" />
+
+   </div>
+
+   
+
+</div>
+
+</footer>
+
+
+<section class="copywright">
+
+<p style='color:white;'>&copy; UNIFIED DIGITAL MEDIA  - http://www.unifieddigitalmedia.co.uk</p>
+
+</section>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js" ></script>
+
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" ></script>
+
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js" ></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular-resource.js" ></script>
+
+<script src="scripts/main.js"> </script>
+
+<script type="text/javascript">
+
+
+var app = angular.module('justmoneytransfers', ['ngResource','dailyFilter','calfilter']);
+
+
+app.controller('menucontroller', function($scope,$http,$resource) {
+
+
+var init = function () {
+   
+
+
+$scope.usertype = false;
+
+if( getCookie('agenttype') === 'user'  )
+
+{ 
+
+$scope.usertype = true;
+
+
+}
+
+  
+ if(!getCookie('agentusername') || getCookie('agenttype') == 'customer' )
+
+{
+
+
+window.location = "http://localhost:3000/index.html" ;
+
+
+}
+
+var counter = 0;
+
+setInterval(function(){ counter = counter + 1 ;
+
+
+window.addEventListener("mousemove",function getcoords() {
+
+
+counter = 0;
+
+});
+
+if (counter == '1800')
+
+{
+
+
+
+
+window.location = "http://localhost:3000/index.html" ;
+
+
+
+} },1000);
+
+
+
+$http.get("http://localhost:3000/api/transactions.php?agentusername="+ getCookie('agentusername')+"&agenttype="+getCookie('agenttype')).then(function(response) {
+
+$scope.dailytransactionlist = response.data;
+
+
+
+
+    });
+
+
+
+
+$scope.tocurrency = function (para) {
+
+
+var number = para.toString();
+
+var dollars = number.split('.')[0];
+
+var  cents = (number.split('.')[1] || '') +'00';
+
+var dollars = dollars.split('').reverse().join('').replace(/(\d{3}(?!$))/g, '$1,').split('').reverse().join('');
+
+var cent = cents.slice(0, 2);
+
+var decimal = ".";
+
+var cent2 = decimal.concat(cent);
+
+var dollars = dollars.concat(cent2);
+
+return dollars;
+
+
+
+
+}
+
+$scope.selecttransfer = function (para) {
+
+
+document.cookie = "transaction_number=" + $scope.filteredTransactions[para].id;
+document.cookie = "fromdate=" + $scope.startdate;
+document.cookie = "enddate=" + $scope.enddate;
+document.cookie = "status=" + $scope.status;
+document.cookie = "trans_pos=" + para;
+window.location = "http://localhost:3000/editorder.html" ;
+
+}
+
+
+};
+
+init();
+
+
+
+
+function getCookie(cname) {
+
+    var name = cname + "=";
+  
+    var ca = document.cookie.split(';');
+  
+    for(var i=0; i<ca.length; i++) {
+  
+        var c = ca[i];
+  
+        while (c.charAt(0)==' ') c = c.substring(1);
+  
+        if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+  
+    }
+  
+    return "";
+
+}
+
+
+
+
+
+
+
+});
+
+
+
+
+angular.module('dailyFilter', []).filter('todaystransfers', function() {
+
+return function(input) {
+
+var log = [];
+
+   var date = new Date();
+    
+    
+ var DateString;
+
+ var monthIndex = date.getMonth();
+    
+    if(monthIndex === 12)
+{
+
+monthIndex = 1; 
+
+}else {
+
+monthIndex = monthIndex + 1 ; 
+
+}
+
+
+DateString = ('0' + date.getDate()).slice(-2) + '-'
+             + ('0' + monthIndex).slice(-2) + '-'
+             + date.getFullYear();
+             
+
+
+    var log = [];
+
+
+
+angular.forEach(input, function(value, key) {
+
+if (value.date === Datestring )  { this.push(value); }
+
+
+
+}, log);
+
+return log;
+
+
+
+}
+
+
+
+});
+
+
+
+
+angular.module('dailyFilter', []).filter('todaystransfers', function() {
+
+return function(input) {
+
+var log = [];
+
+   var date = new Date();
+    
+    
+ var DateString;
+
+ var monthIndex = date.getMonth();
+    
+    if(monthIndex === 12)
+{
+
+monthIndex = 1; 
+
+}else {
+
+monthIndex = monthIndex + 1 ; 
+
+}
+
+
+DateString = ('0' + date.getDate()).slice(-2) + '-'
+             + ('0' + monthIndex).slice(-2) + '-'
+             + date.getFullYear();
+             
+             
+   
+
+
+    var log = [];
+
+
+angular.forEach(input, function(value, key) {
+
+
+
+if (value.date === DateString )  { this.push(value); }
+
+
+
+}, log);
+
+return log;
+
+
+
+}
+
+
+
+});
+
+
+angular.module('calfilter', [])
+    .filter('sumByKey', function() {
+        return function(data, key) {
+        
+            var sum = 0;
+
+            for (var i = data.length - 1; i >= 0; i--) {
+            
+                sum += parseInt(data[i][key].replace(",", ""));
+            
+            }
+            
+      
+            var number = sum.toString();
+
+            var dollars = number.split('.')[0];
+
+            var  cents = (number.split('.')[1] || '') +'00';
+
+            var dollars = dollars.split('').reverse().join('').replace(/(\d{3}(?!$))/g, '$1,').split('').reverse().join('');
+
+            var cent = cents.slice(0, 2);
+
+            var decimal = ".";
+
+            var cent2 = decimal.concat(cent);
+
+            var dollars = dollars.concat(cent2);
+            
+            return dollars;
+        };
+    });
+
+
+
+</script>
+
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+<script type="text/javascript">
+
+$(function() {
+
+    $( "#datepicker" ).datepicker({ dateFormat: "d-m-yy" });
+
+    $( "#datepicker1" ).datepicker({ dateFormat: "d-m-yy" });
+  
+  });
+
+
+</script>
+
+</body>
+
+</html>

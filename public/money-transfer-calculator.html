@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"> 
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" type="text/css" href="/styles/normal.css">
+
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+
+<link rel="icon" 
+      type="image/png" 
+      href="/images/jmtrax_icon.png">
+
+
+
+<title> Just Money Transfers | Transfer Calculator  </title>
+
+
+</head>
+
+<body ng-cloak ng-app="justmoneytransfers">
+
+	
+
+ 
+
+<header>
+
+
+<ul class="topnav">
+
+<li class="logo_link"> <a href="index.html"><img src="/images/logo.png" class="logo" ></a> </li>
+
+<li class="dropdown-link"> <a href="" class="dropbtn"> Transfer Calculator</a>  
+
+</li>  
+
+<li class="dropdown-link"> <a class="dropbtn" >My Account</a> 
+
+<div class="dropdown-content">
+
+  <a href="personal-details.html"> Personal Details </a>  
+
+   <a href="beneficiary-details.html"> Beneficiaries </a>  
+
+
+</div>
+
+
+</li>  
+
+<li class="dropdown-link"> <a class="dropbtn" href="settings.html" >Settings</a>  
+
+
+</li>   
+
+
+<li class="dropdown-link"> <a href="index.html" class="dropbtn" >Log Out</a> 
+
+
+</li>  
+
+<li class="icon">
+    <a href="javascript:void(0);" style="font-size:15px;" onclick="showResponsivemenu()">☰</a>
+</li>
+
+
+
+</ul></header>
+
+
+<div class="container-fluid"  ng-controller="moneytransfercalculator" >
+
+
+<h3>  Welcome back {{agentusername}}</h3>
+<div class="row" >
+
+<div class="col-sm-6" >
+
+<h5> Here are your benficiaries . To get started select a beneficary or add a new by clicking <a href="beneficiary-details.html" > here </a> </h5>
+
+<table class="table borderless ">
+
+<tr> 
+
+<td>  <h6 > FIRST NAME </h6>  </td> 
+
+<td> <h6 >LAST NAME </h6></td> 
+
+<td> <h6 >BANK </h6></td> 
+
+<td> <h6 >ACCOUNT NUMBER </h6></td> 
+
+</tr>
+
+</table>
+
+<div class="div_list" >
+
+
+
+<table class="table borderless ">
+
+<tbody>
+<tr ng-repeat="rec in receipentlist" style='cursor:pointer;' ng-click="selectreceipient($index)">
+
+<td >{{rec.ReceipientFirstName}}</td>
+<td>{{rec.ReceipientLastName}}</td>
+<td>{{rec.ReceipientBank}}</td>
+<td>{{rec.ReceipientAccountNumber}}</td>
+
+</tr>
+
+</tbody>
+</table>
+
+
+</div>
+
+&nbsp;
+
+<h4> Here are your most recent transaction </h4>
+
+
+<table class="table borderless ">
+
+<tr>  
+<td> <h6> DATE </h6></td>
+<td> <h6> T-NUM </h6></td>
+<td> <h6> B. FIRST NAME </h6></td>
+<td> <h6> B. LAST NAME</h6> </td>
+<td> <h6> AMOUNT GBP </h6></td>
+<td> <h6> FEE</h6> </td>
+<td> <h6> TOTAL GBP DUE </h6></td>
+
+</tr>
+
+</table>
+<div class="div_list" >
+
+
+<table class="table borderless ">
+
+<tbody>
+<tr  ng-repeat="trans in transactionlist" >
+<td >{{trans.date}} </td>
+<td>JM{{trans.id}}</td>
+<td>{{trans.recipientfirstname}}</td>
+<td>{{trans.recipientsurname}}</td>
+<td>{{trans.amount}}</td>
+<td>{{trans.fee}}</td>
+<td>{{trans.totalgbp}}</td>
+
+</tr>
+</tbody>
+</table>
+
+
+</div>
+
+&nbsp;
+
+
+</div>
+
+<div class="col-sm-6" >
+
+
+<div class="row" >
+
+<div class="col-sm-1" >
+
+</div>
+
+<div class="col-sm-10" >
+
+<form action='../confirm-address/' method='POST' name='transferform' class="mainform" style="text-align:center;">
+<h3> TRANSFER CALCULATOR </h3>
+
+<table style="text-align:center;width:100%;">
+<tr>
+<td style='font-size:20px;color:red;'> 1 GBP = {{gbp}}   NGN</td>
+</tr>
+
+<tr>
+<td style='font-size:20px;color:blue;'> {{ngn}}  NGN = 1 GBP</td>
+
+</tr>
+
+</table>
+
+
+<span > <h6 style='color:red;padding:10px;'> Enter an amount to send and click anywhere</h6> </span>
+
+
+<div class="form-group">
+  <label for="pwd"></label>
+  <input type="text" class="form-control" value="" name="paymentsterling" class="paymentsterling" id="paymentsterling" required placeholder="AMOUNT IN GBP:" ng-model="paymentsterling" ng-blur="calAMOUNT(paymentsterling)" >
+</div>
+<div class="form-group">
+  <label for="usr"></label>
+  <input type="text" class="form-control" name="paymentcommission" class="fee" id="fee" required placeholder="COMMISSION:"  ng-model="fee" >
+</div>
+<div class="form-group">
+  <label for="pwd"></label>
+  <input type="text" class="form-control" value="" name="paymenttotalngn" class="paymenttotalngn" id="paymenttotalngn" required placeholder="TOTAL NGN:" ng-model="NGN" ng-blur="calNGN(NGN)">
+</div>
+<div class="form-group">
+  <label for="pwd"></label>
+  <input type="text" class="form-control"  value="" name="paymentduegbp" class="total" id="total" required placeholder="TOTAL GBP DUE:" ng-model="total" ng-blur="calTOTALGBP(total)">
+</div>
+<div class="form-group">
+  <label for="pwd"></label>
+
+
+
+ <button type="button" class="btn btn-primary btn-block" ng-disabled="transferbtn" ng-click="sendmoney()">SEND MONEY</button>
+
+</div>
+
+
+</div>
+
+
+</form>
+
+
+</div>
+
+<div class="col-sm-1" >
+
+</div>
+
+</div>
+
+
+
+
+</div>
+
+</div>
+
+</div>
+
+
+<footer>
+
+<div class="row">
+
+  <div class="col-sm-6" id="footer_column_1">  
+
+
+<p>Authorised User can log into JM Transfers by entering correct account information on the right hand side. The activity of authorized users may be monitored. If monitoring reveals evidence of criminal activity, systems personnel may provide the evidence to management and/or law enforcement officials. Just Computers trading as JM Transfer and JM Trax have a comprehensive compliance program within the organisation to ensure compliance with government rules, regulations and approved guidance. We do not want JM Transfer and JM Trax services to be used in illegal money laundering activities or terrorist activities. It is our policy that we follow both the letter and the spirit of the law and the regulations of both the United Kingdom and Nigeria in which JM Transfer and JM Trax operates. All remittances processed by JM Transfer and JM Trax are screened with enhanced controls to prevent money laundering and terrorist financing. It is JM Transfer and JM Trax policy to follow both the letter and spirit of the law and regulations. Throughout the world, Governments have reinforced their commitment to the fight against money laundering and terrorist financing. New laws have imposed additional obligations on firms and individuals in the financial services sector to join in the fight. JM Transfer and JM Trax has an extensive training and awareness programme, a rigorous transaction monitoring system and a robust culture of compliance. JM Transfer and JM Trax works closely with regulatory bodies.</p>
+
+
+ </div>
+
+  <div class="col-sm-6" id="footer_column_2" style="text-align:center;">  
+
+<img src='/images/Photo2_small.png' class="footerimage"/>
+
+   </div>
+
+   
+
+</div>
+
+</footer>
+
+
+<section class="copywright">
+
+<p style='color:white;'>&copy; UNIFIED DIGITAL MEDIA  - http://www.unifieddigitalmedia.co.uk</p>
+
+	</section>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js" ></script>
+
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" ></script>
+
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js" ></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular-resource.js" ></script>
+
+<script src="scripts/main.js"> </script>
+
+<script type="text/javascript">
+
+
+var app = angular.module('justmoneytransfers', ['ngResource']);
+
+
+app.factory('Money_Transfer_Service', ['$resource', function($resource) {
+
+var resource = $resource('http://localhost:3000/api/senders',{
+
+id:"@id",
+firstname:"@firstname",
+lastname:"@lastname",
+mobile:"@mobile",
+postcode:"@postcode",
+line1:"@line1",
+line2:"@line2",
+line3:"@line3",
+town:"@town",
+county:"@county",
+email:"@email",
+username_field:"@username",
+password_field:"@password",
+user_limit:"@user_limit",
+shop_name:"@shop_name",
+answer:"@answer",
+secretquestion:"@secretquestion",
+user_type:"@user_type",
+IDtype:"@IDtype",
+IDnumber:"@IDnumber",
+IDexpiry:"@IDexpiry",
+IDcountry:"@IDcountry",
+
+
+
+
+},{ 'update': { method:'PUT' } } );
+
+
+
+
+
+return resource;
+
+
+}]);
+
+
+app.controller('moneytransfercalculator', function($scope,Money_Transfer_Service,$http,$resource) {
+
+
+
+var init = function () {
+   
+
+$scope.agentid = getCookie('agentid') ;
+
+$scope.agentusername = getCookie('agentusername') ;
+
+document.cookie = "sender_username=" + getCookie('agentusername') ;
+
+$scope.agentemail = getCookie('agentemail') ;
+
+$scope.agenttype = getCookie('agenttype') ;
+
+$scope.creditlimit = getCookie('agentcredit') ;
+
+
+$http.get("http://localhost:3000/api/senders.php?username="+getCookie('agentusername')).then(function(response) {
+
+$scope.senderslist = response.data;
+
+
+
+
+
+
+
+
+
+
+
+    });
+
+
+	
+
+$http.get("http://localhost:3000/api/receipients.php?sendersID="+getCookie('agentid')).then(function(response) {
+
+
+$scope.receipentlist = response.data;
+
+
+});
+
+
+
+
+
+$http.get("http://localhost:3000/api/transactions.php?sendersMobile="+getCookie('agentemail')).then(function(response) {
+
+
+$scope.transactionlist = response.data;
+
+
+
+$scope.calculatetotals($scope.transactionlist);
+
+$scope.periodtotal = $scope.calculate30daytotals($scope.transactionlist);
+
+});
+
+
+
+
+$http.get("http://localhost:3000/api/rates").then(function(response) {
+
+$scope.gbp = response.data[0].rate;
+$scope.ngn = response.data[1].rate;
+
+
+
+    });
+
+
+if(!getCookie('agentusername') )
+
+{
+
+
+window.location = "http://localhost:3000/index.html" ;
+
+
+}
+
+var counter = 0;
+
+setInterval(function(){ counter = counter + 1 ;
+
+
+window.addEventListener("mousemove",function getcoords() {
+
+
+counter = 0;
+
+});
+
+if (counter == '1800')
+
+{
+
+
+
+
+window.location = "http://localhost:3000/index.html" ;
+
+
+
+} },1000);
+
+
+
+};
+
+init();
+
+
+$scope.calculate30daytotals = function (para) {
+
+$scope.periodtotal = 0;
+
+var pastdate = new Date();
+
+pastdate.setDate(pastdate.getDate() - 30);
+
+
+
+var monthIndex = pastdate.getMonth();
+    
+
+if(monthIndex === 12)
+{
+
+monthIndex = 1; 
+
+}else {
+
+monthIndex = monthIndex + 1 ; 
+
+}
+
+pastdate = pastdate.getDate()+'-'+monthIndex+'-'+ pastdate.getFullYear() ;
+
+var todaysdate = new Date();
+
+var monthIndex = todaysdate.getMonth();
+    
+if(monthIndex === 12)
+
+{
+
+monthIndex = 1; 
+
+} else {
+
+monthIndex = monthIndex + 1 ; 
+
+}
+
+todaysdate = todaysdate.getDate() +'-'+ monthIndex +'-'+ todaysdate.getFullYear();
+
+  var date = new Date();
+    
+  var DateString;
+
+
+ var monthIndex = date.getMonth();
+    
+    if(monthIndex === 12)
+{
+
+monthIndex = 1; 
+
+}else {
+
+monthIndex = monthIndex + 1 ; 
+
+}
+
+
+DateString = ('0' + date.getDate()).slice(-2) + '-'+ ('0' + monthIndex).slice(-2) + '-'+ date.getFullYear();
+
+   
+
+var log = [];
+
+
+angular.forEach(para, function(value, key) {
+
+
+if (value.date >= pastdate || value.date  <= DateString)  { 
+
+
+$scope.periodtotal += parseInt(value.amount.replace(",", "")) ;
+
+
+
+ }
+
+
+}, log );
+
+$scope.periodtotal = $scope.tocurrency(Number($scope.periodtotal).toFixed(2));
+
+return $scope.periodtotal;
+
+}
+
+
+$scope.calculatetotals = function (para) {
+
+
+$scope.LIMITAMOUNT = 0 ;
+
+$scope.LIMITFEE = 0 ;
+
+$scope.LIMITGBP = 0 ;
+
+$scope.LIMITNGN  = 0 ;
+
+  var date = new Date();
+    
+  var DateString;
+
+
+ var monthIndex = date.getMonth();
+    
+    if(monthIndex === 12)
+{
+
+monthIndex = 1; 
+
+}else {
+
+monthIndex = monthIndex + 1 ; 
+
+}
+
+
+DateString = ('0' + date.getDate()).slice(-2) + '-'+ ('0' + monthIndex).slice(-2) + '-'+ date.getFullYear();
+
+   
+
+
+var log = [];
+
+angular.forEach(para, function(value, key) {
+
+
+
+if (value.date == DateString )  { 
+
+
+
+$scope.LIMITAMOUNT += parseInt(value.amount.replace(",", "")) ;
+
+$scope.LIMITFEE += parseInt(value.fee.replace(",", ""));
+
+$scope.LIMITGBP += parseInt(value.totalgbp.replace(",", "")) ;
+
+$scope.LIMITNGN += parseInt(value.totalngn.replace(",", "")) ;
+
+
+ }
+
+
+}, log );
+
+
+
+
+$scope.LIMITAMOUNT = $scope.tocurrency(Number($scope.LIMITAMOUNT).toFixed(2));
+
+$scope.LIMITFEE = $scope.tocurrency(Number($scope.LIMITFEE).toFixed(2));
+
+$scope.LIMITGBP = $scope.tocurrency(Number($scope.LIMITGBP).toFixed(2));
+
+$scope.LIMITNGN = $scope.tocurrency(Number($scope.LIMITNGN).toFixed(2));
+
+
+}
+
+
+
+function getCookie(cname) {
+
+    var name = cname + "=";
+  
+    var ca = document.cookie.split(';');
+  
+    for(var i=0; i<ca.length; i++) {
+  
+        var c = ca[i];
+  
+        while (c.charAt(0)==' ') c = c.substring(1);
+  
+        if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+  
+    }
+  
+    return "";
+
+}
+
+
+
+
+$scope.selectreceipient = function (para) {
+
+$scope.recipientsID = para;
+$scope.recid =  $scope.receipentlist[para].id;
+document.cookie = "receipient_pos=" + para;
+
+document.cookie = "receipient_firstname=" + $scope.receipentlist[para].ReceipientFirstName ;
+
+document.cookie = "receipient_lastname=" + $scope.receipentlist[para].ReceipientLastName ;
+
+document.cookie = "receipient_bank=" + $scope.receipentlist[para].ReceipientBank ;
+
+document.cookie = "receipient_banknumber=" + $scope.receipentlist[para].ReceipientAccountNumber ;
+
+alert('You would like to send money to ' + $scope.receipentlist[para].ReceipientFirstName  +' '+ $scope.senderslist.receipients[para].ReceipientLastName +". Now just enter the amount you want to send and click SEND MONEY.");
+
+
+};
+
+$scope.sendmoney = function(para) {
+
+
+
+if($scope.recipientsID === undefined)
+
+{
+
+alert("To get started select a beneficary or add a new by going to Beneficiaries in the menu");
+
+
+
+}
+else
+{
+
+
+$AMT = Number($scope.periodtotal) + Number($scope.paymentsterling) ;
+
+if($scope.periodtotal >= 800 )
+
+{
+
+alert('You have sent more than £800.00 with the last 30 days and needs to provide their ID to continue. Please visit your nearest branch to send money abroad.');
+
+
+}
+
+else
+
+{
+
+$AMT =Number($scope.LIMITAMOUNT) + Number($scope.paymentsterling) ;
+
+if($AMT >= 650 )
+
+{
+
+alert('You are approaching the daily limit. An ID is required to continue. Please visit your nearest branch to send money abroad.');
+
+
+}
+else
+{
+
+
+document.cookie = "fee=" + $scope.fee  ;
+
+document.cookie = "NGN=" + $scope.NGN ;
+
+document.cookie = "paymentsterling=" + $scope.paymentsterling ;
+
+document.cookie = "total=" + $scope.total  ;
+
+document.cookie = "rate=" + $scope.rate  ;
+
+window.location = "http://localhost:3000/confirm-benficiary.html" ;
+
+}
+
+
+
+
+}
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+}
+
+$scope.calNGN = function(para) {
+
+     
+
+$http.get("http://localhost:3000/api/charge.php?ngn="+para).then(function(response) {
+
+$scope.fee = $scope.tocurrency(Number(response.data.FEES).toFixed(2));
+$scope.NGN = $scope.tocurrency(Number(response.data.NGN).toFixed(2));
+$scope.paymentsterling = $scope.tocurrency(Number(response.data.AMOUNT).toFixed(2));
+$scope.paymenttotalngn = $scope.tocurrency(Number(response.data.NGN).toFixed(2));
+$scope.total = $scope.tocurrency(Number(response.data.TOTALGBP).toFixed(2));
+$scope.rate = response.data.RATE;
+  });
+
+  
+    };
+
+    $scope.calTOTALNGN = function(para) {
+
+ $http.get("http://localhost:3000/api/charge.php?totalngn="+para).then(function(response) {
+
+
+$scope.fee = $scope.tocurrency(Number(response.data.FEES).toFixed(2));
+$scope.NGN = $scope.tocurrency(Number(response.data.NGN).toFixed(2));
+$scope.paymentsterling = $scope.tocurrency(Number(response.data.AMOUNT).toFixed(2));
+$scope.paymenttotalngn = $scope.tocurrency(Number(response.data.NGN).toFixed(2));
+$scope.total = $scope.tocurrency(Number(response.data.TOTALGBP).toFixed(2));
+$scope.rate = response.data.RATE;
+    });
+
+  
+    };
+
+    $scope.calTOTALGBP = function(para) {
+  
+     $http.get("http://localhost:3000/api/charge.php?totalgbp="+para).then(function(response) {
+
+$scope.fee = $scope.tocurrency(Number(response.data.FEES).toFixed(2));
+$scope.NGN = $scope.tocurrency(Number(response.data.NGN).toFixed(2));
+$scope.paymentsterling = $scope.tocurrency(Number(response.data.AMOUNT).toFixed(2));
+$scope.paymenttotalngn = $scope.tocurrency(Number(response.data.NGN).toFixed(2));
+$scope.total = $scope.tocurrency(Number(response.data.TOTALGBP).toFixed(2));
+$scope.rate = response.data.RATE;
+   });
+    };
+
+
+    $scope.calAMOUNT = function(para) {
+
+
+       $http.get("http://localhost:3000/api/charge.php?amount="+para).then(function(response) {
+
+$scope.fee = $scope.tocurrency(Number(response.data.FEES).toFixed(2));
+$scope.NGN = $scope.tocurrency(Number(response.data.NGN).toFixed(2));
+$scope.paymentsterling = $scope.tocurrency(Number(response.data.AMOUNT).toFixed(2));
+$scope.paymenttotalngn = $scope.tocurrency(Number(response.data.NGN).toFixed(2));
+$scope.total = $scope.tocurrency(Number(response.data.TOTALGBP).toFixed(2));
+$scope.rate = response.data.RATE;
+
+    });
+       
+    };
+
+
+$scope.tocurrency = function (para) {
+
+
+var number = para.toString();
+
+var dollars = number.split('.')[0];
+
+var  cents = (number.split('.')[1] || '') +'00';
+
+var dollars = dollars.split('').reverse().join('').replace(/(\d{3}(?!$))/g, '$1,').split('').reverse().join('');
+
+var cent = cents.slice(0, 2);
+
+var decimal = ".";
+
+var cent2 = decimal.concat(cent);
+
+var dollars = dollars.concat(cent2);
+
+return dollars;
+
+
+
+
+}
+
+    
+
+});
+
+
+
+</script>
+
+
+
+</body>
+
+</html>   

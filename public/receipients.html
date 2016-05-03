@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"> 
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" type="text/css" href="/styles/normal.css">
+
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+
+<link rel="icon" 
+      type="image/png" 
+      href="/images/jmtrax_icon.png">
+
+
+
+<title> Just Money Transfers | Receipients </title>
+
+
+</head>
+
+<body ng-cloak ng-app="justmoneytransfers">
+
+  
+
+ 
+<header ng-controller="menucontroller">
+
+<ul class="topnav">
+
+<li class="logo_link"> <a href="index.html"><img src="/images/logo.png" class="logo" ></a> </li>
+
+<li class="dropdown-link"> <a href="dashboard.php" class="dropbtn"> Dashboard</a>  
+
+</li>  
+
+<li class="dropdown-link" ng-hide="usertype"> <a class="dropbtn" >Administration</a> 
+
+<div class="dropdown-content">
+
+  <a href="banks.html"> Banks </a>  
+
+  <a href="commission-fees.php"> Commission Fees</a>  
+
+  <a href="customers.html"> Customers </a>
+
+  <a href="exchange-rates.html"> Exchange Rates</a>  
+
+  <a href="shops.html"> Shops </a> 
+
+  <a href="users.html"> Users </a>   
+
+</div>
+
+
+</li>  
+
+<li class="dropdown-link"> <a class="dropbtn" >Reports</a>  
+
+<nav class="dropdown-content">
+
+  <a href="banking.html"> Banking</a> 
+
+  <a href="daily-transactions-receipients.html"> Daily Transactions </a>
+
+  <a href="daily-transactions-senders.html"> Daily Transactions </a>   
+
+  <a> Recipients </a> 
+
+
+
+  <a href="senders.html"> Senders </a> 
+
+  <a href="transactions.php"> Transactions </a>  
+
+</nav>
+
+</li>  
+
+<li class="dropdown-link"> <a href="index.html" class="dropbtn" >Log Out</a> 
+
+
+</li>  
+
+<li class="icon">
+    <a href="javascript:void(0);" style="font-size:15px;" onclick="showResponsivemenu()">☰</a>
+</li>
+
+
+
+</ul></header>
+
+
+
+<div class="container-fluid"  ng-controller='receipients'  >
+
+&nbsp;
+
+<div class="row" ng-init="getreceipientsandtransactions()">
+
+
+    <div class="col-sm-6" >
+
+
+<form role="form" >
+  <div class="form-group">
+    <label for="gbp">FIRSTNAME</label>
+    <input type="text" class="form-control" id="recfirstname" ng-model='recfirstname'>
+  </div>
+  <div class="form-group">
+    <label for="ngn">LASTNAME</label>
+    <input type="text" class="form-control" id="reclastname" ng-model='reclastname'>
+  </div>
+  
+  <button type="submit" class="btn btn-default" ng-click='beneficiarysearch()'>SEARCH</button>
+
+</form>
+
+
+</div>
+
+
+
+    <div class="col-sm-6" style="height:300px;">  
+
+<div class="div_list table-responsive" >
+
+<table class="table borderless">
+
+    <thead>
+      <tr>
+        <th>SURNAME</th>
+        <th>FIRSTNAME</th>
+        <th>BANK</th>
+        <th>ACC NO.</th>
+      
+      </tr>
+    </thead>
+    <tbody>
+
+  <tr ng-repeat='rec in reclists ' >
+        <td>{{rec.ReceipientFirstName}}</td>
+        <td>{{rec.ReceipientLastName}}</td>
+        <td>{{rec.ReceipientBank}}</td>
+        <td>{{rec.ReceipientAccountNumber}}</td>
+     <td> <button type='button' name='printsenders' class="btn btn-link" ng-click="beneficiary_transactions($index)"> SHOW  Transactions </button> </td>
+      </tr>
+
+
+
+    </tbody>
+  </table>
+
+</div>
+    </div>
+
+  </div>
+
+<div class="div_list table-responsive" >
+
+<table class="table borderless">
+
+    <thead>
+      <tr>
+     <th style='tablecells'>STAFF REF.</th>
+        <th style='tablecells'>SHOP</th>
+        <th style='tablecells' >DATE</th>
+        <th style='tablecells' >TRANS. NO.</th>
+        <th style='tablecells'>SENDERS FIRST NAME</th>
+        <th style='tablecells'>SENDERS LAST NAME</th>
+        <th style='tablecells'>AMOUNT £</th>
+        <th style='tablecells'>FEES £</th>
+        <th style='tablecells'>TOTAL GBP DUE £</th>
+        <th style='tablecells'>TOTAL NGN DUE</th>
+        <th style='tablecells'>STATUS</th>
+      </tr>
+    </thead>
+    <tbody>
+
+    <tr ng-repeat='daily in transactions' >
+      <td style='tablecells'>{{daily.agentusername}}</td>
+        <td style='tablecells'>{{daily.shop}}</td>
+        <td style='tablecells'>{{daily.date}}</td>
+         <td style='tablecells'>JM{{daily.id}}</td>
+        <td style='tablecells'>{{daily.senderfirstname}}</td>
+        <td style='tablecells'>{{daily.senderlasttname}}</td>
+        <td style='tablecells'>{{daily.amount}}</td>
+        <td style='tablecells' >{{daily.fee}}</td>
+        <td style='tablecells'>{{daily.totalgbp}}</td>
+        <td style='tablecells'>{{daily.totalngn}}</td>
+        <td style='tablecells'>{{daily.status}}</td>
+      </tr>
+
+   </tbody>
+
+</table>
+
+
+</div>
+
+
+</div>
+
+
+&nbsp;
+
+<footer>
+<div class="row">
+
+  <div class="col-sm-6" id="footer_column_1">  
+
+
+<p>Authorised User can log into JM Transfers by entering correct account information on the right hand side. The activity of authorized users may be monitored. If monitoring reveals evidence of criminal activity, systems personnel may provide the evidence to management and/or law enforcement officials. Just Computers trading as JM Transfer and JM Trax have a comprehensive compliance program within the organisation to ensure compliance with government rules, regulations and approved guidance. We do not want JM Transfer and JM Trax services to be used in illegal money laundering activities or terrorist activities. It is our policy that we follow both the letter and the spirit of the law and the regulations of both the United Kingdom and Nigeria in which JM Transfer and JM Trax operates. All remittances processed by JM Transfer and JM Trax are screened with enhanced controls to prevent money laundering and terrorist financing. It is JM Transfer and JM Trax policy to follow both the letter and spirit of the law and regulations. Throughout the world, Governments have reinforced their commitment to the fight against money laundering and terrorist financing. New laws have imposed additional obligations on firms and individuals in the financial services sector to join in the fight. JM Transfer and JM Trax has an extensive training and awareness programme, a rigorous transaction monitoring system and a robust culture of compliance. JM Transfer and JM Trax works closely with regulatory bodies.</p>
+
+
+ </div>
+
+  <div class="col-sm-6" id="footer_column_2" style="text-align:center;">  
+
+<img src='/images/Photo2_small.png' class="footerimage"/>
+
+   </div>
+
+   
+
+</div>
+
+</footer>
+
+
+
+<section class="copywright">
+
+<p style='color:white;'>&copy; UNIFIED DIGITAL MEDIA  - http://www.unifieddigitalmedia.co.uk</p>
+
+  </section>
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js" ></script>
+
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" ></script>
+
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js" ></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular-resource.js" ></script>
+
+<script src="scripts/main.js"> </script>
+
+<script type="text/javascript">
+
+
+var app = angular.module('justmoneytransfers', ['ngResource']);
+
+app.controller('menucontroller', function($scope,$http,$resource) {
+
+
+function getCookie(cname) {
+
+    var name = cname + "=";
+  
+    var ca = document.cookie.split(';');
+  
+    for(var i=0; i<ca.length; i++) {
+  
+        var c = ca[i];
+  
+        while (c.charAt(0)==' ') c = c.substring(1);
+  
+        if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+  
+    }
+  
+    return "";
+
+}
+
+var init = function () {
+   
+
+if(!getCookie('agentusername') || getCookie('agenttype') == 'customer' )
+
+{
+
+
+window.location = "http://localhost:3000/index.html" ;
+
+
+}
+
+
+
+if( getCookie('agenttype') == 'user'  )
+
+{ 
+
+$scope.usertype = true;
+
+
+}
+
+
+var counter = 0;
+
+setInterval(function(){ counter = counter + 1 ;
+
+
+window.addEventListener("mousemove",function getcoords() {
+
+
+counter = 0;
+
+});
+
+if (counter == '1800')
+
+{
+
+
+
+
+window.location = "http://localhost:3000/index.html" ;
+
+
+
+} },1000);
+
+
+};
+
+init();
+
+
+
+
+
+});
+
+
+app.factory('Receipients_Service', ['$resource', function($resource) {
+
+var resource = $resource('http://localhost:3000/api/receipients',{
+
+firstname:"@firstname",
+lastname:"@lastname",
+
+},{ 'update': { method:'PUT' } } );
+
+return resource;
+
+
+}]);
+
+
+app.controller('receipients', function($scope,Receipients_Service,$http,$resource) {
+
+
+$scope.beneficiarysearch = function () {
+
+$http.get("http://localhost:3000/api/receipients.php?firstname="+$scope.recfirstname+"&lastname="+$scope.reclastname).then(function(response) {
+
+$scope.reclists = response.data;
+
+
+});
+
+
+$scope.receipient_summary = function () {
+
+
+window.location = "http://localhost:3000/receipient-statement.html" ;
+
+
+}
+
+
+
+$scope.beneficiary_transactions = function (para) {
+
+$http.get("http://localhost:3000/api/transactions.php?firstname="+$scope.reclists[para].ReceipientFirstName+"&lastname="+$scope.reclists[para].ReceipientLastName).then(function(response) {
+
+
+
+$scope.transactions = response.data;
+
+
+
+
+});
+
+
+
+
+
+
+
+}
+
+
+
+/*var log = Receipients_Service.get(
+
+{
+
+firstname:$scope.recfirstname,
+
+lastname:$scope.reclastname,
+
+}, function() {
+
+alert('log');
+
+$scope.reclists = log;
+
+//alert(log.ERROR);
+
+  });*/
+
+
+}
+
+
+
+
+
+
+
+
+
+
+});
+
+
+  </script>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"> 
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" type="text/css" href="/styles/normal.css">
+
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+
+<link rel="icon" 
+      type="image/png" 
+      href="/images/jmtrax_icon.png">
+
+
+
+<title> Just Money Transfers |  Log In </title>
+
+
+</head>
+
+<body ng-cloak ng-app="justmoneytransfers">
+  
+  <header>
+
+
+<ul class="topnav">
+
+<li class="logo_link"> <a href="index.html"><img src="/images/logo.png" class="logo" ></a> </li>  
+
+<li class="dropdown-link">
+
+<li class="logo_link"> <a href="index.html"><img src="/images/logo.png" class="logo" ></a> </li>
+
+<li class="dropdown-link"> <a href="" class="dropbtn"> Dashboard</a>  
+
+</li>  
+
+<li class="dropdown-link"> <a class="dropbtn" >Administration</a> 
+
+<div class="dropdown-content">
+
+  <a href="banks.html"> Banks </a>  
+
+  <a href="commission-fees.php"> Commission Fees</a>  
+
+  <a href="customers.html"> Customers </a>
+
+  <a href="exchange-rates.html"> Exchange Rates</a>  
+
+  <a href="shops.html"> Shops </a> 
+
+  <a href=""> Users </a>   
+
+</div>
+
+
+</li>  
+
+<li class="dropdown-link"> <a class="dropbtn" >Reports</a>  
+
+<nav class="dropdown-content">
+
+  <a href="banking.html"> Banking</a> 
+
+  <a href="daily-transactions-receipients.html"> Daily Transactions </a>
+
+  <a href="daily-transactions-senders.html"> Daily Transactions </a>   
+
+   <a href="receipients.html"> Recipients </a> 
+
+    <a href="sales-report.html"> Sales Report </a> 
+
+  <a href="senders.html"> Senders </a> 
+
+  <a href="transactions.php"> Transactions </a>  
+
+</nav>
+
+</li>  
+
+<li class="dropdown-link"> <a href="index.html" class="dropbtn" >Log Out</a> 
+
+
+</li>  
+
+<li class="icon">
+    <a href="javascript:void(0);" style="font-size:15px;" onclick="showResponsivemenu()">☰</a>
+</li>
+
+
+
+</ul>
+<li class="dropdown-link"> <a href="log-in.html" class="dropbtn"> Log In</a>  
+
+</li>  
+
+<li> <a href="sign-up.html">Sign Up</a> 
+
+
+
+</li>  
+
+<li class="dropdown-link">
+
+<li class="logo_link"> <a href="index.html"><img src="/images/logo.png" class="logo" ></a> </li>
+
+<li class="dropdown-link"> <a href="" class="dropbtn"> Dashboard</a>  
+
+</li>  
+
+<li class="dropdown-link"> <a class="dropbtn" >Administration</a> 
+
+<div class="dropdown-content">
+
+  <a href="banks.html"> Banks </a>  
+
+  <a href="commission-fees.php"> Commission Fees</a>  
+
+  <a href="customers.html"> Customers </a>
+
+  <a href="exchange-rates.html"> Exchange Rates</a>  
+
+  <a href="shops.html"> Shops </a> 
+
+  <a href=""> Users </a>   
+
+</div>
+
+
+</li>  
+
+<li class="dropdown-link"> <a class="dropbtn" >Reports</a>  
+
+<nav class="dropdown-content">
+
+  <a href="banking.html"> Banking</a> 
+
+  <a href="daily-transactions-receipients.html"> Daily Transactions </a>
+
+  <a href="daily-transactions-senders.html"> Daily Transactions </a>   
+
+   <a href="receipients.html"> Recipients </a> 
+
+    <a href="sales-report.html"> Sales Report </a> 
+
+  <a href="senders.html"> Senders </a> 
+
+  <a href="transactions.php"> Transactions </a>  
+
+</nav>
+
+</li>  
+
+<li class="dropdown-link"> <a href="index.html" class="dropbtn" >Log Out</a> 
+
+
+</li>  
+
+<li class="icon">
+    <a href="javascript:void(0);" style="font-size:15px;" onclick="showResponsivemenu()">☰</a>
+</li>
+
+
+
+</ul>
+<li class="dropdown-link"> <a href="helphtml" class="dropbtn" >Help</a>  
+
+
+</li>  
+
+<li class="icon">
+    <a href="javascript:void(0);" style="font-size:15px;" onclick="showResponsivemenu()">☰</a>
+</li>
+
+
+
+</ul>
+
+
+
+
+
+
+</header>
+
+
+<div class="container-fluid"  id='signuppage' ng-controller='login' >
+
+<h1 style='text-align:center;'>      LOG IN BELOW </h1>
+
+<div >
+
+<div class="row">
+  <div class="col-sm-6" class='tagline'>
+
+
+
+<h4>The Smarter Way to Send Money.</h4>
+
+<h4>The Fastest Growing Money Transfer Company.</h4>
+
+<h4>Uniting Friends, family and people with Possibilities</h4>
+
+
+</div>
+  <div class="col-sm-6" id='customerregistration' > 
+
+ 
+<form role="form" name='homepagelogin' id='homepagelogin' action='dashboard.php' method='post' >
+<div class="form-group" style='text-align:center;'>
+
+<input type="text" class="form-control" id="username" name='username' ng-model='username' required placeholder='USERNAME:' >
+<span style='color:red;' > {{usernameerror}} </span> 
+
+
+
+</div>
+
+
+<span style='color:red;' >{{loginerror}}</span>
+
+
+<input type='hidden' name='login' value='SUBMIT' />
+<div class="form-group" style='text-align:center;'>
+
+<input type="password" placeholder='PASSWORD:'class="form-control" id="password" name='password' ng-model='password' required >
+<span class='redtext;' > {{passworderror}} </span>
+
+
+
+
+</div>
+
+<div class="row">
+
+  <div class="col-sm-12" >
+<a href="forgottenpassword" clas="forgottenpassword" >Forgot password. </a>
+<a href="signup" class="signup" > Customer Register </a>
+</br>
+<button type="button" class="btn btn-primary btn-block"  ng-click='login()' ng-disabled="homepagelogin.$invalid" >Submit</button>
+</div>
+ 
+</div>
+
+
+
+
+
+</form>
+
+</div>
+
+
+
+</div>
+
+</div>
+
+</div>
+
+
+
+
+<footer>
+<div class="row">
+
+  <div class="col-sm-6" id="footer_column_1">  
+
+
+<p>Authorised User can log into JM Transfers by entering correct account information on the right hand side. The activity of authorized users may be monitored. If monitoring reveals evidence of criminal activity, systems personnel may provide the evidence to management and/or law enforcement officials. Just Computers trading as JM Transfer and JM Trax have a comprehensive compliance program within the organisation to ensure compliance with government rules, regulations and approved guidance. We do not want JM Transfer and JM Trax services to be used in illegal money laundering activities or terrorist activities. It is our policy that we follow both the letter and the spirit of the law and the regulations of both the United Kingdom and Nigeria in which JM Transfer and JM Trax operates. All remittances processed by JM Transfer and JM Trax are screened with enhanced controls to prevent money laundering and terrorist financing. It is JM Transfer and JM Trax policy to follow both the letter and spirit of the law and regulations. Throughout the world, Governments have reinforced their commitment to the fight against money laundering and terrorist financing. New laws have imposed additional obligations on firms and individuals in the financial services sector to join in the fight. JM Transfer and JM Trax has an extensive training and awareness programme, a rigorous transaction monitoring system and a robust culture of compliance. JM Transfer and JM Trax works closely with regulatory bodies.</p>
+
+
+ </div>
+
+  <div class="col-sm-6" id="footer_column_2" style="text-align:center;">  
+
+<img src='/images/Photo2_small.png' class="footerimage"/>
+
+   </div>
+
+   
+
+</div>
+
+</footer>
+
+
+<section class="copywright">
+
+<p style='color:white;'>&copy; UNIFIED DIGITAL MEDIA  - http://www.unifieddigitalmedia.co.uk</p>
+
+  </section>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js" ></script>
+
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" ></script>
+
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js" ></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular-resource.js" ></script>
+
+<script src="scripts/main.js"> </script>
+
+
+
+<script type="text/javascript">
+
+var app = angular.module('justmoneytransfers', ['ngResource']);
+
+
+app.factory('Login_Service', ['$resource', function($resource) {
+
+var resource = $resource('http://localhost:3000/api/login',{});
+
+return resource;
+
+
+}]);
+
+
+app.controller('login', function($scope,Login_Service,$http,$resource) {
+
+$scope.login = function () {
+
+
+
+var log = Login_Service.get(
+
+{
+
+
+
+username:$scope.username,
+password:$scope.password,
+
+
+}, function() {
+
+
+if(log.ERROR === "")
+{
+
+
+
+
+window.location = "http://localhost:3000/dashboard.php" ;
+
+
+
+}
+else
+{
+
+
+
+$scope.loginerror = log.ERROR;
+
+}
+  
+
+  });
+
+
+
+
+}
+
+
+
+
+
+});
+
+</script>
+
+
+
+
+</body>
+
+</html>

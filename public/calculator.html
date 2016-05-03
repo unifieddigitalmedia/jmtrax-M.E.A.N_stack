@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"> 
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" type="text/css" href="/styles/normal.css">
+
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+
+<link rel="icon" 
+      type="image/png" 
+      href="/images/jmtrax_icon.png">
+
+
+
+<title> Just Money Transfers |  </title>
+
+
+</head>
+
+<body ng-app="justmoneytransfers">
+
+  
+
+ 
+
+
+<header>
+
+
+<ul class="topnav">
+
+
+
+<li class="logo_link"> <a href="index.html"><img src="/images/logo.png" class="logo" ></a> </li>  
+
+  <li class="dropdown-link"> &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp; 
+
+</li> 
+
+<li class="dropdown-link">  &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp; 
+
+</li> 
+
+<li class="dropdown-link">  &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp; 
+
+</li> 
+<li class="dropdown-link">  &nbsp; &nbsp;  &nbsp; 
+
+</li> 
+
+<li class="dropdown-link"> <a  class="dropbtn" id="openLogin"> Log In</a>  
+
+</li>  
+
+<li class="dropdown-link"> <a class="dropbtn openSignup" id="openSignup">Sign Up</a> 
+
+
+
+</li>  
+
+<li class="dropdown-link"> <a href="contacts.html" class="dropbtn" >Help</a>  
+
+
+</li>  
+
+<li class="icon">
+    <a href="javascript:void(0);" style="font-size:15px;" onclick="showResponsivemenu()">â˜°</a>
+</li>
+
+
+
+</ul>
+
+
+
+
+
+
+</header>
+
+
+
+<div class="slideshow-container">
+
+
+
+  <div class="mySlides slide_fade">
+    
+
+    <img src="/images/USA_Street_Chicago.png"  alt="A blurred filter of the main villa drawing attention to the tiles and bricks used to pave the walk way" class="slider_image_1" />
+
+    <div class="slider_text">
+    
+
+    <div class="row">
+
+    <div class="col-sm-8 sliderfirstcol" >
+
+    
+    </div>
+  
+    <div class="col-sm-4 calcolumn">
+
+<div class="row">
+  <div class="col-sm-1"></div>
+  <div class="col-sm-10">
+
+
+<div class="caldiv" ng-controller='calculator' style="text-align:center;">
+
+
+
+
+<table style="text-align:center;width:100%;">
+<tr>
+<td style='font-size:20px;color:red;'> 1 GBP = {{gbp}}   NGN</td>
+</tr>
+
+<tr>
+<td style='font-size:20px;color:blue;'> {{ngn}}  NGN = 1 GBP</td>
+
+</tr>
+
+</table>
+
+
+<span > <h6 style='color:red;padding:10px;' > Enter an amount to send and click anywhere</h6> </span>
+
+
+<div class="form-group">
+
+  <input type="text" class="form-control callinput innercal" value="" name="paymentsterling" class="paymentsterling" id="paymentsterling" required placeholder="AMOUNT IN GBP:" ng-model="paymentsterling" ng-blur="calAMOUNT(paymentsterling)" >
+
+
+  <input type="text" class="form-control callinput innercal" name="paymentcommission" class="fee" id="fee" required placeholder="COMMISSION:"  ng-model="fee" >
+
+
+  <input type="text" class="form-control callinput innercal" value="" name="paymenttotalngn" class="paymenttotalngn" id="paymenttotalngn" required placeholder="TOTAL NGN:" ng-model="NGN" ng-blur="calNGN(NGN)">
+
+  <input type="text" class="form-control callinput innercal"  value="" name="paymentduegbp" class="total" id="total" required placeholder="TOTAL GBP DUE:" ng-model="total" ng-blur="calTOTALGBP(total)">
+</div>
+
+
+</div>
+
+
+
+</div>
+
+
+</div>
+  <div class="col-sm-1"></div>
+</div>
+
+
+
+
+    </div>
+
+    </div>
+
+    </div>
+     
+    </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+<footer>
+<div class="row">
+
+  <div class="col-sm-6" id="footer_column_1">  
+
+
+<p>Authorised User can log into JM Transfers by entering correct account information on the right hand side. The activity of authorized users may be monitored. If monitoring reveals evidence of criminal activity, systems personnel may provide the evidence to management and/or law enforcement officials. Just Computers trading as JM Transfer and JM Trax have a comprehensive compliance program within the organisation to ensure compliance with government rules, regulations and approved guidance. We do not want JM Transfer and JM Trax services to be used in illegal money laundering activities or terrorist activities. It is our policy that we follow both the letter and the spirit of the law and the regulations of both the United Kingdom and Nigeria in which JM Transfer and JM Trax operates. All remittances processed by JM Transfer and JM Trax are screened with enhanced controls to prevent money laundering and terrorist financing. It is JM Transfer and JM Trax policy to follow both the letter and spirit of the law and regulations. Throughout the world, Governments have reinforced their commitment to the fight against money laundering and terrorist financing. New laws have imposed additional obligations on firms and individuals in the financial services sector to join in the fight. JM Transfer and JM Trax has an extensive training and awareness programme, a rigorous transaction monitoring system and a robust culture of compliance. JM Transfer and JM Trax works closely with regulatory bodies.</p>
+
+
+ </div>
+
+  <div class="col-sm-6" id="footer_column_2" style="text-align:center;">  
+
+<img src='/images/Photo2_small.png' class="footerimage"/>
+
+   </div>
+
+   
+
+</div>
+
+</footer>
+
+
+<section class="copywright">
+
+<p style='color:white;'>&copy; UNIFIED DIGITAL MEDIA  - http://www.unifieddigitalmedia.co.uk</p>
+
+  </section>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js" ></script>
+
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" ></script>
+
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js" ></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular-resource.js" ></script>
+
+<script src="scripts/main.js"> </script>
+
+
+<script type="text/javascript">
+
+var app = angular.module('justmoneytransfers', ['ngResource']);
+
+
+
+
+app.controller('calculator', function($scope,$http,$resource) {
+
+var init = function () {
+   
+
+$http.get("http://localhost:3000/api/rates").then(function(response) {
+
+$scope.gbp = response.data[0].rate;
+$scope.ngn = response.data[1].rate;
+
+});
+
+
+document.cookie = "agentid=";
+
+document.cookie = "agentusername=";
+
+document.cookie = "agentemail=" ;
+
+document.cookie = "agenttype=" ;
+
+document.cookie = "agentcredit=";
+
+document.cookie = "sender_firstname=";
+
+document.cookie = "sender_lastname=";
+
+
+};
+
+init();
+
+
+$scope.calNGN = function(para) {
+
+     
+
+$http.get("http://localhost:3000/api/charge.php?ngn="+para).then(function(response) {
+
+$scope.fee = $scope.tocurrency(Number(response.data.FEES).toFixed(2));
+$scope.NGN = $scope.tocurrency(Number(response.data.NGN).toFixed(2));
+$scope.paymentsterling = $scope.tocurrency(Number(response.data.AMOUNT).toFixed(2));
+$scope.paymenttotalngn = $scope.tocurrency(Number(response.data.NGN).toFixed(2));
+$scope.total = $scope.tocurrency(Number(response.data.TOTALGBP).toFixed(2));
+  });
+
+  
+    };
+
+    $scope.calTOTALNGN = function(para) {
+
+ $http.get("http://localhost:3000/api/charge.php?totalngn="+para).then(function(response) {
+
+
+$scope.fee = $scope.tocurrency(Number(response.data.FEES).toFixed(2));
+$scope.NGN = $scope.tocurrency(Number(response.data.NGN).toFixed(2));
+$scope.paymentsterling = $scope.tocurrency(Number(response.data.AMOUNT).toFixed(2));
+$scope.paymenttotalngn = $scope.tocurrency(Number(response.data.NGN).toFixed(2));
+$scope.total = $scope.tocurrency(Number(response.data.TOTALGBP).toFixed(2));
+
+    });
+
+  
+    };
+
+    $scope.calTOTALGBP = function(para) {
+  
+     $http.get("http://localhost:3000/api/charge.php?totalgbp="+para).then(function(response) {
+
+$scope.fee = $scope.tocurrency(Number(response.data.FEES).toFixed(2));
+$scope.NGN = $scope.tocurrency(Number(response.data.NGN).toFixed(2));
+$scope.paymentsterling = $scope.tocurrency(Number(response.data.AMOUNT).toFixed(2));
+$scope.paymenttotalngn = $scope.tocurrency(Number(response.data.NGN).toFixed(2));
+$scope.total = $scope.tocurrency(Number(response.data.TOTALGBP).toFixed(2));
+
+   });
+    };
+
+
+    $scope.calAMOUNT = function(para) {
+
+
+       $http.get("http://localhost:3000/api/charge.php?amount="+para).then(function(response) {
+
+$scope.fee = $scope.tocurrency(Number(response.data.FEES).toFixed(2));
+$scope.NGN = $scope.tocurrency(Number(response.data.NGN).toFixed(2));
+$scope.paymentsterling = $scope.tocurrency(Number(response.data.AMOUNT).toFixed(2));
+$scope.paymenttotalngn = $scope.tocurrency(Number(response.data.NGN).toFixed(2));
+$scope.total = $scope.tocurrency(Number(response.data.TOTALGBP).toFixed(2));
+
+
+    });
+       
+    };
+
+
+$scope.tocurrency = function (para) {
+
+
+var number = para.toString();
+
+var dollars = number.split('.')[0];
+
+var  cents = (number.split('.')[1] || '') +'00';
+
+var dollars = dollars.split('').reverse().join('').replace(/(\d{3}(?!$))/g, '$1,').split('').reverse().join('');
+
+var cent = cents.slice(0, 2);
+
+var decimal = ".";
+
+var cent2 = decimal.concat(cent);
+
+var dollars = dollars.concat(cent2);
+
+return dollars;
+
+
+
+
+}
+
+
+});
+
+
+
+
+
+
+</script>
+
+
+</body>
+
+</html>

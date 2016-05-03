@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"> 
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" type="text/css" href="/styles/normal.css">
+
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+
+
+
+<title> Just Money Transfers |  </title>
+
+
+</head>
+
+<body ng-app="justmoneytransfers">
+
+  
+
+ 
+
+
+<header>
+
+
+<ul class="topnav">
+
+
+
+<li class="logo_link"> <a href="index.html"><img src="/images/logo.png" class="logo" ></a> </li>  
+
+  <li class="dropdown-link"> &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp; 
+
+</li> 
+
+<li class="dropdown-link">  &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp; 
+
+</li> 
+
+<li class="dropdown-link">  &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp; 
+
+</li> 
+<li class="dropdown-link">  &nbsp; &nbsp;  &nbsp; 
+
+</li> 
+
+<li class="dropdown-link"> <a  class="dropbtn" id="openLogin"> Log In</a>  
+
+</li>  
+
+<li class="dropdown-link"> <a class="dropbtn openSignup" id="openSignup">Sign Up</a> 
+
+
+
+</li>  
+
+<li class="dropdown-link"> <a href="contacts.html" class="dropbtn" >Help</a>  
+
+
+</li>  
+
+<li class="icon">
+    <a href="javascript:void(0);" style="font-size:15px;" onclick="showResponsivemenu()">☰</a>
+</li>
+
+
+
+</ul>
+
+
+
+
+
+
+</header>
+
+
+
+<div class="slideshow-container">
+
+
+
+  <div class="mySlides slide_fade">
+    
+    <div class="numbertext">1 / 3</div>
+    
+
+
+    <img src="/images/USA_Street_Chicago.png"  alt="A blurred filter of the main villa drawing attention to the tiles and bricks used to pave the walk way" class="slider_image_1" />
+
+    <div class="slider_text">
+    
+
+    <div class="row">
+
+  <div class="col-sm-8 sliderfirstcol" >
+
+    <div > <p class="text"> WELCOME TO JM TRANSFERS</p></div>
+    <div > <p class="text_subtitle"> CONNECTING FRIENDS AND FAMILY </p> </div>
+
+  </div>
+  
+  <div class="col-sm-4 calcolumn">
+
+<div class="row">
+  <div class="col-sm-1"></div>
+  <div class="col-sm-10">
+
+
+<div class="caldiv" ng-controller='calculator' style="text-align:center;">
+
+
+<h3> SEND MONEY NOW  </h3>
+
+<table style="text-align:center;width:100%;">
+<tr>
+<td style='font-size:20px;color:red;'> 1 GBP = {{gbp}}   NGN</td>
+</tr>
+
+<tr>
+<td style='font-size:20px;color:blue;'> {{ngn}}  NGN = 1 GBP</td>
+
+</tr>
+
+</table>
+
+
+<span > <h6 style='color:red;padding:10px;'> Enter an amount to send and click anywhere</h6> </span>
+
+
+<div class="form-group">
+  <label for="pwd"></label>
+  <input type="text" class="form-control" value="" name="paymentsterling" class="paymentsterling" id="paymentsterling" required placeholder="AMOUNT IN GBP:" ng-model="paymentsterling" ng-blur="calAMOUNT(paymentsterling)" >
+</div>
+<div class="form-group">
+  <label for="usr"></label>
+  <input type="text" class="form-control" name="paymentcommission" class="fee" id="fee" required placeholder="COMMISSION:"  ng-model="fee" >
+</div>
+<div class="form-group">
+  <label for="pwd"></label>
+  <input type="text" class="form-control" value="" name="paymenttotalngn" class="paymenttotalngn" id="paymenttotalngn" required placeholder="TOTAL NGN:" ng-model="NGN" ng-blur="calNGN(NGN)">
+</div>
+<div class="form-group">
+  <label for="pwd"></label>
+  <input type="text" class="form-control"  value="" name="paymentduegbp" class="total" id="total" required placeholder="TOTAL GBP DUE:" ng-model="total" ng-blur="calTOTALGBP(total)">
+</div>
+
+
+</div>
+
+
+
+</div>
+
+
+</div>
+  <div class="col-sm-1"></div>
+</div>
+
+
+
+
+  </div>
+
+     </div>
+
+
+    
+
+
+
+
+    </div>
+     
+  
+   
+
+  </div>
+
+
+
+
+
+  <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+  
+  <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+
+ <div style="text-align:center">
+  <span class="dot" onclick="currentSlide(1)"></span> 
+   <span class="dot" onclick="currentSlide(2)"></span> 
+    <span class="dot" onclick="currentSlide(3)"></span> 
+  </div>
+
+</div>
+
+<br>
+
+
+
+
+
+
+
+
+<section class="services_description container-fluid">
+
+ <div class="row">
+  
+    <div class="col-sm-4" >
+
+
+    <div class="w3-third">
+    <div class="w3-card-2">
+    <div class="activities_image"><img src="images/FASTER-PAYMENTS-TO-NIGERIA.jpg" /></div>
+    <div class="w3-container">
+    <h3>FASTER PAYMENTS TO NIGERIA
+
+ </h3> 
+    <p>Easy to use with fast set up and instant transfers in any Nigeria Bank</p>
+   
+    </div>
+    </div>
+    </div>
+
+
+    </div>
+
+    <div class="col-sm-4" >
+
+    <div class="w3-third">
+    <div class="w3-card-2">
+    <div class="events_image"> <img src="images/BETTER-RATES.jpg" /> </div>
+    <div class="w3-container">
+    <h3>BETTER RATES
+
+</h3> 
+    <p>Our great rates and low fees mean more money arrives, connecting friends and family effectively and efficiently</p>
+ 
+    </div>
+    </div>
+    </div>
+
+
+    </div>
+
+    <div class="col-sm-4" >
+ 
+    <div class="w3-third">
+    <div class="w3-card-2">
+    <div class="smartphone_image"> <img src="images/2ND-TO-NONE-CUSTOMER-SERVICE.jpg" /></div>
+    <div class="w3-container">
+    <h3>2ND TO NONE SERVICE </h3> 
+    <p>Enjoy peace of mind with our fast efficient service. Live or in person when ever you visit one of our high street locations.</p>
+ 
+    </div>
+    </div>
+    </div>
+
+
+    </div>
+
+  
+
+
+</div>
+
+
+
+
+</section>
+
+<!-- The Modal -->
+<div id="loginModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="loginclose">×</span>
+
+<div class="container-fluid"  id='signuppage' ng-controller='login' >
+
+<h1 style='text-align:center;'>      LOG IN BELOW </h1>
+
+<div >
+
+<div class="row">
+  <div class="col-sm-6" class='tagline'>
+
+
+
+<h4>The Smarter Way to Send Money.</h4>
+
+<h4>The Fastest Growing Money Transfer Company.</h4>
+
+<h4>Uniting Friends, family and people with Possibilities</h4>
+
+
+</div>
+  <div class="col-sm-6" id='customerregistration' > 
+
+ 
+<form role="form" name='homepagelogin' id='homepagelogin' action='dashboard.html' method='post' style='text-align:center;'>
+<div class="form-group" style='text-align:center;'>
+
+<input type="text" class="form-control" id="username" name='username' ng-model='username' required placeholder='USERNAME:' >
+<span style='color:red;' > {{usernameerror}} </span> 
+
+
+
+</div>
+
+
+<span style='color:red;' >{{loginerror}}</span>
+
+
+<input type='hidden' name='login' value='SUBMIT' />
+<div class="form-group" style='text-align:center;'>
+
+<input type="password" placeholder='PASSWORD:'class="form-control" id="password" name='password' ng-model='password' required >
+<span style='color:red;' > {{passworderror}} </span>
+
+
+
+
+</div>
+
+<div class="row">
+
+  <div class="col-sm-12" style='text-align:right;'>
+<a class="forgottenpassword" id="forgottenpassword" ng-click="forgottenpassword()" > Forgot password. </a>
+<a  class="signup" id="signup"> Customer Register </a>
+</br>
+<button type="button" class="btn btn-primary btn-block"  ng-click='login()' ng-disabled="homepagelogin.$invalid" >Submit</button>
+</div>
+ 
+</div>
+
+
+
+
+
+</form>
+
+</div>
+
+
+
+</div>
+
+</div>
+
+</div>
+
+
+</div>
+</div>
+
+<div id="signupModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="signupclose">×</span>
+    <div class="container-fluid"  ng-controller='signup' id='signuppage' >
+
+<h1 style='text-align:center;'> SIGN UP FOR FREE TODAY </h1>
+
+<div class='table' >
+
+
+<div class="row">
+  <div class="col-sm-1" id='customerregistration' > 
+</div>
+  <div class="col-sm-10" id='customerregistration' > 
+
+
+<form action="../moneytransfercalculator/" name="customerregistration"  method="post"  >
+
+
+<div class="row">
+  <div class="col-sm-6"> <div class="form-group">
+ <input type='text'  name='firstname' placeholder='*FIRST NAME:' id="firstname" class="form-control"/> 
+</div></div>
+  <div class="col-sm-6"><div class="form-group">
+ <input type='text'  name='lastname' placeholder='*LAST NAME:' id="lastname" class="form-control"/> 
+</div></div>
+
+
+<p style="font-family:Arial; position:relative; font-size:12px"> <span id='nameerror' class='nameerror'> {{nameerror}} </span>
+</p> 
+
+</div>
+
+
+
+
+
+<div class="row">
+  <div class="col-sm-6"> <div class="form-group">
+ <input type='text'  name='username' id='userusername' placeholder='USERNAME:' class="form-control" /> 
+</div></div>
+  <div class="col-sm-6"><div class="form-group">
+  <select  class="form-control input-sm"  ng-options="occupation as occupation.occupation for occupation in occupations "  ng-model='occupation' style="position:relative; " ></select>
+
+</div></div>
+
+<p class="spanerror"> <span id='usernameerror' class='usernameerror' style='color:red;'>  {{usernameerror}}</span>
+</p> 
+<p class="spanerror"> <span id='emailerror' class='emailerror' style='color:red;'> {{emailerror}} </span>
+</p> 
+
+
+</div>
+
+
+
+
+
+<div class="row">
+  <div class="col-sm-6"> <div class="form-group">
+ <input type='password'  name='password' id='userpassword' placeholder='*PASSWORD (min 8):' class="form-control"/> 
+
+</div><p class="spanerror"> <span id='passworderror' class='passworderror' style='color:red;'> {{passworderror}} </span>
+</p> 
+</div>
+  <div class="col-sm-6"><div class="form-group">
+ <input type='password'  name='confirmpassword' id='confirmedpassword' placeholder='CONFIRM PASSWORD:' class="form-control"/> 
+</div><p class="spanerror"> <span id='confirmedpassworderror' class='confirmedpassworderror' style='color:red;'> {{passworderror}} </span>
+</p></div>
+
+</div>
+
+<div class="row">
+
+
+  <div class="col-sm-2"> <input type='text'  placeholder='44' class="form-control"/> </div>
+  <div class="col-sm-2"> <input type='text' placeholder='0' class="form-control"/> </div>
+  <div class="col-sm-8"> <input type='text'  name='mobile' id='mobile' placeholder='xxxxxxxxxx' class="form-control"/> </div>
+
+
+
+</div>
+<p class="spanerror"> <span id='phoneerror' class='phoneerror' style='color:red;'> {{mobileerror}} </span>
+</p> 
+
+
+
+<!--<div class="form-group">
+<label> Prove you are not a robot </label>
+ <.php?php
+     require_once('recaptchalib.php');
+     $publickey = "6Legb-ISAAAAALFsLkzsuIJs8BwrKLFFbAdDx9j2"; // you got this from the signup page
+     echo recaptcha_get_html($publickey);
+   .php?>
+</div> -->
+
+<span id='agreementerror' class='agreementerror' > </span> <span style='color:red;'> {{agreement}}</span> <p class="spanerror"> 
+
+<label style="position:relative; font-family:Arial, Helvetica, sans-serif; font-size:11px;" > <input type='checkbox' name='agreement' id='agreement' class='agreement'/>&nbsp;You must agree to the JUST MONEY TRANSFER terms & conditions (the “T&C” (which are available at <a href='../termsandconditions/' > www.justcomputersparts.co.uk </a> Our Customer Services number is 020 8771 5353 and or our email address is <a href='mailto:service@justcomputersparts.co.uk' > service@justcomputersparts.co.uk </a> Please feel free to contact us during normal business hours 09:00 to 19:00 </label>
+  </span>
+</p>  
+
+
+<input type='hidden' value='SUBMIT' name='next' />
+
+
+
+</form>
+&nbsp;
+<button type="button" class="btn btn-primary btn-block" value=""  ng-click='savesender()'/>Sign Up </button> <br/><br/>
+
+</div>
+
+  <div class="col-sm-1" id='customerregistration' > 
+</div>
+
+</div>
+
+</div>
+
+</div>
+  </div>
+  </div>
+
+
+<footer>
+<div class="row">
+
+  <div class="col-sm-6" id="footer_column_1">  
+
+
+<p>Authorised User can log into JM Transfers by entering correct account information on the right hand side. The activity of authorized users may be monitored. If monitoring reveals evidence of criminal activity, systems personnel may provide the evidence to management and/or law enforcement officials. Just Computers trading as JM Transfer and JM Trax have a comprehensive compliance program within the organisation to ensure compliance with government rules, regulations and approved guidance. We do not want JM Transfer and JM Trax services to be used in illegal money laundering activities or terrorist activities. It is our policy that we follow both the letter and the spirit of the law and the regulations of both the United Kingdom and Nigeria in which JM Transfer and JM Trax operates. All remittances processed by JM Transfer and JM Trax are screened with enhanced controls to prevent money laundering and terrorist financing. It is JM Transfer and JM Trax policy to follow both the letter and spirit of the law and regulations. Throughout the world, Governments have reinforced their commitment to the fight against money laundering and terrorist financing. New laws have imposed additional obligations on firms and individuals in the financial services sector to join in the fight. JM Transfer and JM Trax has an extensive training and awareness programme, a rigorous transaction monitoring system and a robust culture of compliance. JM Transfer and JM Trax works closely with regulatory bodies.</p>
+
+
+ </div>
+
+  <div class="col-sm-6" id="footer_column_2">  
+
+<img src='http://jmtrax.net/images/Photo2.png' />
+
+   </div>
+
+   
+
+</div>
+
+</footer>
+
+
+<section class="copywright">
+
+<p style='color:white;'>&copy; UNIFIED DIGITAL MEDIA  - http://www.unifieddigitalmedia.co.uk</p>
+
+  </section>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js" ></script>
+
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" ></script>
+
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js" ></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular-resource.js" ></script>
+
+
+<script>
+// Get the modal
+var loginmodal = document.getElementById('loginModal');
+
+var signupmodal = document.getElementById('signupModal');
+
+// Get the button that opens the modal
+var loginbtn = document.getElementById("openLogin");
+
+var signupbtn = document.getElementById("openSignup");
+
+var signupbtn1 = document.getElementById("signup");
+
+// Get the <span> element that closes the modal
+var loginspan = document.getElementsByClassName("loginclose")[0];
+var signupspan = document.getElementsByClassName("signupclose")[0];
+
+// When the user clicks the button, open the modal 
+loginbtn.onclick = function() {
+    loginmodal.style.display = "block";
+}
+
+signupbtn.onclick = function() {
+    signupmodal.style.display = "block";
+}
+
+signupbtn1.onclick = function() {
+    signupmodal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+loginspan.onclick = function() {
+    loginmodal.style.display = "none";
+}
+signupspan.onclick = function() {
+    signupmodal.style.display = "none";
+}
+
+
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        loginmodal.style.display = "none";
+        signupmodal.style.display = "none";
+    }
+}
+</script>
+
+
+<script type="text/javascript">
+
+var app = angular.module('justmoneytransfers', ['ngResource']);
+
+
+app.factory('Login_Service', ['$resource', function($resource) {
+
+var resource = $resource('http://localhost:3000/routes/login',{});
+
+return resource;
+
+
+}]);
+
+
+app.controller('calculator', function($scope,$http,$resource) {
+
+var init = function () {
+   
+
+$http.get("http://localhost:3000/routes/rates").then(function(response) {
+
+$scope.gbp = response.data[0].GBP;
+$scope.ngn = response.data[0].NGN;
+
+});
+
+
+document.cookie = "agentid=";
+
+document.cookie = "agentusername=";
+
+document.cookie = "agentemail=" ;
+
+document.cookie = "agenttype=" ;
+
+document.cookie = "agentcredit=";
+
+document.cookie = "sender_firstname=";
+
+document.cookie = "sender_lastname=";
+
+
+};
+
+init();
+
+
+$scope.calNGN = function(para) {
+
+     
+
+$http.get("http://localhost:3000/routes/charge.php?ngn="+para).then(function(response) {
+
+$scope.fee = $scope.tocurrency(Number(response.data.FEES).toFixed(2));
+$scope.NGN = $scope.tocurrency(Number(response.data.NGN).toFixed(2));
+$scope.paymentsterling = $scope.tocurrency(Number(response.data.AMOUNT).toFixed(2));
+$scope.paymenttotalngn = $scope.tocurrency(Number(response.data.NGN).toFixed(2));
+$scope.total = $scope.tocurrency(Number(response.data.TOTALGBP).toFixed(2));
+  });
+
+  
+    };
+
+    $scope.calTOTALNGN = function(para) {
+
+ $http.get("http://localhost:3000/routes/charge.php?totalngn="+para).then(function(response) {
+
+
+$scope.fee = $scope.tocurrency(Number(response.data.FEES).toFixed(2));
+$scope.NGN = $scope.tocurrency(Number(response.data.NGN).toFixed(2));
+$scope.paymentsterling = $scope.tocurrency(Number(response.data.AMOUNT).toFixed(2));
+$scope.paymenttotalngn = $scope.tocurrency(Number(response.data.NGN).toFixed(2));
+$scope.total = $scope.tocurrency(Number(response.data.TOTALGBP).toFixed(2));
+
+    });
+
+  
+    };
+
+    $scope.calTOTALGBP = function(para) {
+  
+     $http.get("http://localhost:3000/routes/charge.php?totalgbp="+para).then(function(response) {
+
+$scope.fee = $scope.tocurrency(Number(response.data.FEES).toFixed(2));
+$scope.NGN = $scope.tocurrency(Number(response.data.NGN).toFixed(2));
+$scope.paymentsterling = $scope.tocurrency(Number(response.data.AMOUNT).toFixed(2));
+$scope.paymenttotalngn = $scope.tocurrency(Number(response.data.NGN).toFixed(2));
+$scope.total = $scope.tocurrency(Number(response.data.TOTALGBP).toFixed(2));
+
+   });
+    };
+
+
+    $scope.calAMOUNT = function(para) {
+
+
+       $http.get("http://localhost:3000/routes/charge.php?amount="+para).then(function(response) {
+
+$scope.fee = $scope.tocurrency(Number(response.data.FEES).toFixed(2));
+$scope.NGN = $scope.tocurrency(Number(response.data.NGN).toFixed(2));
+$scope.paymentsterling = $scope.tocurrency(Number(response.data.AMOUNT).toFixed(2));
+$scope.paymenttotalngn = $scope.tocurrency(Number(response.data.NGN).toFixed(2));
+$scope.total = $scope.tocurrency(Number(response.data.TOTALGBP).toFixed(2));
+
+
+    });
+       
+    };
+
+
+$scope.tocurrency = function (para) {
+
+
+var number = para.toString();
+
+var dollars = number.split('.')[0];
+
+var  cents = (number.split('.')[1] || '') +'00';
+
+var dollars = dollars.split('').reverse().join('').replace(/(\d{3}(.php?!$))/g, '$1,').split('').reverse().join('');
+
+var cent = cents.slice(0, 2);
+
+var decimal = ".";
+
+var cent2 = decimal.concat(cent);
+
+var dollars = dollars.concat(cent2);
+
+return dollars;
+
+
+
+
+}
+
+
+});
+
+
+app.controller('login', function($scope,Login_Service,$http,$resource) {
+
+$scope.login = function () {
+
+
+
+var log = Login_Service.get(
+
+{
+
+
+
+username:$scope.username,
+password:$scope.password,
+
+
+}, function() {
+
+
+if(log.ERROR === "")
+{
+
+
+document.cookie = "agentid=" + log.AGENTID ;
+
+document.cookie = "agentusername=" + log.AGENTUSERNAME ;
+
+document.cookie = "agentemail=" + log.EMAIL ;
+
+document.cookie = "agenttype=" + log.USERTYPE ;
+
+document.cookie = "agentcredit=" + log.CREDITLIMIT ;
+
+document.cookie = "sender_firstname=" + log.SENDERFIRSTNAME ;
+
+document.cookie = "sender_lastname=" + log.SENDERLASTNAME ;
+
+
+if(log.USERTYPE === "customer")
+
+{
+
+window.location = "http://localhost:3000/money-transfer-calculator.html" ;
+
+}
+else
+{
+
+
+        
+
+
+window.location = "http://localhost:3000//dashboard.html" ;
+
+}
+
+
+
+
+}
+else
+{
+
+
+alert(log.ERROR);
+
+
+
+}
+  
+
+  });
+
+
+
+
+}
+
+
+
+
+
+$scope.forgottenpassword = function () {
+
+
+var resource = $resource('http://localhost:3000/routes/forgottenpassword',{
+
+email : "@email",
+
+
+},{ 'update': { method:'PUT' } } );
+
+
+var email = prompt("Please enter your mubile number ");
+
+
+if (email != null) {
+   
+if(email.charAt(0) == 0 )
+{
+
+
+email = email.substr(1);
+
+}
+
+
+
+
+
+var log = resource.get(
+
+{
+
+
+
+email : email,
+
+
+
+}, function() {
+
+
+
+alert(log.ERROR);
+
+
+
+  });
+
+
+
+
+
+  
+
+}
+
+
+}
+
+
+
+});
+
+
+
+app.factory('Senders_Service', ['$resource', function($resource) {
+
+var resource = $resource('http://localhost:3000/routes/senders',{
+
+
+
+
+
+
+
+firstname:"@firstname",
+lastname:"@lastname",
+mobile:"@mobile",
+email:"@email",
+username:"@username",
+password:"@password",
+user_type:"customer",
+
+
+
+
+
+},{ 'update': { method:'PUT' } } );
+
+
+
+
+
+return resource;
+
+
+}]);
+
+
+app.controller('signup', function($scope,Senders_Service,$http,$resource) {
+
+
+$http.get("http://localhost:3000/routes/occupations").then(function(response) {
+
+
+
+ $scope.occupations = response.data;
+
+ 
+
+    });
+
+
+$scope.savesender = function() {
+
+
+var password = document.getElementById("userpassword").value;
+
+
+
+var confirmedpassword = document.getElementById("confirmedpassword").value;
+
+
+
+var username = document.getElementById("userusername").value;
+
+
+
+var mobile = document.getElementById("mobile").value;
+
+
+
+var occupation = $scope.occupation
+
+
+
+var firstname = document.getElementById("firstname").value;
+
+
+
+var lastname = document.getElementById("lastname").value;
+
+
+
+if(password.length < 8 )
+
+{
+
+$scope.passworderror = 'Password must be 8 characters in length.';}
+
+else
+
+{
+
+if(password != confirmedpassword)
+
+{ $scope.passworderror = 'Passwords do not match';}
+
+else
+{
+
+
+$scope.passworderror ='';
+
+if(mobile[0] == 0){$scope.mobileerror='Phone must be UK format without the zero';}
+
+else
+
+{
+
+
+if(mobile.length != 10)
+
+{ $scope.mobileerror='Phone must be UK format without the zero';}
+
+else
+{
+
+
+$scope.mobileerror= '';
+
+
+
+if(occupation == undefined)
+{
+
+$scope.emailerror='Your occupation is needed';
+
+}
+
+else
+{
+
+$scope.emailerror='';
+
+
+if(firstname.length == 0 || lastname.length  == 0)
+{
+
+
+$scope.nameerror= 'Your name is needed';
+
+}
+else
+{
+
+
+if(username.length == 0 )
+{
+
+
+
+$scope.usernameerror= 'Your username is needed';
+
+}
+else
+
+{
+
+var comp = document.getElementById("agreement").checked;
+
+
+if(comp == true)
+
+{
+
+
+$scope.usernameerror= '';
+$scope.nameerror= '';
+$scope.emailerror='';
+$scope.mobileerror= '';
+$scope.passworderror='';
+
+
+$http.post("http://localhost:3000/routes/senders.php?firstname="+firstname+"&lastname="+lastname+"&mobile="+mobile+"&username="+username+"&password="+password+"&occupation="+$scope.occupation.occupation+"&user_type=customer").then(function(response) {
+
+
+
+
+if(response.data.ERROR){ alert(response.data.ERROR);}else {
+
+
+
+if(response.data.TYPE === 'customer')
+
+{
+
+
+
+document.cookie = "agentusername=" + username ;
+
+document.cookie = "sendersid=" + response.data._id ;
+
+document.cookie = "agenttype=customer"  ;
+
+document.cookie = "sender_firstname=" + firstname ;
+
+document.cookie = "sender_lastname=" + lastname ;
+
+window.location = "http://Homemedia/money-transfer-calculator.html" ;
+
+}
+
+
+
+
+
+}
+
+
+
+    });
+
+
+}
+else
+{
+
+$scope.agreement='You must agree to the terms and conditions';
+
+
+
+
+
+}
+
+
+}
+
+
+
+}
+
+
+
+
+
+
+
+
+}
+
+
+}
+
+
+
+}
+
+
+
+
+}
+
+
+
+}
+
+
+}
+
+});
+
+</script>
+
+
+</body>
+
+</html>

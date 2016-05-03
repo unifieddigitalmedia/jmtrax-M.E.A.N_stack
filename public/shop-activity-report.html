@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"> 
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" type="text/css" href="/styles/normal.css">
+
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+
+<link rel="icon" 
+      type="image/png" 
+      href="/images/jmtrax_icon.png">
+
+<title> Just Money Transfers | Receipient Transaction Statement </title>
+
+</head>
+
+<body ng-cloak ng-app="justmoneytransfers" >
+  
+<div class="container-fluid"  ng-controller='transactions'   >
+
+<div class="table-responsive" >
+
+<h1> Statement summary for  {{receipientname}}  </h1>
+
+&nbsp;
+
+<h1> Period {{startdate}}  - {{enddate}} </h1>
+
+&nbsp;
+
+
+ <table class="table table-bordered">
+    <thead>
+    <tr>
+        <th style='tablecells'>STAFF REF.</th>
+        <th style='tablecells'>SHOP</th>
+        <th  style='tablecells'>DATE</th>
+        <th style='tablecells' >TRANS. NO.</th>
+        <th style='tablecells'>SENDER FIRST NAME</th>
+        <th style='tablecells'>SENDER LAST NAME</th>
+        <th style='tablecells'>AMOUNT £</th>
+        <th style='tablecells'>FEES £</th>
+        <th style='tablecells'>TOTAL GBP DUE £</th>
+        <th style='tablecells'>TOTAL NGN DUE</th>
+        <th style='tablecells'>STATUS</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat='daily in ( filteredTransactions = ( dailytransactionlist |  todaystransfers : startdate : enddate  ) )   '>
+        <td style='tablecells'>{{daily.agentusername}}</td>
+        <td style='tablecells'>{{daily.shop}}</td>
+        <td style='tablecells'>{{daily.date}}</td>
+         <td style='tablecells'>{{daily.id}}</td>
+        <td style='tablecells'>{{daily.senderfirstname}}</td>
+        <td style='tablecells'>{{daily.senderlasttname}}</td>
+        <td style='tablecells'>{{daily.amount}}</td>
+        <td style='tablecells' >{{daily.fee}}</td>
+        <td style='tablecells'>{{daily.totalgbp}}</td>
+        <td style='tablecells'>{{daily.totalngn}}</td>
+        <td style='tablecells'>{{daily.status}}</td>
+      </tr>
+ 
+ <tr>
+        <td colspan='6'></td>
+        <td>AMOUNT £</td>
+        <td>FEES £</td>
+        <td>TOTAL GBP DUE £</td>
+        <td>TOTAL NGN DUE</td>
+      
+      </tr>
+
+ <tr>
+         <td colspan='6'></td>
+          <td>{{ TOTALAMOUNT }}</td>
+        <td>{{ TOTALFEE }}</td>
+        <td>{{ TOTALGBP }}</td>
+        <td>{{ TOTALNGN}}</td>
+      </tr>
+
+    </tbody>
+
+  </table>
+
+</div>
+
+</div>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js" ></script>
+
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" ></script>
+
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js" ></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular-resource.js" ></script>
+
+<script src="scripts/main.js"> </script>
+
+<script type="text/javascript">
+
+
+var app = angular.module('justmoneytransfers', ['ngResource','dailyFilter']);
+
+
+app.factory('Transactions_Service', ['$resource', function($resource) {
+
+var resource = $resource('http://localhost:3000/api/shop-activity-report',{});
+
+return resource;
+
+
+}]);
+
+
+app.controller('transactions', function($scope,Transactions_Service,$http,$resource,$filter) {
+
+
+
+var init = function () {
+   
+$scope.receipientname = getCookie('shop')  ;
+
+$scope.period = getCookie('fromdate') + "  " + getCookie('todate') ;
+
+$http.get("http://localhost:3000/api/shop-activity-report.php?shop="+getCookie('shop')).then(function(response) {
+
+
+$scope.dailytransactionlist = response.data;
+
+
+$scope.startdate = getCookie('fromdate');
+
+$scope.enddate = getCookie('todate');
+
+ //$filter('dailyFilter');
+
+    });
+
+
+
+};
+
+init();
+
+function getCookie(cname) {
+
+    var name = cname + "=";
+  
+    var ca = document.cookie.split(';');
+  
+    for(var i=0; i<ca.length; i++) {
+  
+        var c = ca[i];
+  
+        while (c.charAt(0)==' ') c = c.substring(1);
+  
+        if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+  
+    }
+  
+    return "";
+
+}
+
+
+
+$scope.$watch('filteredTransactions', function() {
+
+
+$scope.TOTALAMOUNT = 0 ;
+
+$scope.TOTALFEE = 0 ;
+
+$scope.TOTALGBP = 0 ;
+
+$scope.TOTALNGN  = 0 ;
+
+var log = [];
+
+angular.forEach($scope.filteredTransactions, function(value, key) {
+
+$scope.TOTALAMOUNT += parseInt(value.amount.replace(",", "")) ;
+
+$scope.TOTALFEE += parseInt(value.fee.replace(",", ""));
+
+$scope.TOTALGBP += parseInt(value.totalgbp.replace(",", "")) ;
+
+$scope.TOTALNGN += parseInt(value.totalngn.replace(",", "")) ;
+
+}, log );
+
+
+
+$scope.TOTALAMOUNT = $scope.tocurrency(Number($scope.TOTALAMOUNT).toFixed(2));
+
+$scope.TOTALFEE = $scope.tocurrency(Number($scope.TOTALFEE).toFixed(2));
+
+$scope.TOTALGBP = $scope.tocurrency(Number($scope.TOTALGBP).toFixed(2));
+
+$scope.TOTALNGN = $scope.tocurrency(Number($scope.TOTALNGN).toFixed(2));
+
+
+
+  
+    });
+
+$scope.tocurrency = function (para) {
+
+
+var number = para.toString();
+
+var dollars = number.split('.')[0];
+
+var  cents = (number.split('.')[1] || '') +'00';
+
+var dollars = dollars.split('').reverse().join('').replace(/(\d{3}(.php?!$))/g, '$1,').split('').reverse().join('');
+
+var cent = cents.slice(0, 2);
+
+var decimal = ".";
+
+var cent2 = decimal.concat(cent);
+
+var dollars = dollars.concat(cent2);
+
+return dollars;
+
+
+
+
+}
+
+
+});
+
+
+angular.module('dailyFilter', []).filter('todaystransfers', function() {
+
+return function(input,para,para1) {
+
+
+
+var log = [];
+
+if(para.length == 0 && para1.length == 0)
+
+{
+
+angular.forEach(input, function(value, key) {
+
+ this.push(value);
+
+
+}, log);
+
+
+return log;
+
+
+
+
+}
+else
+
+{
+
+
+angular.forEach(input, function(value, key) {
+
+
+if (value.date >= para && value.date  <= para1 )  { this.push(value); }
+
+
+}, log);
+
+
+return log;
+
+
+
+
+}
+
+
+
+
+
+
+
+
+return log;
+
+
+
+}
+
+
+
+
+
+});
+
+
+</script>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,1281 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"> 
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" type="text/css" href="/styles/normal.css">
+
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+
+<link rel="icon" 
+      type="image/png" 
+      href="/images/jmtrax_icon.png">
+
+
+
+<title> Just Money Transfers |  Order </title>
+
+
+</head>
+
+<body ng-cloak ng-app="justmoneytransfers">
+
+	
+
+ 
+
+
+<header ng-controller="menucontroller">
+
+<ul class="topnav">
+
+<li class="logo_link"> <a href="index.html"><img src="/images/logo.png" class="logo" ></a> </li>
+
+<li class="dropdown-link"> <a href="dashboard.php" class="dropbtn"> Dashboard</a>  
+
+</li>  
+
+<li class="dropdown-link" ng-hide="usertype"> <a class="dropbtn" >Administration</a> 
+
+<div class="dropdown-content">
+
+  <a href="banks.html"> Banks </a>  
+
+  <a href="commission-fees.php"> Commission Fees</a>  
+
+  <a href="customers.html"> Customers </a>
+
+  <a href="exchange-rates.html"> Exchange Rates</a>  
+
+  <a href="shops.html"> Shops </a> 
+
+  <a href="users.html"> Users </a>   
+
+</div>
+
+
+</li>  
+
+<li class="dropdown-link"> <a class="dropbtn" >Reports</a>  
+
+<nav class="dropdown-content">
+
+  <a href="banking.html"> Banking</a> 
+
+  <a href="daily-transactions-receipients.html"> Daily Transactions </a>
+
+  <a href="daily-transactions-senders.html"> Daily Transactions </a>   
+
+   <a href="receipients.html"> Recipients </a> 
+
+    <a href="sales-report.html"> Sales Report </a> 
+
+  <a href="senders.html"> Senders </a> 
+
+  <a href="transactions.php"> Transactions </a>  
+
+</nav>
+
+</li>  
+
+<li class="dropdown-link"> <a href="index.html" class="dropbtn" >Log Out</a> 
+
+
+</li>  
+
+<li class="icon">
+    <a href="javascript:void(0);" style="font-size:15px;" onclick="showResponsivemenu()">☰</a>
+</li>
+
+
+
+</ul></header>
+
+
+<div class="container-fluid"  ng-controller='order' >
+
+
+
+<div class="row" ng-init="checkuser()">
+
+  <div class="col-sm-4" id='senderiddetails' >
+
+&nbsp;
+
+
+&nbsp;&nbsp;
+
+
+&nbsp;&nbsp;
+
+
+&nbsp;
+
+    <h3 style='text-align:center;color:black;font-weight:bold;' ng-init="getrates()"> LIVE RATE TRACKER </h3>
+
+   <div class="form-group" style='text-align:center;'>
+   
+   <label for="usr" style='font-size:150%;color:black;'><h3 style='color:black;font-weight:bold;'> 1 GBP /  {{gbp}} NGN </h3></label>
+  
+   </div>
+  <div class="form-group" style='text-align:center;'>
+  
+  <label for="pwd" style='font-size:150%;color:black;'><h3 style='color:black;font-weight:bold;'> {{ngn}} NGN /  1 GBP </h3></label>
+ 
+  </div>
+
+  </div>
+
+
+
+
+  <div class="col-sm-4" >
+<h5 class="headertext"> SENDER DETAILS </h5>
+<div class="form-group">
+  
+ 
+
+<table class="table">
+<thead>
+
+</thead>
+<tbody>
+<tr class='cellcontainder'>
+<td class='tablecells' >FIRST NAME:</td>
+<td> <input type="text" class="form-control input-sm"  name="senderfirstname" id='senderfirstname' ng-model="senderfirstname" ></td>
+
+</tr>
+
+</tbody>
+</table>
+</div>
+<div class="form-group">
+ 
+  
+
+
+<table class="table">
+<tbody>
+<tr class='cellcontainder'>
+<td class='tablecells'> SURNAME NAME:</td>
+<td> <input type="text" class="form-control input-sm"  name="senderlastname" id='senderlastname' ng-model="senderlasttname"></td>
+
+</tr>
+
+</tbody>
+</table>
+
+
+
+</div>
+<div class="form-group">
+  
+  
+
+<table class="table">
+<tbody>
+<tr class='cellcontainder'>
+<td class='tablecells'> MOBILE +44(0):</td>
+<td> <input type="text" class="form-control input-sm" 
+name="sendermobile" id='sendermobile' ng-model="sendermobile"></td>
+
+</tr>
+
+</tbody>
+</table>
+
+</div>
+<div class="form-group">
+
+<table class="table">
+<tbody>
+<tr class='cellcontainder'>
+<td class='tablecells'>  PHONE +44(0):</td>
+<td>  <input type="text" class="form-control input-sm" 
+name="senderphone" id='senderphone' ng-model="sendermobile"></td>
+
+</tr>
+
+</tbody>
+</table>
+
+
+ 
+ 
+</div>
+
+
+ <span id='sendererror' class='sendererror' style='color:red;'>  </span>
+
+<div class="form-group">
+  
+  
+<table class="table">
+<tbody>
+<tr>
+<td> 
+
+  <div class="checkbox">
+  <label> <input type="checkbox" class="form-control input-sm" name='uksms' id='uksms' value='on' checked ng-model="uksms" >Yes to receive sms confirmation to your mobile</label>
+</div>
+
+</td>
+<td> 
+</td>
+
+</tr>
+
+</tbody>
+</table>
+
+
+</div>
+
+
+
+</div>
+  <div class="col-sm-4" >
+<h5  class="headertext"> RECEIPIENT DETAILS </h5>
+<div class="form-group">
+ 
+  
+
+<table class="table">
+<tbody>
+<tr class='cellcontainder'>
+<td class='tablecells'> SURNAME NAME:</td>
+<td> <input type="text" class="form-control input-sm" 
+name="recipientsurname" id='recipientsurname' ng-model="recipientsurname">
+</td>
+
+</tr>
+
+</tbody>
+</table>
+
+
+</div>
+<div class="form-group">
+  
+  
+
+
+<table class="table">
+<tbody>
+<tr class='cellcontainder'>
+<td class='tablecells'> FIRST NAME:</td>
+<td> <input type="text" class="form-control input-sm"  name="recipientfirstname" id='recipientfirstname' ng-model="recipientfirstname">
+</td>
+
+</tr>
+
+</tbody>
+</table>
+
+
+</div>
+<div class="form-group">
+  
+ 
+
+<table class="table">
+<tbody>
+<tr class='cellcontainder'>
+<td class='tablecells'> PHONE +234:</td>
+<td >  <input type="text" class="form-control input-sm" 
+name="recipientphone" id='recipientphone' ng-model="recipientphone">
+</td>
+
+</tr>
+
+</tbody>
+</table>
+
+</div>
+<span id='recipienterror' class='recipienterror'>  </span>
+<div class="form-group">
+ 
+  
+
+<table class="table">
+<tbody>
+<tr style="background-color:black;font-family:Arial; position:relative; font-size:12px;color:white;padding:5px;">
+<td class='tablecells'>  COUNTRY:</td>
+<td>  <input type="text" class="form-control input-sm" value="Nigeria" name="recipientcountry" >
+</td>
+
+</tr>
+
+</tbody>
+</table>
+
+
+
+</div>
+<div class="form-group">
+  
+  
+<table class="table">
+<tbody>
+<tr>
+<td> 
+
+  <div class="checkbox">
+  <label><input type="checkbox" class="form-control input-sm" name='nigeriasms' id='nigeriasms' value='on' ng-model="ngnsms">Yes to send sms confirmation to your recipients mobile</label>
+</div>
+
+</td>
+<td> 
+</td>
+
+</tr>
+
+</tbody>
+</table>
+
+
+</div>
+
+
+</div>
+
+
+
+
+</div>
+
+
+
+<div class="row" ng-hide="sendersdetails">
+
+
+
+  <div class="col-sm-6" ><h5 style='text-align:center;color:black;font-weight:bold;'> SENDER ADDRESS </h5><div class="form-group">
+ 
+ 
+
+<table class="table">
+<tbody>
+<tr class='cellcontainder'>
+<td class='tablecells'>  POSTCODE:</td>
+<td>   <input type="text" class="form-control input-sm" 
+name="senderpostcode" id='senderpostcode' ng-model="postcode">
+</td>
+
+</tr>
+
+</tbody>
+</table>
+
+
+</div>
+<div class="form-group">
+  
+  
+
+<table class="table">
+<tbody>
+<tr class='cellcontainder'>
+<td class='tablecells'> 1ST LINE ADDRESS:</td>
+<td>  <input type="text" class="form-control input-sm"  name="line1" id='line1' ng-model="line1">
+</td>
+
+</tr>
+
+</tbody>
+</table>
+
+
+</div>
+
+<span id='senderaddresserror' class='senderaddresserror'>  </span>
+
+
+  <div id="loader"></div>
+
+<div class="form-group">
+  
+  
+
+<table class="table">
+<tbody>
+<tr class='cellcontainder'>
+<td>  <label for="pwd">TOWN:</label></td>
+<td>  <input type="text" class="form-control input-sm"  name="town" id='town' ng-model="town">
+</td>
+
+</tr>
+
+</tbody>
+</table>
+
+
+</div></div>
+
+  <div class="col-sm-6" >
+
+
+<table class="table">
+<tbody>
+<tr>
+<td> 
+
+  <div class="checkbox">
+</div>
+
+
+
+ </td>
+<td> 
+</td>
+
+</tr>
+
+</tbody>
+</table>
+
+
+
+
+</div>
+
+</div>
+
+<div class="row" class='cellcontainder'>
+
+
+  <div class="col-sm-2"><div class="form-group">
+  <label for="usr">DESTINATION:</label>
+  <input type="text" class="form-control input-sm" name="destination" id="destination"  class="destination"  value="Nigeria">
+</div></div>
+  <div class="col-sm-2"><div class="form-group">
+  <label for="usr">AGENCY CODE:</label>
+  <input type="text" class="form-control input-sm" name="agency" id="agency"  class="agency" ng-model="agentusername">
+</div></div>
+  <div class="col-sm-2"><div class="form-group">
+  <label for="usr">BANK & ADDRESS:</label>
+  <input type="text" class="form-control input-sm" name="bankaddress"   id="recbank"   id='bankaddress'  ng-model="bankname">
+</div></div>
+  <div class="col-sm-2"><div class="form-group">
+  <label for="usr">CUSTOMER REF</label>
+  <input type="text" class="form-control input-sm" name="customerref"   id="customerref"  value="" ng-model="customerref">
+</div></div>
+  <div class="col-sm-2"><div class="form-group">
+  <label for="usr">SHOP:</label>
+  <input type="text" class="form-control input-sm" id="usr" ng-model="shop">
+</div></div>
+  <div class="col-sm-2"><div class="form-group">
+
+  <label for="usr">REMITTANCE:</label>
+  <input type="text" class="form-control input-sm" name="remittance" id="localamount"  class="remittance"  ng-blur="calREMITTANCE(remittance)" ng-model="remittance" style='background-color:blue;color:white;'>
+
+</div></div>
+
+</div>
+
+<div class="row" class='cellcontainder' style='background-color:grey;color:white;font-weight:bold;padding:20px;'>
+
+
+  <div class="col-sm-2"><div class="form-group">
+  <label for="usr">NAIRA AMOUNT:</label>
+ <input type="text" class="form-control input-sm" name="paymentlocal" class="NGN" id="NGN" ng-model="NGN" ng-blur="calNGN(NGN)">
+</div></div>
+  <div class="col-sm-2"><div class="form-group">
+  <label for="usr">AMOUNT IN GBP:</label>
+     <input type="text" class="form-control input-sm" value="" name="paymentsterling" class="paymentsterling" id="paymentsterling" ng-model="paymentsterling" ng-blur="calAMOUNT(paymentsterling)">
+</div></div>
+  <div class="col-sm-2"><div class="form-group">
+  <label for="usr">COMISSION:</label>
+  <input type="text" class="form-control input-sm" name="paymentcommission" class="fee" id="fee" ng-model="fee">
+</div></div>
+  <div class="col-sm-2"><div class="form-group">
+  <label for="usr">TOTAL NGN:</label>
+  <input type="text" class="form-control input-sm" value="" name="paymenttotalngn" class="paymenttotalngn" id="paymenttotalngn" style='font-weight:bold;color:blue;' ng-model="paymenttotalngn" ng-blur="calTOTALNGN(paymenttotalngn)">
+</div></div>
+  <div class="col-sm-2"><div class="form-group">
+  <label for="usr">TOTAL GBP DUE:</label>
+  <input type="text" class="form-control input-sm"  value="" name="paymentduegbp" class="total" id="total" style="color:red;font-weight:bold;" ng-model="total" ng-blur="calTOTALGBP(total)">
+</div></div>
+  <div class="col-sm-2"><div class="form-group">
+
+  
+
+</div></div>
+
+</div>
+
+
+
+
+<div class="row" ng-hide="sendersdetails">
+
+
+
+  <div class="col-sm-6" >&nbsp;<h5 style='text-align:center;color:black;font-weight:bold;'> BANK DETAILS </h5>&nbsp;<div class="form-group">
+ 
+ 
+
+<table class="table">
+<tbody>
+<tr class='cellcontainder'>
+<td>  <label for="usr">NIGERIA BANK ACCOUNT NUMBER:</label></td>
+<td>   <input type="text" class="form-control input-sm"  name="bankac" id='bankac' ng-model="bankac">
+</td>
+
+</tr>
+
+</tbody>
+</table>
+
+</div>
+<div class="form-group">
+ 
+ 
+
+<table class="table">
+<tbody>
+<tr class='cellcontainder'>
+<td>   <label for="pwd">PAYMENT REF:</label></td>
+<td>    <input type="text" class="form-control input-sm" id='paymenttextfeild' name="paymentref" class="paymentref" id="paymentref" id='payment' 
+  ng-model="paymentref">
+</td>
+
+</tr>
+
+</tbody>
+</table>
+
+
+</div>
+<div class="form-group">
+  
+  
+
+<table class="table">
+<tbody>
+<tr class='cellcontainder'>
+<td>   <label for="usr">REASON FOR TRANSFER:</label></td>
+<td>   <input type="text" class="form-control input-sm"  name="reasonfortransfer" class="reasonfortransfer" id="reasonfortransfer" ng-model="reasonfortransfer">
+</td>
+
+</tr>
+
+</tbody>
+</table>
+
+</div>
+<div class="form-group">
+  <label for="pwd"></label>
+
+
+ <br><br /> <div ng-show="paymentref == 'PayPal'" > Shop Account <input type='text' name='shopacc' class="form-control input-sm" ng-model="shopacc"><br> </br> </div>
+
+<br><br /> <div ng-show="paymentref == 'PayPal'" > PayPalEmail  <input type='text' name='paypal' class="form-control input-sm" ng-model="paypalemail" ><br> </br> </div> 
+
+
+</div>
+<div class="form-group">
+  <label for="pwd"><span id='paymenterror' class='paymenterror'>  </span></label>
+ <div id='compliancediv' class='compliancediv' ng-show="compliance" > <table> <tr> <td colspan='2'> <p style="font-family:Arial; position:relative; font-size:100%; text-align:left;color:red;"> Please upload your compliance form to complete this transaction: </p> </td>    </tr>
+
+<tr> <td> 
+
+<div class="form-group" ng-show="compliance" >
+  <label for="usr">  Compliance form:</label>
+  <input type="checkbox" class='form-control' style="position:relative;" name='complianceformcheck' id='complianceformcheck' value='on'/>  <input type="file" style="float:right;" name='complianceform'  />  
+
+</div>
+
+</td>  <td colspan='2'> <p style="font-family:Arial; position:relative; font-size:100%; text-align:left;color:red;"> </p> </td> </tr>
+
+
+<tr> <td>  </td>  <td>   </td> <td></td> </tr>
+
+</table>
+</div> 
+</div>
+</div>
+
+  <div class="col-sm-6" style='background-color:grey;color:white;font-weight:bold;'><h5 style='text-align:center;'> FINANCIAL DETAILS </h5> <div class="form-group">
+ 
+ 
+
+<table class="table">
+<tbody>
+<tr>
+<td>   <label for="usr"></label></td>
+<td>    
+</td>
+
+</tr>
+
+</tbody>
+</table>
+
+
+</div>
+<div class="form-group">
+ 
+ 
+
+
+<table class="table">
+<tbody>
+<tr>
+<td>   <label for="pwd"></label></td>
+<td> 
+</td>
+
+</tr>
+
+</tbody>
+</table>
+
+
+</div>
+<div class="form-group">
+  
+  
+
+<table class="table">
+<tbody>
+<tr>
+<td>   <label for="usr"></label></td>
+<td>  
+</td>
+
+</tr>
+
+</tbody>
+</table>
+
+
+</div>
+<div class="form-group">
+ 
+  
+
+
+<table class="table">
+<tbody>
+<tr>
+<td>   <label for="pwd"></label></td>
+<td>  
+</td>
+
+</tr>
+
+</tbody>
+</table>
+
+
+</div>
+<div class="form-group">
+  
+ 
+
+<table class="table">
+<tbody>
+<tr>
+<td>  <label for="pwd"></label></td>
+<td>   
+</td>
+
+</tr>
+
+</tbody>
+</table>
+
+
+</div>
+</div>
+
+</div>
+
+<div class="row" class='cellcontainder'>
+  <div class="col-sm-2"><div class="form-group">
+  <label for="usr"></label>
+ 
+</div></div>
+  <div class="col-sm-2"><div class="form-group">
+  <label for="usr"></label>
+</div></div>
+  <div class="col-sm-2"><div class="form-group">
+  <label for="usr"></label>
+ 
+</div></div>
+  <div class="col-sm-2"><div class="form-group">
+  <label for="usr"></label>
+ 
+</div></div>
+  <div class="col-sm-2"><div class="form-group">
+  
+</div></div>
+  <div class="col-sm-2"><div class="form-group">
+  <label for="usr"></label>
+<button ng-click='validateorder()' type='button' class="btn btn-primary btn-block"> PLACE ORDER </button> 
+
+
+</div></div>
+
+</div>
+
+
+</div>
+
+
+<footer>
+<div class="row">
+
+  <div class="col-sm-6" id="footer_column_1">  
+
+
+<p>Authorised User can log into JM Transfers by entering correct account information on the right hand side. The activity of authorized users may be monitored. If monitoring reveals evidence of criminal activity, systems personnel may provide the evidence to management and/or law enforcement officials. Just Computers trading as JM Transfer and JM Trax have a comprehensive compliance program within the organisation to ensure compliance with government rules, regulations and approved guidance. We do not want JM Transfer and JM Trax services to be used in illegal money laundering activities or terrorist activities. It is our policy that we follow both the letter and the spirit of the law and the regulations of both the United Kingdom and Nigeria in which JM Transfer and JM Trax operates. All remittances processed by JM Transfer and JM Trax are screened with enhanced controls to prevent money laundering and terrorist financing. It is JM Transfer and JM Trax policy to follow both the letter and spirit of the law and regulations. Throughout the world, Governments have reinforced their commitment to the fight against money laundering and terrorist financing. New laws have imposed additional obligations on firms and individuals in the financial services sector to join in the fight. JM Transfer and JM Trax has an extensive training and awareness programme, a rigorous transaction monitoring system and a robust culture of compliance. JM Transfer and JM Trax works closely with regulatory bodies.</p>
+
+
+ </div>
+
+  <div class="col-sm-6" id="footer_column_2" style="text-align:center;">  
+
+<img src='/images/Photo2_small.png' class="footerimage"/>
+
+   </div>
+
+   
+
+</div>
+
+</footer>
+
+
+<section class="copywright">
+
+<p style='color:white;'>&copy; UNIFIED DIGITAL MEDIA  - http://www.unifieddigitalmedia.co.uk</p>
+
+	</section>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js" ></script>
+
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" ></script>
+
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js" ></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular-resource.js" ></script>
+
+<script src="scripts/main.js"> </script>
+
+<script type="text/javascript">
+
+
+var app = angular.module('justmoneytransfers', ['ngResource']);
+
+app.controller('menucontroller', function($scope,$http,$resource) {
+
+
+function getCookie(cname) {
+
+    var name = cname + "=";
+  
+    var ca = document.cookie.split(';');
+  
+    for(var i=0; i<ca.length; i++) {
+  
+        var c = ca[i];
+  
+        while (c.charAt(0)==' ') c = c.substring(1);
+  
+        if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+  
+    }
+  
+    return "";
+
+}
+
+var init = function () {
+   
+
+if(!getCookie('agentusername') || getCookie('agenttype') == 'customer' )
+
+{
+
+
+window.location = "http://localhost:3000/index.html" ;
+
+
+}
+
+
+
+if( getCookie('agenttype') == 'user'  )
+
+{ 
+
+$scope.usertype = true;
+
+
+}
+
+
+var counter = 0;
+
+setInterval(function(){ counter = counter + 1 ;
+
+
+window.addEventListener("mousemove",function getcoords() {
+
+
+counter = 0;
+
+});
+
+if (counter == '1800')
+
+{
+
+
+
+
+window.location = "http://localhost:3000/index.html" ;
+
+
+
+} },1000);
+
+
+};
+
+init();
+
+
+
+
+
+});
+
+
+app.factory('Order_Service', ['$resource', function($resource) {
+
+var resource = $resource('http://localhost:3000/api/transactions',{
+
+
+username:"@username",
+senderfirstname : "@senderfirstname",
+senderlasttname : "@senderlasttname",
+line1 : "@line1",
+line2 : "@line2",
+line3 : "@line3",
+town : "@town",
+sendercountry : "@sendercountry",
+postcode : "@postcode",
+senderphone : "@senderphone",
+sendermobile : "@sendermobile",
+senderemail : "@senderemail",
+recipientsurname : "@recipientsurname",
+recipientfirstname : "@recipientfirstname",
+recipientphone : "@recipientphone",
+bankac : "@bankac",
+bankname : "@bankname",
+recmobilephoneprex : "@recmobilephoneprex",
+paymentref: "@paymentref",
+shopacc : "@shopacc",
+paypalemail : "@paypalemail",
+reasonfortransfer : "@reasonfortransfer",
+remittance:"@remittance",
+ngn:"@ngn",
+amount:"@amount",
+totalngn:"@totalngn",
+totalgbp:"@totalgbp",
+fee:"@fee",
+shop:"@shop",
+customerref:"@customerref",
+agentusername:"@agentusername",
+rate:"@rate",
+uksms:"@uksms",
+ngnsms:"@ngnsms"
+
+
+
+
+},{ 'update': { method:'PUT' } } );
+
+
+
+
+
+return resource;
+
+
+}]);
+
+
+app.controller('order', function($scope,Order_Service,$http,$resource) {
+
+
+$scope.sendersdetails = true;
+
+$scope.getrates = function () {
+
+
+$http.get("http://localhost:3000/api/rates").then(function(response) {
+
+
+ $scope.rateslist = response.data;
+
+$scope.gbp = response.data[0].rate;
+$scope.ngn = response.data[1].rate;
+
+
+
+    });
+
+}
+
+
+
+var init = function () {
+   
+ document.getElementById("loader").style.display = "none";
+
+$http.get(
+
+
+ // "http://localhost:3000/api/autofill.php?username="+getCookie('sender_username')+
+  
+  "http://localhost:3000/api/autofill.php?username="+getCookie('sendersid')+
+  "&receipient_firstname="+getCookie('receipient_firstname')+
+  "&receipient_lastname="+getCookie('receipient_lastname')+
+  "&receipient_bank="+getCookie('receipient_bank')+
+  "&receipient_banknumber="+getCookie('receipient_banknumber')+"&agentusername="+getCookie('agentusername')
+
+
+
+  ).then(function(response) {
+
+
+
+
+$scope.senderfirstname =  response.data[0].SendersFirstName;
+
+$scope.senderlasttname =  response.data[0].SendersLastName;
+
+$scope.line1 = response.data[0].Line1;
+
+$scope.line2 = response.data[0].Line2;
+
+$scope.line3 = response.data[0].Line3;
+
+$scope.town = response.data[0].Town;
+
+$scope.sendercountry = response.data[0].SendersFirstName;
+
+$scope.postcode = response.data[0].Postcode;
+
+$scope.senderphone =  response.data[0].Mobile;
+
+$scope.sendermobile =  response.data[0].Mobile;
+
+$scope.senderemail = response.data[0].Email;
+
+$scope.recipientsurname =  response.data[1].ReceipientLastName;
+
+$scope.recipientfirstname =  response.data[1].ReceipientFirstName;
+
+$scope.recipientphone =  response.data[1].ReceipientPhone;
+
+$scope.bankac =  response.data[1].ReceipientAccountNumber;
+
+$scope.bankname = response.data[1].ReceipientBank;
+
+$scope.recmobilephoneprex = response.data[1].SendersFirstName;
+
+$scope.paymentref = response.data[1].ReceipientPaymentReference;
+
+$scope.shopacc = response.data[1].ReceipientShopAccount;
+
+$scope.paypalemail = response.data[1].ReceipientPayPal;
+
+$scope.reasonfortransfer = response.data[1].ReceipientReasonForTransfer;
+
+$scope.shop = response.data[2].Shop;
+
+
+});
+
+
+
+
+};
+
+init();
+
+function getCookie(cname) {
+
+    var name = cname + "=";
+  
+    var ca = document.cookie.split(';');
+  
+    for(var i=0; i<ca.length; i++) {
+  
+        var c = ca[i];
+  
+        while (c.charAt(0)==' ') c = c.substring(1);
+  
+        if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+  
+    }
+  
+    return "";
+
+}
+
+
+$scope.validateorder = function() {
+
+if($scope.rate == undefined || $scope.rate == null || $scope.rate == "")
+{
+
+alert('Exchange rate needs to be set.');
+
+}
+
+else if($scope.remittance == undefined || $scope.NGN == undefined || $scope.paymentsterling == undefined || $scope.total == undefined || $scope.fee == undefined  )
+
+{
+
+
+alert('All sending amounts are needed to continue');
+
+
+}
+else
+{
+
+
+document.cookie = "uksms=" + $scope.uksms;
+document.cookie = "ngnsms=" + $scope.ngnsms;
+
+
+
+
+//document.getElementById("loader").style.display = "block";
+
+var log = Order_Service.save(
+
+{
+
+
+
+//username : getCookie('sender_username'),
+
+
+
+
+username : getCookie('sendersid'),
+senderfirstname : $scope.senderfirstname,
+senderlasttname : $scope.senderlasttname,
+line1 : $scope.line1,
+line2 : $scope.line2,
+line3 : $scope.line3,
+town : $scope.town,
+sendercountry : $scope.sendercountry,
+postcode : $scope.postcode,
+senderphone : $scope.senderphone,
+sendermobile : $scope.sendermobile,
+senderemail : $scope.senderemail,
+recipientsurname : $scope.recipientsurname,
+recipientfirstname : $scope.recipientfirstname,
+recipientphone : $scope.recipientphone,
+bankac : $scope.bankac,
+bankname : $scope.bankname,
+paymentref : $scope.paymentref,
+shopacc : $scope.shopacc,
+paypalemail : $scope.paypalemail,
+reasonfortransfer : $scope.reasonfortransfer,
+agentusername :getCookie('agentusername'),
+remittance : $scope.remittance,
+ngn : $scope.NGN,
+amount : $scope.paymentsterling,
+totalngn : $scope.paymenttotalngn,
+totalgbp : $scope.total,
+fee : $scope.fee,
+shop: $scope.shop,
+customerref:$scope.customerref,
+rate:$scope.rate,
+uksms:$scope.uksms,
+ngnsms:$scope.ngnsms
+
+
+
+
+
+}, function() {
+
+
+
+
+
+if(log.ERROR === "Transaction has been posted. Proceed to checkout.")
+
+{
+
+document.getElementById("loader").style.display = "none";
+
+alert(log.ERROR +'- Order ID '+ log.orderID);
+
+document.cookie = "transaction_number=" + log.orderID;
+
+document.cookie = "gbp_total=" + $scope.total;
+
+window.location = "http://localhost:3000/checkout.html" ;
+
+}
+else
+{
+
+alert(log.ERROR);
+
+}
+
+
+
+  });
+
+
+
+
+}
+
+
+
+
+
+
+
+
+}
+
+
+
+    $scope.calREMITTANCE = function(para) {
+
+      $http.get("http://localhost:3000/api/charge.php?remittance="+para).then(function(response) {
+
+$scope.remittance =  $scope.tocurrency(Number(response.data.REMIITANCE).toFixed(2));
+$scope.fee = $scope.tocurrency(Number(response.data.FEES).toFixed(2));
+$scope.NGN = $scope.tocurrency(Number(response.data.NGN).toFixed(2));
+$scope.paymentsterling = $scope.tocurrency(Number(response.data.AMOUNT).toFixed(2));
+$scope.paymenttotalngn = $scope.tocurrency(Number(response.data.NGN).toFixed(2));
+$scope.total = $scope.tocurrency(Number(response.data.TOTALGBP).toFixed(2));
+$scope.rate = response.data.RATE;
+
+  });
+
+    };
+
+
+$scope.calNGN = function(para) {
+
+     
+
+$http.get("http://localhost:3000/api/charge.php?ngn="+para).then(function(response) {
+
+$scope.remittance =  $scope.tocurrency(Number(response.data.REMIITANCE).toFixed(2));
+$scope.fee = $scope.tocurrency(Number(response.data.FEES).toFixed(2));
+$scope.NGN = $scope.tocurrency(Number(response.data.NGN).toFixed(2));
+$scope.paymentsterling = $scope.tocurrency(Number(response.data.AMOUNT).toFixed(2));
+$scope.paymenttotalngn = $scope.tocurrency(Number(response.data.NGN).toFixed(2));
+$scope.total = $scope.tocurrency(Number(response.data.TOTALGBP).toFixed(2));
+$scope.rate = response.data.RATE;
+  });
+
+  
+    };
+
+    $scope.calTOTALNGN = function(para) {
+
+ $http.get("http://localhost:3000/api/charge.php?totalngn="+para).then(function(response) {
+
+$scope.remittance =  $scope.tocurrency(Number(response.data.REMIITANCE).toFixed(2));
+$scope.fee = $scope.tocurrency(Number(response.data.FEES).toFixed(2));
+$scope.NGN = $scope.tocurrency(Number(response.data.NGN).toFixed(2));
+$scope.paymentsterling = $scope.tocurrency(Number(response.data.AMOUNT).toFixed(2));
+$scope.paymenttotalngn = $scope.tocurrency(Number(response.data.NGN).toFixed(2));
+$scope.total = $scope.tocurrency(Number(response.data.TOTALGBP).toFixed(2));
+$scope.rate = response.data.RATE;
+    });
+
+  
+    };
+
+    $scope.calTOTALGBP = function(para) {
+  
+     $http.get("http://localhost:3000/api/charge.php?totalgbp="+para).then(function(response) {
+$scope.remittance =  $scope.tocurrency(Number(response.data.REMIITANCE).toFixed(2));
+$scope.fee = $scope.tocurrency(Number(response.data.FEES).toFixed(2));
+$scope.NGN = $scope.tocurrency(Number(response.data.NGN).toFixed(2));
+$scope.paymentsterling = $scope.tocurrency(Number(response.data.AMOUNT).toFixed(2));
+$scope.paymenttotalngn = $scope.tocurrency(Number(response.data.NGN).toFixed(2));
+$scope.total = $scope.tocurrency(Number(response.data.TOTALGBP).toFixed(2));
+$scope.rate = response.data.RATE;
+   });
+    };
+
+
+    $scope.calAMOUNT = function(para) {
+
+
+       $http.get("http://localhost:3000/api/charge.php?amount="+para).then(function(response) {
+$scope.remittance =  $scope.tocurrency(Number(response.data.REMIITANCE).toFixed(2));
+$scope.fee = $scope.tocurrency(Number(response.data.FEES).toFixed(2));
+$scope.NGN = $scope.tocurrency(Number(response.data.NGN).toFixed(2));
+$scope.paymentsterling = $scope.tocurrency(Number(response.data.AMOUNT).toFixed(2));
+$scope.paymenttotalngn = $scope.tocurrency(Number(response.data.NGN).toFixed(2));
+$scope.total = $scope.tocurrency(Number(response.data.TOTALGBP).toFixed(2));
+$scope.rate = response.data.RATE;
+
+    });
+       
+    };
+
+
+$scope.tocurrency = function (para) {
+
+
+var number = para.toString();
+
+var dollars = number.split('.')[0];
+
+var  cents = (number.split('.')[1] || '') +'00';
+
+var dollars = dollars.split('').reverse().join('').replace(/(\d{3}(?!$))/g, '$1,').split('').reverse().join('');
+
+var cent = cents.slice(0, 2);
+
+var decimal = ".";
+
+var cent2 = decimal.concat(cent);
+
+var dollars = dollars.concat(cent2);
+
+return dollars;
+
+
+
+
+}
+
+
+});
+
+
+</script>
+
+
+</body>
+
+</html>

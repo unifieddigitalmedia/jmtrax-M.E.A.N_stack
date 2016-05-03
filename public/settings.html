@@ -1,0 +1,865 @@
+ <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"> 
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" type="text/css" href="/styles/normal.css">
+
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+
+<link rel="icon" 
+      type="image/png" 
+      href="/images/jmtrax_icon.png">
+
+
+
+<title> Just Money Transfers | Settings</title>
+
+
+</head>
+
+<body ng-cloak ng-app="justmoneytransfers" >
+
+  
+
+<header>
+
+
+<ul class="topnav">
+
+<li class="logo_link"> <a href="index.html"><img src="/images/logo.png" class="logo" ></a> </li>
+
+<li class="dropdown-link"> <a href="money-transfer-calculator.html" class="dropbtn"> Transfer Calculator</a>  
+
+</li>  
+
+<li class="dropdown-link"> <a class="dropbtn" >My Account</a> 
+
+<div class="dropdown-content">
+
+  <a href="personal-details.html"> Personal Details </a>  
+
+   <a href="beneficiary-details.html"> Beneficiaries </a>  
+
+ 
+
+</div>
+
+
+</li>  
+
+<li class="dropdown-link"> <a class="dropbtn"  >Settings</a>  
+
+
+</li>  
+
+<li class="dropdown-link"> <a href="index.html" class="dropbtn" >Log Out</a> 
+
+
+</li>  
+
+<li class="icon">
+    <a href="javascript:void(0);" style="font-size:15px;" onclick="showResponsivemenu()">☰</a>
+</li>
+
+
+
+</ul></header>
+
+
+  
+<div class="container-fluid"  ng-controller='settings' >
+
+
+&nbsp;
+<div class="row" >
+
+<div class="col-sm-6" style="">
+
+
+
+
+<form role="form" name="sendersmobileform" >
+
+<div class="form-group" style='height:100px;'>
+
+
+  <div class="row">
+
+    <div class="col-sm-6" >
+<input type="text" class="form-control input-sm" id="customerid" ng-model="sendersid"  disabled placeholder="ID NUMBER">
+
+</div>
+
+ <div class="col-sm-6" > <span style='color:red;' > *search is case sensitive </span>
+
+
+
+</div>
+    
+
+
+  </div>
+
+&nbsp;
+
+  <div class="row">
+
+    <div class="col-sm-6" >
+
+<input type="text"  class="form-control input-sm"   id="customerfirstname" ng-model='FirstName' placeholder="* First Name :" />
+
+
+</div>
+    <div class="col-sm-6" >
+
+
+<input type="text"  class="form-control input-sm"  id="customerlastname" ng-model='LastName' placeholder="* LAST NAME :" />
+
+
+</div>
+    
+
+
+  </div>
+
+&nbsp;
+
+  <div class="row">
+
+    <div class="col-sm-3" > <label for="usr"></label><input type="text"  class="form-control input-sm"  value ='+44' disabled style='font-weight:bold;color:red;' ></div>
+    <div class="col-sm-2" ><label for="usr"></label><input type="sendersmobile"  class="form-control input-sm"  value ='0'  disabled style='font-weight:bold;color:red;'></div>
+    <div class="col-sm-7" ><label for="usr"></label><input type="text"  class="form-control input-sm"   name='sendersmobile' placeholder='Senders Mobile' required style='margin-bottom:5px;font-weight:bold;color:red;' id="customermobile" ng-model='MobilePhone' /></div>
+  </div>
+
+
+
+
+</div>
+
+&nbsp;
+
+<div class="row">
+<div class="col-sm-6" style=""> 
+
+<button type="submit" class="btn btn-primary btn-block" ng-click='getsenderslist()'  >SEARCH</button>
+
+
+</div>
+<div class="col-sm-6" style="">  
+
+
+<p class="redtext"> {{usererror}}  </p>
+
+</div>
+
+
+
+</div>
+
+&nbsp;
+
+</form>
+
+
+
+
+<div class="row">
+<div class="col-sm-6" style=""> 
+
+<label for="usr"></label>
+      <input type="text"  ng-model="USERNAME" id="username" class="form-control input-sm" placeholder="* USERNAME :"/>
+
+</div>
+<div class="col-sm-6" style="">  
+
+<label for="usr"></label>
+
+    
+
+</div>
+
+
+
+</div>
+
+&nbsp;
+
+
+<div class="row">
+
+   <div class="col-sm-4">
+
+
+      <div class="form-group">
+     <label for="usr"></label>
+      <input type="text" class="form-control input-sm" ng-model='PASSWORD' required placeholder="PASSWORD" id="password">
+      </div>
+
+
+   </div>
+
+    <div class="col-sm-4">
+
+      <div class="form-group">
+     <label for="usr"></label>
+       <input type="text" class="form-control input-sm" id="inputsm"  ng-model='PASSWORDconfirm' required placeholder="CONFIRM PASSWORD">
+      
+      </div>
+
+   </div>
+
+    <div class="col-sm-4">
+
+      <div class="form-group">
+    <label for="usr"></label>
+
+      </div>
+
+
+   </div>
+
+
+</div>
+
+
+<div class="row">
+
+   <div class="col-sm-8">
+
+ <div class="form-group">
+ <label for="usr"></label>
+     <label for="usr"></label>
+
+<select name='secretquestion' id='secretquestion' style='position:relative;' ng-model='question' required class="form-control input-sm" >
+
+<option value='' > Your secret question </option>
+
+<option value='What is the first name of your favourite uncle.php?' > What is the first name of your favourite uncle.php? </option>
+<option value='Where did you meet your spouse.php?' > Where did you meet your spouse.php? </option>
+<option value='What is your eldest cousins name.php?' > What is your eldest cousin's name.php? </option>
+<option value='What is your youngest childs nickname.php?' > What is your youngest child's nickname.php? </option>
+<option value='What is your eldest childs nickname.php?' > What is your eldest child's nickname.php?</option>
+<option value='What is the first name of your eldest niece.php?' >What is the first name of your eldest niece.php? </option>
+<option value='What is the first name of your eldest nephew.php?' > What is the first name of your eldest nephew.php?</option>
+<option value='What is the first name of your favourite aunt.php?' > What is the first name of your favourite aunt.php? </option>
+<option value='
+Where did you spend your honeymoon.php?' > 
+Where did you spend your honeymoon.php? </option>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+</select>
+
+      </div>
+
+   </div>
+
+   
+
+    <div class="col-sm-4">
+
+
+<div class="form-group">
+    <label for="usr"></label>
+     <input type="text" class="form-control input-sm" id="secretanswer" ng-model='ANSWER' required placeholder="SECRET ANSWER">
+      </div>
+
+
+
+   </div>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="row">
+
+
+   <div class="col-sm-4">
+
+ <div class="form-group">
+
+
+     
+      </div>
+
+
+   </div>
+
+    <div class="col-sm-4">
+
+ <div class="form-group">
+
+<!-- <button type="button" class="btn btn-primary btn-block" ng-hide="senderdetail.USERID" ng-click='convertcustomer()'> ENABLE CUSTOMER</button> --> 
+
+<button type="button" class="btn btn-primary btn-block" ng-click='updatesender()'>UPDATE</button>
+
+      </div>
+
+   </div>
+
+    <div class="col-sm-4">
+
+ <button type="button" class="btn btn-primary btn-block" ng-click='deletesender()' >DEACTIVATE ACCOUNT</button>
+
+
+   </div>
+
+
+</div>
+
+</div>
+
+
+<div class="col-sm-6" style="">
+
+
+
+
+</div>
+
+</div>
+
+</div>
+
+
+
+</div>
+
+
+
+<footer>
+<div class="row">
+
+  <div class="col-sm-6" id="footer_column_1">  
+
+
+<p>Authorised User can log into JM Transfers by entering correct account information on the right hand side. The activity of authorized users may be monitored. If monitoring reveals evidence of criminal activity, systems personnel may provide the evidence to management and/or law enforcement officials. Just Computers trading as JM Transfer and JM Trax have a comprehensive compliance program within the organisation to ensure compliance with government rules, regulations and approved guidance. We do not want JM Transfer and JM Trax services to be used in illegal money laundering activities or terrorist activities. It is our policy that we follow both the letter and the spirit of the law and the regulations of both the United Kingdom and Nigeria in which JM Transfer and JM Trax operates. All remittances processed by JM Transfer and JM Trax are screened with enhanced controls to prevent money laundering and terrorist financing. It is JM Transfer and JM Trax policy to follow both the letter and spirit of the law and regulations. Throughout the world, Governments have reinforced their commitment to the fight against money laundering and terrorist financing. New laws have imposed additional obligations on firms and individuals in the financial services sector to join in the fight. JM Transfer and JM Trax has an extensive training and awareness programme, a rigorous transaction monitoring system and a robust culture of compliance. JM Transfer and JM Trax works closely with regulatory bodies.</p>
+
+
+ </div>
+
+  <div class="col-sm-6" id="footer_column_2" style="text-align:center;">  
+
+<img src='/images/Photo2_small.png' class="footerimage"/>
+
+   </div>
+
+   
+
+</div>
+
+</footer>
+
+
+<section class="copywright">
+
+<p style='color:white;'>&copy; UNIFIED DIGITAL MEDIA  - http://www.unifieddigitalmedia.co.uk</p>
+
+  </section>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js" ></script>
+
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" ></script>
+
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js" ></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular-resource.js" ></script>
+
+<script src="scripts/main.js"> </script>
+
+
+
+
+<script type="text/javascript">
+
+
+var app = angular.module('justmoneytransfers', ['ngResource']);
+
+
+app.factory('Settings_Service', ['$resource', function($resource) {
+
+var resource = $resource('http://localhost:3000/api/user',{
+
+id:"@id",
+firstname:"@firstname",
+lastname:"@lastname",
+mobile:"@mobile",
+email:"@email",
+username_field:"@username",
+password_field:"@password",
+answer:"@answer",
+secretquestion:"@secretquestion",
+
+
+
+
+
+
+},{ 'update': { method:'PUT' } } );
+
+
+
+
+
+return resource;
+
+
+}]);
+
+
+app.controller('settings', function($scope,Settings_Service,$http,$resource) {
+
+$scope.shopaccdiv = true;
+
+$scope.thirdpartydiv = true;
+
+$scope.senderdetails = true;
+
+
+
+var init = function () {
+   
+
+$scope.agentid = getCookie('agentid') ;
+
+$scope.agentusername = getCookie('agentusername') ;
+
+$scope.agentemail = getCookie('agentemail') ;
+
+$scope.agenttype = getCookie('agenttype') ;
+
+$scope.creditlimit = getCookie('agentcredit') ;
+
+$http.get("http://localhost:3000/api/senders.php?customerusername="+getCookie('agentusername')).then(function(response) {
+
+$scope.senderslist = response.data;
+
+
+$scope.selectsender(0);
+
+    });
+
+
+$http.get("http://localhost:3000/api/banks").then(function(response) {
+
+
+
+ $scope.banklist = response.data;
+
+ 
+
+    });
+
+
+
+if(!getCookie('agentusername') )
+
+{
+
+
+window.location = "http://localhost:3000/index.html" ;
+
+
+}
+
+var counter = 0;
+
+setInterval(function(){ counter = counter + 1 ;
+
+
+window.addEventListener("mousemove",function getcoords() {
+
+
+counter = 0;
+
+});
+
+if (counter == '1800')
+
+{
+
+
+
+
+window.location = "http://localhost:3000/index.html" ;
+
+
+
+} },1000);
+
+
+
+};
+
+init();
+
+function getCookie(cname) {
+
+    var name = cname + "=";
+  
+    var ca = document.cookie.split(';');
+  
+    for(var i=0; i<ca.length; i++) {
+  
+        var c = ca[i];
+  
+        while (c.charAt(0)==' ') c = c.substring(1);
+  
+        if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+  
+    }
+  
+    return "";
+
+}
+
+
+
+
+
+
+
+$scope.selectsender = function (para) {
+
+
+
+
+$scope.index = para;
+$scope.FirstName = $scope.senderslist[para].SendersFirstName;
+$scope.LastName = $scope.senderslist[para].SendersLastName;
+$scope.MobilePhone = $scope.senderslist[para].Mobile;
+$scope.SenderPostcode = $scope.senderslist[para].Postcode;
+$scope.line1 = $scope.senderslist[para].Line1;
+$scope.line2 = $scope.senderslist[para].Line2;
+$scope.line3 = $scope.senderslist[para].Line3;
+$scope.TOWN = $scope.senderslist[para].Town;
+$scope.COUNTY = $scope.senderslist[para].County;
+
+
+$scope.EMAIL = $scope.senderslist[para].Email;
+$scope.sendersid = $scope.senderslist[para].id;
+$scope.USERNAME = $scope.senderslist[para].username;
+$scope.PASSWORD = $scope.senderslist[para].password;
+$scope.SECRETQUESTION = $scope.senderslist[para].secretquestion;
+$scope.ANSWER = $scope.senderslist[para].secretanswer;
+$scope.user_ID = $scope.senderslist[para].id;
+$scope.usershop = $scope.senderslist[para].shop;
+$scope.limit = $scope.senderslist[para].limit;
+$scope.rights = $scope.senderslist[para].usertype;
+
+}
+
+
+$scope.getshops = function () {
+
+
+$http.get("http://localhost:3000/api/shop").then(function(response) {
+
+
+ $scope.shops = response.data;
+
+
+
+
+
+    });
+
+
+}
+
+
+$scope.addsender = function() {
+
+$scope.sendersid = undefined;
+
+
+$scope.savesender();
+
+}
+
+$scope.updatesender = function() {
+
+
+$scope.savesender();
+
+  }
+
+
+
+$scope.savesender = function() {
+
+
+
+
+
+
+
+if($scope.PASSWORD === $scope.PASSWORDconfirm  )
+
+{
+
+
+
+if($scope.PASSWORD === undefined || $scope.PASSWORDconfirm === undefined )
+
+{
+
+$scope.usererror = 'Password is needed';
+
+}
+else
+{
+
+
+
+$scope.usererror = '';
+
+
+
+if(angular.isUndefined($scope.sendersid))
+
+{
+
+
+
+var log = Senders_Service.save(
+
+{
+
+
+
+
+firstname:$scope.FirstName,
+lastname:$scope.LastName,
+mobile:$scope.MobilePhone,
+email:"",
+username:document.getElementById("username").value,
+password:document.getElementById("password").value,
+secretquestion:document.getElementById("secretquestion").value,
+answer:document.getElementById("secretanswer").value,
+user_limit:document.getElementById("creditlimit").value,
+shop_name:document.getElementById("selectedshop").value,
+user_type:$scope.useraccess,
+
+
+}, function() {
+
+
+
+alert(log.ERROR);
+
+$scope.sendersid = undefined;
+$scope.FirstName = "";
+$scope.LastName = "";
+$scope.MobilePhone = "";
+$scope.EMAIL = "";
+$scope.USERNAME = "";
+$scope.PASSWORD = "";
+$scope.SECRETQUESTION = "";
+$scope.ANSWER = "";
+document.getElementById("creditlimit").value = "";
+document.getElementById("selectedshop").value = "";
+$scope.useraccess = "";
+$scope.right = "";
+$scope.PASSWORDconfirm = "";
+  
+  $scope.getsenderslist() ; 
+
+  });
+
+
+
+}
+
+else
+
+{
+
+
+
+  $http.put("http://localhost:3000/api/user.php?id="+$scope.sendersid+"&firstname="+$scope.FirstName+
+  "&lastname="+$scope.LastName+
+  "&mobile="+$scope.MobilePhone+
+  "&email=&user_type=customer"+
+  "&username_field="+document.getElementById("username").value+
+  "&password_field="+document.getElementById("password").value+
+  "&secretquestion="+document.getElementById("secretquestion").value+
+  "&answer="+document.getElementById("secretanswer").value+
+  "&line1="+$scope.line1+
+  "&line2="+$scope.line2+
+  "&line3="+$scope.line3+
+  "&town="+$scope.TOWN+
+  "&county="+$scope.COUNTY+"&postcode="+$scope.SenderPostcode).then(function(response) {
+
+
+document.cookie = "agentusername=" + document.getElementById("username").value;
+
+
+if(log.ERROR){ alert(response.data.ERROR);}
+
+
+});
+ /*
+
+var log = Senders_Service.update(
+
+{
+
+
+id:$scope.sendersid,
+firstname:$scope.FirstName,
+lastname:$scope.LastName,
+mobile:$scope.MobilePhone,
+email:email,
+username_field:document.getElementById("username").value,
+password_field:document.getElementById("password").value,
+secretquestion:document.getElementById("secretquestion").value,
+answer:document.getElementById("secretanswer").value,
+
+
+
+
+}, function() {
+
+
+alert(log.ERROR);
+
+$scope.FirstName = "";
+$scope.LastName = "";
+$scope.MobilePhone = "";
+$scope.EMAIL = "";
+$scope.USERNAME = "";
+$scope.PASSWORD = "";
+$scope.SECRETQUESTION = "";
+$scope.ANSWER = "";
+$scope.PASSWORDconfirm = "";
+  
+   $scope.getsenderslist() ; 
+
+  });
+*/
+
+
+
+
+}
+
+
+
+
+
+
+}
+
+}
+else {  $scope.usererror = 'Passwords do not match'; }
+
+
+
+
+
+
+}
+
+
+$scope.deletesender = function () {
+
+
+
+var r = confirm("You are about to delete this sender");
+
+
+if (r == true) {
+
+
+if($scope.sendersid !== undefined || $scope.sendersid  != "" )
+
+{
+
+
+
+
+$http.delete("http://localhost:3000/api/senders.php?id="+$scope.sendersid).then(function(response) {
+
+alert(response.data.ERROR);
+
+window.location = "http://localhost:3000/index.html" ;
+
+});
+
+
+
+}
+else
+{
+
+alert("You need to select a sender to delete");
+
+}
+
+
+
+
+
+}
+else
+{
+
+
+
+}
+
+}
+
+
+
+});
+
+</script>
+
+
+
+
+
+</body>
+
+</html>

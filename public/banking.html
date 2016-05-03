@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"> 
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" type="text/css" href="/styles/normal.css">
+
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+
+<link rel="icon" 
+      type="image/png" 
+      href="/images/jmtrax_icon.png">
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+
+
+<title> Just Money Transfers | Banking </title>
+
+
+</head>
+
+<body ng-cloak ng-app="justmoneytransfers">
+
+  
+
+ 
+<header ng-controller="menucontroller">
+
+
+<ul class="topnav">
+
+<li class="logo_link"> <a href="index.html"><img src="/images/logo.png" class="logo" ></a> </li>
+
+<li class="dropdown-link"> <a href="dashboard.php" class="dropbtn"> Dashboard</a>  
+
+</li>  
+
+<li class="dropdown-link" ng-hide="usertype"> <a class="dropbtn" >Administration</a> 
+
+<div class="dropdown-content">
+
+  <a href="banks.html"> Banks </a>  
+
+  <a href="commission-fees.php"> Commission Fees</a>  
+
+  <a href="customers.html"> Customers </a>
+
+  <a href="exchange-rates.html"> Exchange Rates</a>  
+
+  <a href="shops.html"> Shops </a> 
+
+  <a href="users.html"> Users </a>   
+
+</div>
+
+
+</li>  
+
+<li class="dropdown-link"> <a class="dropbtn" >Reports</a>  
+
+<nav class="dropdown-content">
+
+  <a href=""> Banking</a> 
+
+  <a href="daily-transactions-receipients.html"> Daily Transactions </a>
+
+  <a href="daily-transactions-senders.html"> Daily Transactions </a>   
+
+   <a href="receipients.html"> Recipients </a> 
+
+    <a href="sales-report.html"> Sales Report </a> 
+
+  <a href="senders.html"> Senders </a> 
+
+  <a href="transactions.php"> Transactions </a>  
+
+</nav>
+
+</li>  
+
+<li class="dropdown-link"> <a href="index.html" class="dropbtn" >Log Out</a> 
+
+
+</li>  
+
+<li class="icon">
+    <a href="javascript:void(0);" style="font-size:15px;" onclick="showResponsivemenu()">☰</a>
+</li>
+
+
+
+</ul></header>
+
+
+
+
+<div class="container-fluid"  ng-controller='banking' >
+
+&nbsp;
+
+<div class="row"  ng-init="getbanking()">
+
+
+    <div class="col-sm-4" >
+
+
+
+
+
+  
+</div>
+ <div class="col-sm-8" >
+
+
+
+<div class="row">
+  <div class="col-sm-2"> <label for="usr">*DATE</label><input type="text" class="form-control input-sm" id='datepicker2' name='startdate'   ></div>
+  <div class="col-sm-2"> <label for="usr">*AMOUNT</label><input type="text" class="form-control input-sm"  id='amount' name='amount' class=''   ng-model='amount'></div>
+  <div class="col-sm-2"> <label for="usr">*PAYMENT REF</label><select name='payment' ng-model='payment' class="form-control input-sm"><option value='ONLINE' > ONLINE </option> <option value='CASH' > CASH </option> <option value='BANK' > BANK </option> <option value='CASH PICKUP' > CASH PICKUP </option><option value='CUSTOMER TRANSFER' > CUSTOMER TRANSFER </option></select> </div>
+  <div class="col-sm-2"> <label for="usr">BANK</label>
+  <select class="form-control input-sm"  ng-options="bank as bank.bankname for bank in bankslist | filter:bank.type='receipient' "  ng-change="bankdropdownfunction()" ng-model="bankdropdown" style="position:relative; " id="bank"></select>
+</div>
+  <div class="col-sm-2"> <label for="usr">*DAILY SALES</label><input type="text" class="form-control input-sm" id='sales' name='sales' class=''   ng-model='sales'></div>
+  <div class="col-sm-2"> <label for="usr">*NUM TRANS.</label><input type="text" class="form-control input-sm"  id='transfers' name='transfers' class='' ng-model='transfers'></div>
+</div>
+&nbsp;
+<span style='color:red;font-weight:bold;'> {{bankingerrors}} </span>
+&nbsp;
+<div class="row">
+   <div class="col-sm-10">
+<label for="comment">*Comment:</label>
+  </div>
+  <div class="col-sm-2">
+
+  </div>
+</div>
+
+<div class="row">
+   <div class="col-sm-10">
+<textarea class="form-control input-sm" id='comments' name='comments' rows="4" cols="50"  ng-model='comments'></textarea>
+  </div>
+  <div class="col-sm-2">
+  <button type="button" class="btn btn-primary btn-md" ng-click="adddeposit()" >ADD BANKING </button>
+  </div>
+</div>
+
+
+
+
+</div>
+</div>
+
+
+
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+<td>AGENT</td>
+        <td>DATE</td>
+        <td>AMOUNT</td>
+        <td>PAYMENT REFERENCE</td>
+        <td>BANK</td>
+        <td>DAILY SALES</td>
+        <td>NUM TRANSFERS</td>
+        <td>COMMENTS</td>
+      </tr>
+    </thead>
+    <tbody>
+
+    <tr ng-repeat='bank in banklist'>
+        <td>{{bank.agent}}</td>        
+        <td>{{bank.date}}</td>
+        <td>{{bank.amount}}</td>
+        <td>{{bank.paymentref}}</td>
+        <td>{{bank.bank}}</td>
+        <td>{{bank.dailysales}}</td>
+        <td>{{bank.transfers}}</td>
+        <td>{{bank.comments}}</td>
+        <td><button type='button' ng-click='deletedeposit($index)' class="btn btn-link" > DELETE </button> </td>
+      </tr>
+
+   <tr>  <td colspan='2'> </td>
+
+  <td>{{ banklist | sumByKey:'amount' }}  </td> 
+
+  <td colspan='2'> </td> 
+
+  <td>{{ banklist | sumByKey:'dailysales' }} </td> 
+
+  <td>{{ banklist | sumByKey:'transfers' }}</td> <td> </td>
+  
+  </tr> 
+
+   </tbody>
+
+</table>
+
+
+</div>
+
+
+<footer>
+<div class="row">
+
+  <div class="col-sm-6" id="footer_column_1">  
+
+
+<p>Authorised User can log into JM Transfers by entering correct account information on the right hand side. The activity of authorized users may be monitored. If monitoring reveals evidence of criminal activity, systems personnel may provide the evidence to management and/or law enforcement officials. Just Computers trading as JM Transfer and JM Trax have a comprehensive compliance program within the organisation to ensure compliance with government rules, regulations and approved guidance. We do not want JM Transfer and JM Trax services to be used in illegal money laundering activities or terrorist activities. It is our policy that we follow both the letter and the spirit of the law and the regulations of both the United Kingdom and Nigeria in which JM Transfer and JM Trax operates. All remittances processed by JM Transfer and JM Trax are screened with enhanced controls to prevent money laundering and terrorist financing. It is JM Transfer and JM Trax policy to follow both the letter and spirit of the law and regulations. Throughout the world, Governments have reinforced their commitment to the fight against money laundering and terrorist financing. New laws have imposed additional obligations on firms and individuals in the financial services sector to join in the fight. JM Transfer and JM Trax has an extensive training and awareness programme, a rigorous transaction monitoring system and a robust culture of compliance. JM Transfer and JM Trax works closely with regulatory bodies.</p>
+
+
+ </div>
+
+  <div class="col-sm-6" id="footer_column_2" style="text-align:center;">  
+
+<img src='/images/Photo2_small.png' class="footerimage"/>
+
+   </div>
+
+   
+
+</div>
+
+</footer>
+
+
+
+<section class="copywright">
+
+<p style='color:white;'>&copy; UNIFIED DIGITAL MEDIA  - http://www.unifieddigitalmedia.co.uk</p>
+
+  </section>
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js" ></script>
+
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" ></script>
+
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js" ></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular-resource.js" ></script>
+
+<script src="scripts/main.js"> </script>
+
+<script type="text/javascript">
+
+
+var app = angular.module('justmoneytransfers', ['ngResource','calfilter']);
+
+app.controller('menucontroller', function($scope,$http,$resource) {
+
+
+function getCookie(cname) {
+
+    var name = cname + "=";
+  
+    var ca = document.cookie.split(';');
+  
+    for(var i=0; i<ca.length; i++) {
+  
+        var c = ca[i];
+  
+        while (c.charAt(0)==' ') c = c.substring(1);
+  
+        if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+  
+    }
+  
+    return "";
+
+}
+
+var init = function () {
+   
+
+if(!getCookie('agentusername') || getCookie('agenttype') == 'customer' )
+
+{
+
+
+window.location = "http://localhost:3000/index.html" ;
+
+
+}
+
+
+
+if( getCookie('agenttype') == 'user'  )
+
+{ 
+
+$scope.usertype = true;
+
+
+}
+
+
+var counter = 0;
+
+setInterval(function(){ counter = counter + 1 ;
+
+
+window.addEventListener("mousemove",function getcoords() {
+
+
+counter = 0;
+
+});
+
+if (counter == '1800')
+
+{
+
+
+
+
+window.location = "http://localhost:3000/index.html" ;
+
+
+
+} },1000);
+
+
+};
+
+init();
+
+
+
+
+
+});
+
+
+app.factory('Banking_Service', ['$resource', function($resource) {
+
+var resource = $resource('http://localhost:3000/api/banking.php',{
+
+date:"@date",
+amount:"@amount",
+payment_ref:"@payment_ref",
+bank:"@bank",
+sales:"@sales",
+num_transfers:"@num_transfers",
+agent:"@agent",
+comment:"@comment",
+agentype:"@agentype"
+
+
+
+},{ 'update': { method:'PUT' } } );
+
+
+
+
+
+return resource;
+
+
+}]);
+
+
+app.controller('banking', function($scope,Banking_Service,$http,$resource) {
+
+
+var init = function () {
+   
+
+$scope.agentid = getCookie('agentid') ;
+
+$scope.agentusername = getCookie('agentusername') ;
+
+$scope.agentemail = getCookie('agentemail') ;
+
+$scope.agenttype = getCookie('agenttype') ;
+
+$scope.creditlimit = getCookie('agentcredit') ;
+
+
+$http.get("http://localhost:3000/api/banks").then(function(response) {
+
+
+
+ $scope.bankslist = response.data;
+
+ 
+
+    });
+    
+$http.get("http://localhost:3000/api/banking.php?agentusername="+ getCookie('agentusername')+"&agenttype="+getCookie('agenttype')).then(function(response) {
+
+$scope.banklist = response.data;
+
+
+    });
+
+
+};
+
+init();
+
+
+function getCookie(cname) {
+
+    var name = cname + "=";
+  
+    var ca = document.cookie.split(';');
+  
+    for(var i=0; i<ca.length; i++) {
+  
+        var c = ca[i];
+  
+        while (c.charAt(0)==' ') c = c.substring(1);
+  
+        if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+  
+    }
+  
+    return "";
+
+}
+
+
+
+$scope.adddeposit = function () {
+
+var agent = $scope.agentusername;
+
+
+var date = document.getElementById("datepicker2").value;
+
+
+if(date == "" ||
+$scope.amount == undefined || $scope.payment == undefined || $scope.sales == undefined ||  $scope.transfers == undefined || $scope.comments == undefined || agent == "")
+
+{
+
+$scope.bankingerrors = 'Fields with an asterisk are mandatory';
+
+}
+else
+{
+
+
+var log = Banking_Service.save(
+
+{
+
+
+
+
+date:document.getElementById("datepicker2").value,
+amount:$scope.amount,
+payment_ref:$scope.payment,
+bank:$scope.bankdropdown,
+sales:$scope.sales,
+num_transfers:$scope.transfers,
+agent:$scope.agentusername,
+comment:$scope.comments,
+
+
+
+}, function() {
+
+
+
+alert(log.ERROR);
+
+document.getElementById("datepicker2").value = "";
+$scope.amount = "";
+$scope.payment = "";
+document.getElementById("bank").value = "";
+$scope.sales = "";
+$scope.transfers = "";
+$scope.comments = "";
+
+init();
+
+  });
+
+
+
+
+
+
+}
+
+
+
+
+}
+
+
+
+$scope.deletedeposit = function (para) {
+
+
+  
+var r = confirm("You are about to delete this deposit");
+
+
+if (r == true) {
+
+
+
+alert( "http://localhost:3000/api/banking.php?id="+$scope.banklist[para].id);
+
+$http.delete(
+
+  "http://localhost:3000/api/banking.php?id="+$scope.banklist[para].id).then(function(response) {
+
+alert(response.data.ERROR);
+
+init();
+
+});
+
+
+
+
+
+
+
+}
+else
+{
+
+
+
+}
+
+}
+
+
+
+});
+
+
+angular.module('calfilter', [])
+    .filter('sumByKey', function() {
+        return function(data, key) {
+        
+            var sum = 0;
+
+            for (var i = data.length - 1; i >= 0; i--) {
+            
+                sum += parseInt(data[i][key].replace(",", ""));
+            
+            }
+            
+      
+            var number = sum.toString();
+
+            var dollars = number.split('.')[0];
+
+            var  cents = (number.split('.')[1] || '') +'00';
+
+            var dollars = dollars.split('').reverse().join('').replace(/(\d{3}(.php?!$))/g, '$1,').split('').reverse().join('');
+
+            var cent = cents.slice(0, 2);
+
+            var decimal = ".";
+
+            var cent2 = decimal.concat(cent);
+
+            var dollars = dollars.concat(cent2);
+            
+            return dollars;
+        };
+    });
+
+
+</script>
+
+
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+<script type="text/javascript">
+
+$(function() {
+
+ 
+
+    $( "#datepicker2" ).datepicker({ dateFormat: "d-m-yy" });
+  
+  });
+
+
+</script>
+</body>
+
+</html>

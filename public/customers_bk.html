@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"> 
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" type="text/css" href="/styles/normal.css">
+
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+
+<link rel="icon" 
+      type="image/png" 
+      href="/images/jmtrax_icon.png">
+
+
+
+<title> Just Money Transfers | Customers </title>
+
+
+</head>
+
+<body ng-cloak ng-app="justmoneytransfers">
+
+  
+
+ 
+<header>
+
+<ul class="topnav">
+
+<li class="logo_link"> <a href="index.html"><img src="/images/logo.png" class="logo" ></a> </li>
+
+<li class="dropdown-link"> <a href="dashboard.php" class="dropbtn"> Dashboard</a>  
+
+</li>  
+
+<li class="dropdown-link"> <a class="dropbtn" >Administration</a> 
+
+<div class="dropdown-content">
+
+  <a href="banks.html"> Banks </a>  
+
+  <a href="commission-fees.php"> Commission Fees</a>  
+
+  <a href="customers.html"> Customers </a>
+
+  <a href="exchange-rates.html"> Exchange Rates</a>  
+
+  <a href="shops.html"> Shops </a> 
+
+  <a href="users.html"> Users </a>   
+
+</div>
+
+
+</li>  
+
+<li class="dropdown-link"> <a class="dropbtn" >Reports</a>  
+
+<nav class="dropdown-content">
+
+  <a href="banking.html"> Banking</a> 
+
+  <a href="daily-transactions-receipients.html"> Daily Transactions </a>
+
+  <a href="daily-transactions-senders.html"> Daily Transactions </a>   
+
+   <a href="receipients.html"> Recipients </a> 
+
+    <a href="sales-report.html"> Sales Report </a> 
+
+  <a href="senders.html"> Senders </a> 
+
+  <a href="transactions.php"> Transactions </a>  
+
+</nav>
+
+</li>  
+
+<li class="dropdown-link"> <a href="index.html" class="dropbtn" >Log Out</a> 
+
+
+</li>  
+
+<li class="icon">
+    <a href="javascript:void(0);" style="font-size:15px;" onclick="showResponsivemenu()">☰</a>
+</li>
+
+
+
+</ul></header>
+
+
+<div class="container-fluid"  ng-controller='customers' ng-init="getsenderlist()">
+
+
+
+&nbsp;
+
+
+<div class="row" >
+
+<div class="col-sm-6" style="">
+
+<h6>CUSTOMER DETAILS</h6>
+
+</br>
+
+<form role="form" name="sendersmobileform" >
+
+<div class="row">
+
+    <div class="col-sm-6" >
+<input type="text" class="form-control input-sm" id="customerid" ng-model='CustomerID' disabled placeholder="ID NUMBER">
+
+</div>
+
+ <div class="col-sm-6" > <span style='color:red;' > *search is case sensitive </span>
+ </div>
+
+</div>
+&nbsp;
+
+
+
+<div class="row">
+
+    <div class="col-sm-6" >
+
+    <input type="text" class="form-control input-sm" id="inputsm"  id="customerfirstname" ng-model='FirstName' required placeholder="* FIRST NAME :" />
+
+    </div>
+
+    <div class="col-sm-6" >
+
+    <input type="text" class="form-control input-sm" id="inputsm"  id="customerlastname" ng-model='LastName' required  placeholder="* LAST NAME :" />
+
+    </div>
+ 
+</div>
+
+&nbsp;
+
+<div class="row">
+
+    <div class="col-sm-3" ><input type="text" class="form-control input-sm" id="inputsm"  value ='+44' disabled style='font-weight:bold;color:red;' ></div>
+
+    <div class="col-sm-2" ><input type="sendersmobile" class="form-control input-sm" id="inputsm"  value ='0'  disabled style='font-weight:bold;color:red;'></div>
+    
+    <div class="col-sm-7" ><input type="text" class="form-control input-sm" id="inputsm"  name='sendersmobile' placeholder='Senders Mobile' required style='font-weight:bold;color:red;' id="customermobile" id="customermobile" ng-model='MobilePhone' required  /></div>
+  
+ </div>
+
+&nbsp;
+<span id="sendererror" style='color:red;font-weight:bold;'> {{customererror}}  </span>
+
+<div class="row">
+
+<div class="col-sm-6" style=""> <button type="submit" class="btn ban-primary btn-block" ng-click='searchmobilenumber()' ng-disabled="sendersmobileform.$invalid" >SEARCH</button></div>
+
+<div class="col-sm-6" style="">   </div>
+
+</div>
+
+&nbsp;
+
+</form>
+
+
+<div class="row">
+
+   <div class="col-sm-4">
+
+
+      <div class="form-group">
+     <label for="usr"></label>
+      <input type="text" class="form-control input-sm" id="inputsm"  id="postcode" ng-model='SenderPostcode' placeholder="* POSTCODE :">
+      </div>
+
+
+   </div>
+
+    <div class="col-sm-4">
+
+      <div class="form-group">
+     <label for="usr"></label>
+      <button type='button'  id='find'  ng-click='searchpostcode()' class="btn btn-primary btn-block" > Find </button>
+      
+      </div>
+
+   </div>
+
+    <div class="col-sm-4">
+
+      <div class="form-group">
+    <label for="usr"></label>
+      <select name='building' id='building' ng-change='popform()' style='float:right; position:relative;width:100%;' ng-model='streetvalue'> </select>
+      </div>
+
+
+   </div>
+
+
+</div>
+
+
+<div class="row">
+
+   <div class="col-sm-4">
+
+ <div class="form-group">
+ <label for="usr"></label>
+      <input type="text" class="form-control input-sm" id="inputsm" id="line1" ng-model='line1'  placeholder="* 1ST LINE :">
+      </div>
+
+   </div>
+
+    <div class="col-sm-4">
+
+
+<div class="form-group">
+  <label for="usr"></label>
+      <input type="text" class="form-control input-sm" id="inputsm"  id="line2" ng-model='line2' placeholder="2ND LINE :" />
+      </div>
+
+
+
+   </div>
+
+    <div class="col-sm-4">
+
+
+<div class="form-group">
+    <label for="usr"></label>
+     <input type="text" class="form-control input-sm" id="inputsm"  id="line3" ng-model='line3' placeholder="3RD LINE :">
+      </div>
+
+
+
+   </div>
+
+
+</div>
+
+
+
+<div class="row">
+
+   <div class="col-sm-4">
+
+ <div class="form-group">
+ <label for="usr"></label>
+      <input type="text" class="form-control input-sm" id="inputsm"  id="town" ng-model='TOWN' placeholder="* TOWN :">
+      </div>
+
+
+   </div>
+
+    <div class="col-sm-4">
+
+ <div class="form-group">
+ <label for="usr"></label>
+      <input type="text" class="form-control input-sm" id="inputsm"  id="county" ng-model='COUNTY' placeholder="COUNTY :" >
+      </div>
+
+   </div>
+
+    <div class="col-sm-4">
+
+ <div class="form-group">
+    <label for="usr"></label>
+      <input type="text" class="form-control input-sm" id="inputsm"  id="customeremail" ng-model='EMAIL' placeholder="* EMAIL :">
+      </div>
+
+   </div>
+
+
+</div>
+
+
+<div class="row">
+
+   <div class="col-sm-4">
+
+ <div class="form-group">
+ 
+     <button type="button" class="btn btn-primary btn-block" ng-click='addnewcustomer()' ng-disabled='senderform.$invalid'>ADD NEW CUSTOMER</button>
+
+
+      </div>
+
+
+   </div>
+
+    <div class="col-sm-4">
+
+ <div class="form-group">
+
+<button type="button" class="btn btn-primary btn-block" ng-click='updatecustomer()' ng-disabled='senderform.$invalid'>UPDATE CUSTOMER </button>
+
+      </div>
+
+   </div>
+
+    <div class="col-sm-4">
+
+<button type="button" class="btn btn-primary btn-block" ng-click='deletecustomer()'  >DELETE CUSTOMER</button>
+
+
+
+
+   </div>
+
+
+</div>
+
+
+
+</div>
+
+
+<div class="col-sm-6" style="">
+
+<table ng-init="getsenderslist()" class='table borderless'>
+    
+   
+
+
+<tr>
+     <th style='vertical-align:middle;'> ID </th>
+     <th style='vertical-align:middle;'> SURNAME </th>
+     <th style='vertical-align:middle;'> FIRSTNAME </th>
+     <th style='vertical-align:middle;'> MOBILE  </th>
+     <th style='vertical-align:middle;'> EMAIL </th>
+     <th style='vertical-align:middle;'> <button type="submit" class="btn btn-primary btn-xs" name='bulkemail' value='VALUE'>SEND AUTO EMAIL</button> </br> <input type="checkbox" value="" id='autofill' > </th>
+     <th>  </th>
+      </tr>
+
+</table>
+
+<div class="div_list" >
+
+
+
+<table class='table borderless'>
+ <tbody>
+
+      <tr ng-repeat='cust in customerlist' ng-show=" cust.usertype === 'customer' ">
+        <td>{{cust.id}}</td>
+        <td>{{cust.customerdetails.FirstName}}</td>
+        <td>{{cust.customerdetails.LastName}}</td>
+        <td>{{cust.customerdetails.MobilePhone}}</td>
+        <td><a href='mailto:{{cust.Email}}' > {{cust.customerdetails.Email}} </a></td>
+        <td><input type="checkbox" value="{{cust.customerdetails.Email}}" name='customeremails'> </td>
+        <td><button type="button" class="btn btn-link" ng-click='selectcustomer($index)'>SELECT CUSTOMER</button></td>
+      </tr>
+    
+
+    </tbody>
+  </table>
+
+
+
+</div>
+
+</div>
+
+</div>
+
+
+
+</div>
+
+<footer>
+<div class="row">
+
+  <div class="col-sm-6" id="footer_column_1">  
+
+
+<p>Authorised User can log into JM Transfers by entering correct account information on the right hand side. The activity of authorized users may be monitored. If monitoring reveals evidence of criminal activity, systems personnel may provide the evidence to management and/or law enforcement officials. Just Computers trading as JM Transfer and JM Trax have a comprehensive compliance program within the organisation to ensure compliance with government rules, regulations and approved guidance. We do not want JM Transfer and JM Trax services to be used in illegal money laundering activities or terrorist activities. It is our policy that we follow both the letter and the spirit of the law and the regulations of both the United Kingdom and Nigeria in which JM Transfer and JM Trax operates. All remittances processed by JM Transfer and JM Trax are screened with enhanced controls to prevent money laundering and terrorist financing. It is JM Transfer and JM Trax policy to follow both the letter and spirit of the law and regulations. Throughout the world, Governments have reinforced their commitment to the fight against money laundering and terrorist financing. New laws have imposed additional obligations on firms and individuals in the financial services sector to join in the fight. JM Transfer and JM Trax has an extensive training and awareness programme, a rigorous transaction monitoring system and a robust culture of compliance. JM Transfer and JM Trax works closely with regulatory bodies.</p>
+
+
+ </div>
+
+  <div class="col-sm-6" id="footer_column_2" style="text-align:center;">  
+
+<img src='/images/Photo2_small.png' class="footerimage"/>
+
+   </div>
+
+   
+
+</div>
+
+</footer>
+
+
+
+<section class="copywright">
+
+<p style='color:white;'>&copy; UNIFIED DIGITAL MEDIA  - http://www.unifieddigitalmedia.co.uk</p>
+
+  </section>
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js" ></script>
+
+<script src="/scripts/app.js" ></script>
+
+<script src="/scripts/normal.js" ></script>
+
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" ></script>
+
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js" ></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular-resource.js" ></script>
+
+<script src="scripts/main.js"> </script>
+
+<script type="text/javascript">
+
+
+var app = angular.module('justmoneytransfers', ['ngResource']);
+
+
+app.factory('Senders_Service', ['$resource', function($resource) {
+
+var resource = $resource('http://localhost:3000/api/senders',{
+
+id:"@id",
+firstname:"@firstname",
+lastname:"@lastname",
+mobile:"@mobile",
+postcode:"@postcode",
+line1:"@line1",
+line2:"@line2",
+line3:"@line3",
+town:"@town",
+county:"@county",
+email:"@email",
+username:"@username"
+
+
+
+
+
+},{ 'update': { method:'PUT' } } );
+
+
+
+
+
+return resource;
+
+
+}]);
+
+
+app.controller('customers', function($scope,Senders_Service,$http,$resource) {
+
+$scope.shopaccdiv = true;
+
+$scope.thirdpartydiv = true;
+
+$scope.getsenderslist = function () {
+
+
+$http.get("http://localhost:3000/api/senders.php?firstname="+$scope.FirstName+"&lastname="+$scope.LastName+"&mobile="+$scope.MobilePhone).then(function(response) {
+
+$scope.senderslist = response.data;
+
+$scope.sendersid = undefined;
+
+if($scope.index !== undefined){ $scope.selectsender($scope.index); };
+
+    });
+
+
+
+  }
+
+
+$scope.selectsender = function (para) {
+
+$scope.index = para;
+$scope.FirstName = $scope.senderslist[para].senderdetails.SendersFirstName;
+$scope.LastName = $scope.senderslist[para].senderdetails.SendersLastName;
+$scope.MobilePhone = $scope.senderslist[para].senderdetails.Mobile;
+$scope.SenderPostcode = $scope.senderslist[para].senderdetails.Postcode;
+$scope.line1 = $scope.senderslist[para].senderdetails.Line1;
+$scope.line2 = $scope.senderslist[para].senderdetails.Line2;
+$scope.line3 = $scope.senderslist[para].senderdetails.Line3;
+$scope.TOWN = $scope.senderslist[para].senderdetails.Town;
+$scope.COUNTY = $scope.senderslist[para].senderdetails.Country;
+$scope.EMAIL = $scope.senderslist[para].senderdetails.Email;
+$scope.sendersid = $scope.senderslist[para].id;
+$scope.receipentlist = $scope.senderslist[para].senderdetails.receipients;
+$scope.transactionlist = $scope.senderslist[para].senderdetails.transactions;
+$scope.USERNAME = $scope.senderslist[para].username;
+$scope.PASSWORD = $scope.senderslist[para].password;
+$scope.SECRETQUESTION = $scope.senderslist[para].secretquestion;
+$scope.ANSWER = $scope.senderslist[para].secretanswer;
+}
+
+
+$scope.savesender = function() {
+
+
+
+var email = document.getElementById("customeremail").value;
+
+var atpos= email.indexOf("@");
+
+var dotpos= email.lastIndexOf(".");
+
+if(atpos > 1 || dotpos > atpos+2 || dotpos+2 <= email.length)
+
+{
+
+
+var line1 = document.getElementById("line1").value;
+
+var line2 = document.getElementById("line2").value;
+
+var line3 = document.getElementById("line3").value;
+
+var town = document.getElementById("town").value;
+
+var county = document.getElementById("county").value;
+
+
+var postcode = document.getElementById("postcode").value;
+
+if(line1 == '' || line2 =='' || line3 =='' || town=='' || county =='' || postcode =='')
+
+{
+
+$scope.sendererror = 'All fields are required'; 
+
+
+
+}
+
+
+else
+
+{
+
+$scope.sendererror ='';
+
+
+if(angular.isUndefined($scope.sendersid))
+
+{
+
+
+
+var log = Senders_Service.save(
+
+{
+
+
+
+
+firstname:$scope.FirstName,
+lastname:$scope.LastName,
+mobile:$scope.MobilePhone,
+postcode:$scope.postcode,
+line1:document.getElementById("line1").value,
+line2:document.getElementById("line2").value,
+line3:document.getElementById("line3").value,
+town:document.getElementById("town").value,
+county:document.getElementById("county").value,
+email:email,
+
+}, function() {
+
+
+$scope.getsenderslist();
+
+alert('New sender has been added');
+  
+
+  });
+
+
+
+}
+
+else
+
+
+{
+
+
+
+
+var log = Senders_Service.update(
+
+{
+
+
+
+senders_id:$scope.sendersid,
+firstname:$scope.FirstName,
+lastname:$scope.LastName,
+mobile:$scope.MobilePhone,
+postcode:$scope.postcode,
+line1:document.getElementById("line1").value,
+line2:document.getElementById("line2").value,
+line3:document.getElementById("line3").value,
+town:document.getElementById("town").value,
+county:document.getElementById("county").value,
+email:email,
+username:$scope.USERNAME,
+password:$scope.PASSWORD,
+secretquestion:$scope.SECRETQUESTION,
+answer:$scope.ANSWER,
+
+}, function() {
+
+
+
+
+alert(log.ERROR);
+  
+
+  });
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+}
+
+else { $scope.sendererror = 'This is not a valid email'; }
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+$scope.deletesender = function () {
+
+
+var r = confirm("You are about to delete this sender");
+
+
+if (r == true) {
+
+if($scope.sendersid !== undefined)
+
+{
+
+
+var log = Sender_Service.delete(
+
+{
+
+username:$scope.USERNAME,
+
+}, function() {
+
+
+$scope.getsenderslist();
+
+  
+  });
+
+
+
+}
+else
+{
+
+alert("You need to select a sender to delete");
+
+}
+
+
+
+
+
+}
+else
+{
+
+
+
+}
+
+}
+
+
+
+$scope.deleterec = function () {
+
+var resource = $resource('http://localhost:3000/api/receipients',{});
+
+var r = confirm("You are about to delete this receipient");
+
+
+if (r == true) {
+
+if($scope.sendersid !== undefined)
+
+{
+
+
+
+var log = resource.delete(
+
+{
+
+id:$scope.sendersid,
+rid:$scope.recipientsID,
+
+}, function() {
+
+
+$scope.getsenderslist();
+
+
+
+  
+  });
+
+
+}
+else
+{
+
+alert("You need to select a receipient to delete");
+
+}
+
+
+
+
+
+}
+
+else
+
+{
+
+
+
+
+}
+
+
+
+}
+
+
+
+$scope.popform = function ()
+
+{
+
+
+var sendermobile = document.getElementById("building").value;
+
+PostcodeAnywhere_Interactive_RetrieveById_v1_30Begin ('JJ14-GM21-XW16-FU78',sendermobile,'');
+
+
+}
+
+$scope.searchpostcode = function ()
+
+{
+
+var sendermobile = document.getElementById("postcode").value;
+
+
+
+PostcodeAnywhere_Interactive_Find_v1_10Begin('JJ14-GM21-XW16-FU78',sendermobile);
+
+}
+
+
+});
+
+
+function PostcodeAnywhere_Interactive_Find_v1_10Begin(Key,Postcode)
+
+{
+
+
+var scriptTag = document.getElementById("PCAe4b2e7e1d8a241dead6229b29fb22327");
+var headTag = document.getElementsByTagName("head").item(0);
+var strUrl = "";
+
+strUrl = "http://services.postcodeanywhere.co.uk/PostcodeAnywhere/Interactive/Find/v1.10/json.ws.php?";
+strUrl += "&Key=" + encodeURI(Key);
+strUrl += "&SearchTerm=" + encodeURI(Postcode);
+strUrl += "&CallbackFunction=PostcodeAnywhere_Interactive_Find_v1_10End";
+
+if (scriptTag)
+{
+try
+{
+headTag.removeChild(scriptTag);
+}
+catch (e)
+{
+//Ignore
+}
+}
+scriptTag = document.createElement("script");
+scriptTag.src = strUrl
+scriptTag.type = "text/javascript";
+scriptTag.id = "PCAe4b2e7e1d8a241dead6229b29fb22327";
+headTag.appendChild(scriptTag);
+
+}
+
+
+
+function PostcodeAnywhere_Interactive_Find_v1_10End(response)
+{
+var i = 0;
+
+
+//Test for an error
+if (response.length==1 && typeof(response[0].Error) != 'undefined')
+{
+//Show the error message
+alert(response[0].Description);
+}
+else
+{
+//Check if there were any items found
+if (response.length==0)
+{
+alert("Sorry, no matching items found");
+}
+else
+{
+document.getElementById('building').options.length= response.length;
+while (i < response.length)
+{
+document.getElementById('building').options[i].label= response[i].StreetAddress;
+document.getElementById('building').options[i].value= response[i].Id;
+i++;                }
+}
+}
+}
+
+
+function PostcodeAnywhere_Interactive_RetrieveById_v1_30Begin(Key,Id, UserName)
+{
+
+var scriptTag = document.getElementById("PCAb9b445072c50417b82ad4204c2ec66c1");
+var headTag = document.getElementsByTagName("head").item(0);
+var strUrl = "";
+//Build the url
+strUrl = "http://services.postcodeanywhere.co.uk/PostcodeAnywhere/Interactive/RetrieveById/v1.30/json.ws.php?";
+strUrl += "&Key=" + encodeURI(Key);
+strUrl += "&Id=" + encodeURI(Id);
+strUrl += "&UserName=" + encodeURI(UserName);
+strUrl += "&CallbackFunction=PostcodeAnywhere_Interactive_RetrieveById_v1_30End";
+//Make the request
+if (scriptTag)
+{
+try
+{
+headTag.removeChild(scriptTag);
+}
+catch (e)
+{
+//Ignore
+}
+}
+scriptTag = document.createElement("script");
+scriptTag.src = strUrl
+scriptTag.type = "text/javascript";
+scriptTag.id = "PCAb9b445072c50417b82ad4204c2ec66c1";
+headTag.appendChild(scriptTag);
+}
+
+function PostcodeAnywhere_Interactive_RetrieveById_v1_30End(response)
+{
+//Test for an error
+if (response.length==1 && typeof(response[0].Error) != 'undefined')
+{
+//Show the error message
+alert(response[0].Description);
+}
+else
+{
+//Check if there were any items found
+if (response.length==0)
+{
+alert("Sorry, no matching items found");
+}
+else
+{
+
+document.getElementById("line1").value= response[0].Line1;
+document.getElementById("line2").value= response[0].Line2;
+document.getElementById("line3").value= response[0].Line3;
+document.getElementById("town").value= response[0].PostTown;
+document.getElementById("county").value= response[0].County;
+document.getElementById("postcode").value= response[0].Postcode;
+
+}
+
+}
+
+}
+
+</script>
+
+
+
+
+
+</body>
+
+</html>

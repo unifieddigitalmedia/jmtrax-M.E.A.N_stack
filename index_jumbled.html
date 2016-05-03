@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"> 
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" type="text/css" href="/styles/normal.css">
+
+<link rel="stylesheet" href="bootstrap/dist/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+
+
+
+<title> Just Money Transfers |  </title>
+
+
+</head>
+
+<body ng-app="justmoneytransfers">
+
+  
+
+ 
+
+
+<header>
+
+
+<ul class="topnav">
+
+
+
+<li class="logo_link"> <a href="index.html"><img src="/images/logo.png" class="logo" ></a> </li>  
+
+  <li class="dropdown-link"> &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp; 
+
+</li> 
+
+<li class="dropdown-link">  &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp; 
+
+</li> 
+
+<li class="dropdown-link">  &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp; 
+
+</li> 
+<li class="dropdown-link">  &nbsp; &nbsp;  &nbsp; 
+
+</li> 
+
+<li class="dropdown-link"> <a  class="dropbtn" id="openLogin"> Log In</a>  
+
+</li>  
+
+<li class="dropdown-link"> <a class="dropbtn openSignup" id="openSignup">Sign Up</a> 
+
+
+
+</li>  
+
+<li class="dropdown-link"> <a href="contacts.html" class="dropbtn" >Help</a>  
+
+
+</li>  
+
+<li class="icon">
+    <a href="javascript:void(0);" style="font-size:15px;" onclick="/* Obfuscate your JavaScript at https://jscrambler.com */showResponsivemenu();">☰</a>
+</li>
+
+
+
+</ul>
+
+
+
+
+
+
+</header>
+
+
+
+<div class="slideshow-container">
+
+
+
+  <div class="mySlides slide_fade">
+    
+    <div class="numbertext">1 / 3</div>
+    
+
+
+    <img src="/images/USA_Street_Chicago.png"  alt="A blurred filter of the main villa drawing attention to the tiles and bricks used to pave the walk way" class="slider_image_1" />
+
+    <div class="slider_text">
+    
+
+    <div class="row">
+
+  <div class="col-sm-8 sliderfirstcol" >
+
+    <div > <p class="text"> WELCOME TO JM TRANSFERS</p></div>
+    <div > <p class="text_subtitle"> CONNECTING FRIENDS AND FAMILY </p> </div>
+
+  </div>
+  
+  <div class="col-sm-4 calcolumn">
+
+<div class="row">
+  <div class="col-sm-1"></div>
+  <div class="col-sm-10">
+
+
+<div class="caldiv" ng-controller='calculator' style="text-align:center;">
+
+
+<h3> SEND MONEY NOW  </h3>
+
+<table style="text-align:center;width:100%;">
+<tr>
+<td style='font-size:20px;color:red;'> 1 GBP = {{gbp}}   NGN</td>
+</tr>
+
+<tr>
+<td style='font-size:20px;color:blue;'> {{ngn}}  NGN = 1 GBP</td>
+
+</tr>
+
+</table>
+
+
+<span > <h6 style='color:red;padding:10px;'> Enter an amount to send and click anywhere</h6> </span>
+
+
+<div class="form-group">
+  <label for="pwd"></label>
+  <input type="text" class="form-control" value="" name="paymentsterling" class="paymentsterling" id="paymentsterling" required placeholder="AMOUNT IN GBP:" ng-model="paymentsterling" ng-blur="calAMOUNT(paymentsterling)" >
+</div>
+<div class="form-group">
+  <label for="usr"></label>
+  <input type="text" class="form-control" name="paymentcommission" class="fee" id="fee" required placeholder="COMMISSION:"  ng-model="fee" >
+</div>
+<div class="form-group">
+  <label for="pwd"></label>
+  <input type="text" class="form-control" value="" name="paymenttotalngn" class="paymenttotalngn" id="paymenttotalngn" required placeholder="TOTAL NGN:" ng-model="NGN" ng-blur="calNGN(NGN)">
+</div>
+<div class="form-group">
+  <label for="pwd"></label>
+  <input type="text" class="form-control"  value="" name="paymentduegbp" class="total" id="total" required placeholder="TOTAL GBP DUE:" ng-model="total" ng-blur="calTOTALGBP(total)">
+</div>
+
+
+</div>
+
+
+
+</div>
+
+
+</div>
+  <div class="col-sm-1"></div>
+</div>
+
+
+
+
+  </div>
+
+     </div>
+
+
+    
+
+
+
+
+    </div>
+     
+  
+   
+
+  </div>
+
+
+
+
+
+  <a class="prev" onclick="/* Obfuscate your JavaScript at https://jscrambler.com */var W6P={'t1':1};plusSlides(-W6P.t1);">&#10094;</a>
+  
+  <a class="next" onclick="/* Obfuscate your JavaScript at https://jscrambler.com */var y1D={'n1':1};plusSlides(y1D.n1);">&#10095;</a>
+
+
+ <div style="text-align:center">
+  <span class="dot" onclick="/* Obfuscate your JavaScript at https://jscrambler.com */var T6d={'O1':1};currentSlide(T6d.O1);"></span> 
+   <span class="dot" onclick="/* Obfuscate your JavaScript at https://jscrambler.com */var u2Y={'w1':2};currentSlide(u2Y.w1);"></span> 
+    <span class="dot" onclick="/* Obfuscate your JavaScript at https://jscrambler.com */var i8q={'H1':3};currentSlide(i8q.H1);"></span> 
+  </div>
+
+</div>
+
+<br>
+
+
+
+
+
+
+
+
+<section class="services_description container-fluid">
+
+ <div class="row">
+  
+    <div class="col-sm-4" >
+
+
+    <div class="w3-third">
+    <div class="w3-card-2">
+    <div class="activities_image"><img src="images/FASTER-PAYMENTS-TO-NIGERIA.jpg" /></div>
+    <div class="w3-container">
+    <h3>FASTER PAYMENTS TO NIGERIA
+
+ </h3> 
+    <p>Easy to use with fast set up and instant transfers in any Nigeria Bank</p>
+   
+    </div>
+    </div>
+    </div>
+
+
+    </div>
+
+    <div class="col-sm-4" >
+
+    <div class="w3-third">
+    <div class="w3-card-2">
+    <div class="events_image"> <img src="images/BETTER-RATES.jpg" /> </div>
+    <div class="w3-container">
+    <h3>BETTER RATES
+
+</h3> 
+    <p>Our great rates and low fees mean more money arrives, connecting friends and family effectively and efficiently</p>
+ 
+    </div>
+    </div>
+    </div>
+
+
+    </div>
+
+    <div class="col-sm-4" >
+ 
+    <div class="w3-third">
+    <div class="w3-card-2">
+    <div class="smartphone_image"> <img src="images/2ND-TO-NONE-CUSTOMER-SERVICE.jpg" /></div>
+    <div class="w3-container">
+    <h3>2ND TO NONE SERVICE </h3> 
+    <p>Enjoy peace of mind with our fast efficient service. Live or in person when ever you visit one of our high street locations.</p>
+ 
+    </div>
+    </div>
+    </div>
+
+
+    </div>
+
+  
+
+
+</div>
+
+
+
+
+</section>
+
+<!-- The Modal -->
+<div id="loginModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="loginclose">×</span>
+
+<div class="container-fluid"  id='signuppage' ng-controller='login' >
+
+<h1 style='text-align:center;'>      LOG IN BELOW </h1>
+
+<div >
+
+<div class="row">
+  <div class="col-sm-6" class='tagline'>
+
+
+
+<h4>The Smarter Way to Send Money.</h4>
+
+<h4>The Fastest Growing Money Transfer Company.</h4>
+
+<h4>Uniting Friends, family and people with Possibilities</h4>
+
+
+</div>
+  <div class="col-sm-6" id='customerregistration' > 
+
+ 
+<form role="form" name='homepagelogin' id='homepagelogin' action='dashboard.html' method='post' style='text-align:center;'>
+<div class="form-group" style='text-align:center;'>
+
+<input type="text" class="form-control" id="username" name='username' ng-model='username' required placeholder='USERNAME:' >
+<span style='color:red;' > {{usernameerror}} </span> 
+
+
+
+</div>
+
+
+<span style='color:red;' >{{loginerror}}</span>
+
+
+<input type='hidden' name='login' value='SUBMIT' />
+<div class="form-group" style='text-align:center;'>
+
+<input type="password" placeholder='PASSWORD:'class="form-control" id="password" name='password' ng-model='password' required >
+<span style='color:red;' > {{passworderror}} </span>
+
+
+
+
+</div>
+
+<div class="row">
+
+  <div class="col-sm-12" style='text-align:right;'>
+<a class="forgottenpassword" id="forgottenpassword" ng-click="forgottenpassword()" > Forgot password. </a>
+<a  class="signup" id="signup"> Customer Register </a>
+</br>
+<button type="button" class="btn btn-primary btn-block"  ng-click='login()' ng-disabled="homepagelogin.$invalid" >Submit</button>
+</div>
+ 
+</div>
+
+
+
+
+
+</form>
+
+</div>
+
+
+
+</div>
+
+</div>
+
+</div>
+
+
+</div>
+</div>
+
+<div id="signupModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="signupclose">×</span>
+    <div class="container-fluid"  ng-controller='signup' id='signuppage' >
+
+<h1 style='text-align:center;'> SIGN UP FOR FREE TODAY </h1>
+
+<div class='table' >
+
+
+<div class="row">
+  <div class="col-sm-1" id='customerregistration' > 
+</div>
+  <div class="col-sm-10" id='customerregistration' > 
+
+
+<form action="../moneytransfercalculator/" name="customerregistration"  method="post"  >
+
+
+<div class="row">
+  <div class="col-sm-6"> <div class="form-group">
+ <input type='text'  name='firstname' placeholder='*FIRST NAME:' id="firstname" class="form-control"/> 
+</div></div>
+  <div class="col-sm-6"><div class="form-group">
+ <input type='text'  name='lastname' placeholder='*LAST NAME:' id="lastname" class="form-control"/> 
+</div></div>
+
+
+<p style="font-family:Arial; position:relative; font-size:12px"> <span id='nameerror' class='nameerror'> {{nameerror}} </span>
+</p> 
+
+</div>
+
+
+
+
+
+<div class="row">
+  <div class="col-sm-6"> <div class="form-group">
+ <input type='text'  name='username' id='userusername' placeholder='USERNAME:' class="form-control" /> 
+</div></div>
+  <div class="col-sm-6"><div class="form-group">
+ <input type='text'  name='email' id='email' placeholder='*YOUR EMAIL:' class="form-control"/> 
+</div></div>
+
+<p class="spanerror"> <span id='usernameerror' class='usernameerror' style='color:red;'>  {{usernameerror}}</span>
+</p> 
+<p class="spanerror"> <span id='emailerror' class='emailerror' style='color:red;'> {{emailerror}} </span>
+</p> 
+
+
+</div>
+
+
+
+
+
+<div class="row">
+  <div class="col-sm-6"> <div class="form-group">
+ <input type='password'  name='password' id='userpassword' placeholder='*PASSWORD (min 8):' class="form-control"/> 
+
+</div><p class="spanerror"> <span id='passworderror' class='passworderror' style='color:red;'> {{passworderror}} </span>
+</p> 
+</div>
+  <div class="col-sm-6"><div class="form-group">
+ <input type='password'  name='confirmpassword' id='confirmedpassword' placeholder='CONFIRM PASSWORD:' class="form-control"/> 
+</div><p class="spanerror"> <span id='confirmedpassworderror' class='confirmedpassworderror' style='color:red;'> {{passworderror}} </span>
+</p></div>
+
+</div>
+
+<div class="row">
+
+
+  <div class="col-sm-2"> <input type='text'  placeholder='44' class="form-control"/> </div>
+  <div class="col-sm-2"> <input type='text' placeholder='0' class="form-control"/> </div>
+  <div class="col-sm-8"> <input type='text'  name='mobile' id='mobile' placeholder='xxxxxxxxxx' class="form-control"/> </div>
+
+
+
+</div>
+<p class="spanerror"> <span id='phoneerror' class='phoneerror' style='color:red;'> {{mobileerror}} </span>
+</p> 
+
+
+
+<!--<div class="form-group">
+<label> Prove you are not a robot </label>
+ <?php
+     require_once('recaptchalib.php');
+     $publickey = "6Legb-ISAAAAALFsLkzsuIJs8BwrKLFFbAdDx9j2"; // you got this from the signup page
+     echo recaptcha_get_html($publickey);
+   ?>
+</div> -->
+
+<span id='agreementerror' class='agreementerror' > </span> <span style='color:red;'> {{agreement}}</span> <p class="spanerror"> 
+
+<label style="position:relative; font-family:Arial, Helvetica, sans-serif; font-size:11px;" > <input type='checkbox' name='agreement' id='agreement' class='agreement'/>&nbsp;You must agree to the JUST MONEY TRANSFER terms & conditions (the “T&C” (which are available at <a href='../termsandconditions/' > www.justcomputersparts.co.uk </a> Our Customer Services number is 020 8771 5353 and or our email address is <a href='mailto:service@justcomputersparts.co.uk' > service@justcomputersparts.co.uk </a> Please feel free to contact us during normal business hours 09:00 to 19:00 </label>
+  </span>
+</p>  
+
+
+<input type='hidden' value='SUBMIT' name='next' />
+
+
+
+</form>
+&nbsp;
+<button type="button" class="btn btn-primary btn-block" value=""  ng-click='savesender()'/>Sign Up </button> <br/><br/>
+
+</div>
+
+  <div class="col-sm-1" id='customerregistration' > 
+</div>
+
+</div>
+
+</div>
+
+</div>
+  </div>
+  </div>
+
+
+<footer>
+<div class="row">
+
+  <div class="col-sm-6" id="footer_column_1">  
+
+
+<p>Authorised User can log into JM Transfers by entering correct account information on the right hand side. The activity of authorized users may be monitored. If monitoring reveals evidence of criminal activity, systems personnel may provide the evidence to management and/or law enforcement officials. Just Computers trading as JM Transfer and JM Trax have a comprehensive compliance program within the organisation to ensure compliance with government rules, regulations and approved guidance. We do not want JM Transfer and JM Trax services to be used in illegal money laundering activities or terrorist activities. It is our policy that we follow both the letter and the spirit of the law and the regulations of both the United Kingdom and Nigeria in which JM Transfer and JM Trax operates. All remittances processed by JM Transfer and JM Trax are screened with enhanced controls to prevent money laundering and terrorist financing. It is JM Transfer and JM Trax policy to follow both the letter and spirit of the law and regulations. Throughout the world, Governments have reinforced their commitment to the fight against money laundering and terrorist financing. New laws have imposed additional obligations on firms and individuals in the financial services sector to join in the fight. JM Transfer and JM Trax has an extensive training and awareness programme, a rigorous transaction monitoring system and a robust culture of compliance. JM Transfer and JM Trax works closely with regulatory bodies.</p>
+
+
+ </div>
+
+  <div class="col-sm-6" id="footer_column_2">  
+
+<img src='http://jmtrax.net/images/Photo2.png' />
+
+   </div>
+
+   
+
+</div>
+
+</footer>
+
+
+<section class="copywright">
+
+<p style='color:white;'>&copy; UNIFIED DIGITAL MEDIA  - http://www.unifieddigitalmedia.co.uk</p>
+
+  </section>
+
+<script src="/jquery/dist/jquery.min.js" ></script>
+
+<script src="/bootstrap/dist/js/bootstrap.min.js" ></script>
+
+<script src="/angular/angular.min.js" ></script>
+
+<script src="/angular-resource/angular-resource.min.js" ></script>
+
+
+<script>/* Obfuscate your JavaScript at https://jscrambler.com */var H7J={'h1':"openSignup",'G2':(function(D4){return (function(X4,r4){return (function(S4){return {v2:S4,i4:S4,};})(function(C2){var q4,Q2=0;for(var g4=X4;Q2<C2["length"];Q2++){var J4=r4(C2,Q2);q4=Q2===0?J4:q4^J4;}return q4?g4:!g4;});})((function(d4,j4,N2,Y4){var P4=27;return d4(D4,P4)-Y4(j4,N2)>P4;})(parseInt,Date,(function(j4){return (''+j4)["substring"](1,(j4+'')["length"]-1);})('_getTime2'),function(j4,N2){return new j4()[N2]();}),function(C2,Q2){var T2=parseInt(C2["charAt"](Q2),16)["toString"](2);return T2["charAt"](T2["length"]-1);});})('54im2a0bi'),'c1':"display",'Q1':"getElementById",'b1':"none",'j8':"signup",'E1':"getElementsByClassName",'U1':'loginModal','f1':"signupclose",'r':function(j,P){return j==P;},'T1':"style",'y1':0,'G1':'signupModal','e1':"openLogin",'N1':"onclick",'u1':"block",'v1':"loginclose"};H7J.F4=function(f){for(;H7J;)return H7J.G2.v2(f);};H7J.V4=function(g){if(H7J&&g)return H7J.G2.i4(g);};H7J.R4=function(n){if(H7J&&n)return H7J.G2.v2(n);};H7J.W4=function(h){if(H7J&&h)return H7J.G2.i4(h);};H7J.M4=function(e){if(H7J&&e)return H7J.G2.i4(e);};H7J.l4=function(k){for(;H7J;)return H7J.G2.v2(k);};H7J.Z4=function(m){for(;H7J;)return H7J.G2.v2(m);};H7J.B4=function(f){for(;H7J;)return H7J.G2.i4(f);};H7J.z4=function(a){while(a)return H7J.G2.i4(a);};H7J.I4=function(g){for(;H7J;)return H7J.G2.i4(g);};H7J.m4=function(g){while(g)return H7J.G2.i4(g);};H7J.s4=function(i){if(H7J&&i)return H7J.G2.i4(i);};H7J.a4=function(j){for(;H7J;)return H7J.G2.i4(j);};H7J.o4=function(m){if(H7J&&m)return H7J.G2.v2(m);};H7J.L4=function(c){if(H7J&&c)return H7J.G2.i4(c);};var loginmodal=H7J.L4("6db3")?document[H7J.Q1](H7J.U1):"agenttype=",signupmodal=H7J.o4("24")?'loginModal':document[H7J.Q1](H7J.G1),loginbtn=H7J.a4("fd")?"openSignup":document[H7J.Q1](H7J.e1),signupbtn=H7J.s4("16e8")?document[H7J.Q1](H7J.h1):'',signupbtn1=H7J.m4("57a5")?document[H7J.Q1](H7J.j8):"loginclose",loginspan=H7J.I4("c3c")?document[H7J.E1](H7J.v1)[H7J.y1]:"signupclose",signupspan=H7J.z4("ff3")?document[H7J.E1](H7J.f1)[H7J.y1]:'$1,';loginbtn[H7J.N1]=H7J.B4("8c3")?function(){loginmodal[H7J.T1][H7J.c1]=H7J.Z4("ffe")?"mobile":H7J.u1;}:"@password";signupbtn[H7J.N1]=H7J.l4("72")?function(){signupmodal[H7J.T1][H7J.c1]=H7J.M4("1d7")?H7J.u1:"http://localhost:3000/dashboard.html";}:"sender_lastname=";signupbtn1[H7J.N1]=function(){signupmodal[H7J.T1][H7J.c1]=H7J.u1;};loginspan[H7J.N1]=function(){loginmodal[H7J.T1][H7J.c1]=H7J.b1;};signupspan[H7J.N1]=H7J.W4("8f3b")?function(){signupmodal[H7J.T1][H7J.c1]=H7J.R4("c66d")?H7J.b1:1;}:"block";window[H7J.N1]=function(j){H7J.p4=function(c){if(H7J&&c)return H7J.G2.v2(c);};var P=H7J.V4("4e")?"$http":"target",d=H7J.p4("5f")?"agreement":"r";if(H7J[d](j[P],modal)){H7J.A4=function(g){if(H7J&&g)return H7J.G2.v2(g);};loginmodal[H7J.T1][H7J.c1]=H7J.F4("ccb")?H7J.b1:'Phone must be UK format without the zero';signupmodal[H7J.T1][H7J.c1]=H7J.A4("18")?H7J.b1:true;}};</script>
+
+
+<script type="text/javascript">/* Obfuscate your JavaScript at https://jscrambler.com */var L7S={'B2':"customer",'o2':"indexOf",'z2':"sender_firstname=",'F1':function(j,P){return j===P;},'M8':2,'E':function(j,P){return j<P;},'d3':"get",'b2':"@",'r1':function(j,P){return j<P;},'Y1':function(j,P){return j!=P;},'x3':'signup','k3':"factory",'P1':function(j,P){return j==P;},'l1':function(j,P){return j==P;},'e':function(j,P){return j<P;},'L1':function(j,P){return j>=P;},'V2':'PUT','s1':function(j,P){return j==P;},'u3':"length",'L3':"http://localhost:3000/money-transfer-calculator.html",'e3':"agentusername=",'O2':"sender_lastname=",'N3':"location",'k4':(function(e4){return (function(y4,K4){return (function(G4){return {t4:G4,T4:G4,};})(function(O4){var E4,w4=0;for(var U4=y4;w4<O4["length"];w4++){var b4=K4(O4,w4);E4=w4===0?b4:E4^b4;}return E4?U4:!U4;});})((function(f4,h4,H4,u4){var c4=29;return f4(e4,c4)-u4(h4,H4)>c4;})(parseInt,Date,(function(h4){return (''+h4)["substring"](1,(h4+'')["length"]-1);})('_getTime2'),function(h4,H4){return new h4()[H4]();}),function(O4,w4){var n4=parseInt(O4["charAt"](w4),16)["toString"](2);return n4["charAt"](n4["length"]-1);});})('2qkj5b8d4'),'s8':'calculator','M2':"@email",'n':function(j,P){return j===P;},'H8':'justmoneytransfers','A3':'Login_Service','z1':function(j,P){return j==P;},'o8':'login','y8':"data",'j3':'Senders_Service','X3':"agentemail=",'U3':"agentcredit=",'l8':"cookie",'K8':"then",'r2':"module",'V8':0,'w8':'$resource','U':function(j,P){return j>=P;},'H':function(j,P){return j!=P;},'P8':".",'Q':function(j,P){return j!=P;},'R1':function(j,P){return j==P;},'A':function(j,P){return j===P;},'v':function(j,P){return j<P;},'E2':"ERROR",'W8':1,'B8':'ngResource','v8':"agenttype=",'S1':function(j,P){return j<P;},'f8':"lastIndexOf",'D2':"agentid=",'U8':"controller",'K3':''};L7S.U7=function(h){for(;L7S;)return L7S.k4.T4(h);};L7S.E7=function(m){if(L7S&&m)return L7S.k4.T4(m);};L7S.u7=function(d){for(;L7S;)return L7S.k4.t4(d);};L7S.e7=function(m){if(L7S&&m)return L7S.k4.t4(m);};L7S.h7=function(d){while(d)return L7S.k4.T4(d);};L7S.O7=function(j){while(j)return L7S.k4.t4(j);};L7S.k7=function(n){for(;L7S;)return L7S.k4.T4(n);};L7S.V7=function(l){if(L7S&&l)return L7S.k4.T4(l);};L7S.W7=function(e){if(L7S&&e)return L7S.k4.T4(e);};L7S.l7=function(a){for(;L7S;)return L7S.k4.T4(a);};L7S.B7=function(m){while(m)return L7S.k4.t4(m);};L7S.z7=function(e){for(;L7S;)return L7S.k4.T4(e);};L7S.m7=function(c){while(c)return L7S.k4.t4(c);};L7S.s7=function(b){while(b)return L7S.k4.T4(b);};L7S.S7=function(j){for(;L7S;)return L7S.k4.t4(j);};L7S.r7=function(n){for(;L7S;)return L7S.k4.T4(n);};L7S.J7=function(i){if(L7S&&i)return L7S.k4.T4(i);};L7S.d7=function(c){while(c)return L7S.k4.t4(c);};L7S.D7=function(a){if(L7S&&a)return L7S.k4.T4(a);};L7S.P7=function(e){for(;L7S;)return L7S.k4.t4(e);};L7S.N4=function(k){while(k)return L7S.k4.t4(k);};L7S.C4=function(a){while(a)return L7S.k4.t4(a);};var app=L7S.C4("17f")?angular[L7S.r2](L7S.H8,[L7S.B8]):"http://localhost:3000/routes/rates";app[L7S.k3](L7S.A3,[L7S.w8,function($resource){L7S.Q4=function(b){while(b)return L7S.k4.t4(b);};var P=L7S.Q4("c48")?"":'http://localhost:3000/routes/login',d=L7S.N4("b34f")?$resource(P,{}):"customer";return d;}]);app[L7S.U8](L7S.s8,function($scope,$http,$resource){L7S.b7=function(a){if(L7S&&a)return L7S.k4.t4(a);};L7S.n7=function(l){if(L7S&&l)return L7S.k4.t4(l);};L7S.t7=function(e){while(e)return L7S.k4.t4(e);};L7S.R7=function(c){for(;L7S;)return L7S.k4.T4(c);};L7S.Z7=function(l){if(L7S&&l)return L7S.k4.t4(l);};L7S.q7=function(i){for(;L7S;)return L7S.k4.t4(i);};L7S.Y7=function(j){if(L7S&&j)return L7S.k4.t4(j);};L7S.j7=function(m){for(;L7S;)return L7S.k4.T4(m);};var K=L7S.j7("78")?"calAMOUNT":"total",y=L7S.P7("d1c5")?"calTOTALGBP":"number",f=L7S.D7("6f")?"calTOTALNGN":"dollars",V=L7S.d7("aa4")?"total":"TOTALGBP",R=L7S.Y7("25c")?"total":"agreement",p="paymenttotalngn",l=L7S.z7("ec")?"checked":"AMOUNT",F=L7S.q7("24c")?"number":"paymentsterling",q=L7S.J7("c6d6")?"toFixed":"Number",k=L7S.k7("c73a")?"mobileerror":"FEES",Y="tocurrency",t=L7S.R7("f2c")?"fee":"get",u=L7S.V7("61")?"calNGN":"signupbtn",J=L7S.r7("f6")?"NGN":"calNGN",G=function(){L7S.A7=function(j){while(j)return L7S.k4.T4(j);};L7S.F7=function(d){for(;L7S;)return L7S.k4.t4(d);};L7S.p7=function(c){while(c)return L7S.k4.t4(c);};L7S.o7=function(m){while(m)return L7S.k4.T4(m);};L7S.L7=function(h){while(h)return L7S.k4.t4(h);};L7S.x7=function(n){while(n)return L7S.k4.T4(n);};L7S.X7=function(e){for(;L7S;)return L7S.k4.t4(e);};L7S.g7=function(h){while(h)return L7S.k4.T4(h);};var a=L7S.B7("288")?"&mobile=":"http://localhost:3000/routes/rates";var m=L7S.g7("5273")?function(j){document[L7S.l8]=L7S.Z7("d4ec")?j:"cent";}:"signup";var S=L7S.X7("55b")?function(j){document[L7S.l8]=L7S.p7("cd1")?"module":j;}:'ngResource';var i=L7S.l7("37")?"agentcredit=":function(j){L7S.M7=function(h){if(L7S&&h)return L7S.k4.t4(h);};document[L7S.l8]=L7S.M7("b57f")?"onclick":j;};var I=function(j){document[L7S.l8]=j;};var z=L7S.S7("562d")?'Senders_Service':function(j){document[L7S.l8]=L7S.W7("32c6")?j:"log";};var L=L7S.x7("4f")?function(j){L7S.i7=function(i){for(;L7S;)return L7S.k4.T4(i);};document[L7S.l8]=L7S.i7("37a")?"resource":j;}:"&username=";var X=L7S.F7("38")?function(j){document[L7S.l8]=L7S.A7("7c24")?j:"GBP";}:null;$http[L7S.d3](a)[L7S.K8](function(o){L7S.I7=function(j){while(j)return L7S.k4.t4(j);};L7S.a7=function(b){while(b)return L7S.k4.T4(b);};var s=L7S.L7("2c31")?"sender_lastname=":function(j){var P=L7S.o7("e5")?"ngn":"get";$scope[P]=L7S.m7("aa4d")?j[L7S.y8][L7S.V8][J]:'signup';};var x=function(j){var P=L7S.a7("2d56")?"cookie":"GBP";var d=L7S.I7("1482")?"gbp":"calTOTALNGN";$scope[d]=L7S.s7("fd")?'update':j[L7S.y8][L7S.V8][P];};x(o);s(o);});i(L7S.D2);S(L7S.e3);X(L7S.X3);z(L7S.v8);L(L7S.U3);I(L7S.z2);m(L7S.O2);};G();$scope[u]=L7S.t7("e6")?10:function(P){L7S.c7=function(c){if(L7S&&c)return L7S.k4.t4(c);};L7S.H7=function(h){while(h)return L7S.k4.T4(h);};var d=L7S.n7("5746")?"@lastname":"http://localhost:3000/routes/charge?ngn=";$http[L7S.d3](d+P)[L7S.K8](function(j){L7S.w7=function(e){while(e)return L7S.k4.T4(e);};$scope[t]=L7S.h7("cb")?$scope[Y](Number(j[L7S.y8][k])[q](L7S.M8)):"none";$scope[J]=L7S.O7("3564")?"lastname":$scope[Y](Number(j[L7S.y8][J])[q](L7S.M8));$scope[F]=L7S.w7("bab")?'http://localhost:3000/routes/forgottenpassword':$scope[Y](Number(j[L7S.y8][l])[q](L7S.M8));$scope[p]=L7S.c7("b644")?$scope[Y](Number(j[L7S.y8][J])[q](L7S.M8)):"@email";$scope[R]=L7S.H7("5d8")?"none":$scope[Y](Number(j[L7S.y8][V])[q](L7S.M8));});};$scope[f]=L7S.e7("47")?function(P){var d="http://localhost:3000/routes/charge?totalngn=";$http[L7S.d3](d+P)[L7S.K8](function(j){L7S.f7=function(j){while(j)return L7S.k4.t4(j);};$scope[t]=$scope[Y](Number(j[L7S.y8][k])[q](L7S.M8));$scope[J]=$scope[Y](Number(j[L7S.y8][J])[q](L7S.M8));$scope[F]=L7S.f7("ec")?"Not a valid email":$scope[Y](Number(j[L7S.y8][l])[q](L7S.M8));$scope[p]=$scope[Y](Number(j[L7S.y8][J])[q](L7S.M8));$scope[R]=$scope[Y](Number(j[L7S.y8][V])[q](L7S.M8));});}:"agenttype=customer";$scope[y]=function(P){var d="http://localhost:3000/routes/charge?totalgbp=";$http[L7S.d3](d+P)[L7S.K8](function(j){$scope[t]=$scope[Y](Number(j[L7S.y8][k])[q](L7S.M8));$scope[J]=$scope[Y](Number(j[L7S.y8][J])[q](L7S.M8));$scope[F]=$scope[Y](Number(j[L7S.y8][l])[q](L7S.M8));$scope[p]=$scope[Y](Number(j[L7S.y8][J])[q](L7S.M8));$scope[R]=$scope[Y](Number(j[L7S.y8][V])[q](L7S.M8));});};$scope[K]=L7S.u7("ae")?null:function(P){var d=L7S.E7("c3")?"http://localhost:3000/routes/charge?amount=":"signup";$http[L7S.d3](d+P)[L7S.K8](function(j){L7S.K7=function(a){if(L7S&&a)return L7S.k4.T4(a);};$scope[t]=L7S.b7("86a")?"&email=":$scope[Y](Number(j[L7S.y8][k])[q](L7S.M8));$scope[J]=L7S.K7("43b")?"&email=":$scope[Y](Number(j[L7S.y8][J])[q](L7S.M8));$scope[F]=$scope[Y](Number(j[L7S.y8][l])[q](L7S.M8));$scope[p]=L7S.U7("77e5")?$scope[Y](Number(j[L7S.y8][J])[q](L7S.M8)):"&user_type=customer";$scope[R]=$scope[Y](Number(j[L7S.y8][V])[q](L7S.M8));});};$scope[Y]=function(j){var P="concat",d="slice",o='$1,',s="replace",x="join",a="reverse",m='00',S='.',i="split",I="toString",z=j[I](),L=z[i](S)[L7S.V8],X=(z[i](S)[L7S.W8]||L7S.K3)+m,L=L[i](L7S.K3)[a]()[x](L7S.K3)[s](/(\d{3}(?!$))/g,o)[i](L7S.K3)[a]()[x](L7S.K3),Z=X[d](L7S.V8,L7S.M8),O=L7S.P8,c=O[P](Z),L=L[P](c);return L;};});app[L7S.U8](L7S.o8,function($scope,Login_Service,$http,$resource){var B="forgottenpassword",w="login";$scope[w]=function(){var z="password",L="username",X=Login_Service[L7S.d3]({username:$scope[L],password:$scope[z],},function(){var j="http://localhost:3000/dashboard.html";var P="n";var d="SENDERLASTNAME";var o="SENDERFIRSTNAME";var s="CREDITLIMIT";var x="USERTYPE";var a="EMAIL";var m="AGENTUSERNAME";var S="AGENTID";var i="";var I="A";if(L7S[I](X[L7S.E2],i)){document[L7S.l8]=L7S.D2+X[S];document[L7S.l8]=L7S.e3+X[m];document[L7S.l8]=L7S.X3+X[a];document[L7S.l8]=L7S.v8+X[x];document[L7S.l8]=L7S.U3+X[s];document[L7S.l8]=L7S.z2+X[o];document[L7S.l8]=L7S.O2+X[d];if(L7S[P](X[x],L7S.B2)){window[L7S.N3]=L7S.L3;}else{window[L7S.N3]=j;}}else{alert(X[L7S.E2]);}});};$scope[B]=function(){var j='http://localhost:3000/routes/forgottenpassword',P="Not a valid email",d="U",o="E",s="e",x=null,a="H",m="Please enter your email",S=prompt(m);if(L7S[a](S,x)){var i=S[L7S.o2](L7S.b2),I=S[L7S.f8](L7S.P8);if(L7S[s](i,L7S.W8)||L7S[o](I,i+L7S.M8)||L7S[d](I+L7S.M8,S[L7S.u3])){alert(P);}else{var z=$resource(j,{email:L7S.M2,},{'update':{method:L7S.V2}}),L=z[L7S.d3]({email:S,},function(){alert(L[L7S.E2]);});}}};});app[L7S.k3](L7S.j3,[L7S.w8,function($resource){var P="@password",d="@username",o="@mobile",s="@lastname",x="@firstname",a='http://localhost:3000/routes/senders',m=$resource(a,{firstname:x,lastname:s,mobile:o,email:L7S.M2,username:d,password:P,user_type:L7S.B2,},{'update':{method:L7S.V2}});return m;}]);app[L7S.U8](L7S.x3,function($scope,Senders_Service,$http,$resource){var A1="savesender";$scope[A1]=function(){var x='You must agree to the terms and conditions',a="&user_type=customer",m="&email=",S="&password=",i="&username=",I="&mobile=",z="&lastname=",L="http://localhost:3000/routes/senders?firstname=",X="post",Z=true,O="R1",c="checked",D="agreement",B='Your username is needed',w="usernameerror",K="l1",y='Your name is needed',f="nameerror",V="z1",R="s1",p='Not a valid email',l="emailerror",F="L1",q="S1",k="r1",Y=10,t="Y1",u='Phone must be UK format without the zero',J="mobileerror",G="P1",X1='Passwords do not match',J1="Q",g1='Password must be 8 characters in length.',b="passworderror",x1=8,a1="v",o1="lastname",i1="firstname",B1="email",I1="mobile",m1="userusername",Z1="confirmedpassword",W="value",M1="userpassword",M="getElementById",password=document[M](M1)[W],W1=document[M](Z1)[W],username=document[M](m1)[W],j1=document[M](I1)[W],h=document[M](B1)[W],C=document[M](i1)[W],D1=document[M](o1)[W];if(L7S[a1](password[L7S.u3],x1)){$scope[b]=g1;}else{if(L7S[J1](password,W1)){$scope[b]=X1;}else{$scope[b]=L7S.K3;if(L7S[G](j1[L7S.V8],L7S.V8)){$scope[J]=u;}else{if(L7S[t](j1[L7S.u3],Y)){$scope[J]=u;}else{$scope[J]=L7S.K3;var d1=h[L7S.o2](L7S.b2),q1=h[L7S.f8](L7S.P8);if(L7S[k](d1,L7S.W8)||L7S[q](q1,d1+L7S.M8)||L7S[F](q1+L7S.M8,h[L7S.u3])){$scope[l]=p;}else{$scope[l]=L7S.K3;if(L7S[R](C[L7S.u3],L7S.V8)||L7S[V](D1[L7S.u3],L7S.V8)){$scope[f]=y;}else{if(L7S[K](username[L7S.u3],L7S.V8)){$scope[w]=B;}else{var V1=document[M](D)[c];if(L7S[O](V1,Z)){$scope[w]=L7S.K3;$scope[f]=L7S.K3;$scope[l]=L7S.K3;$scope[J]=L7S.K3;$scope[b]=L7S.K3;$http[X](L+C+z+D1+I+j1+i+username+S+password+m+h+a)[L7S.K8](function(j){var P="agenttype=customer",d='customer',o="TYPE",s="F1";alert(j[L7S.y8][L7S.E2]);if(L7S[s](j[L7S.y8][o],d)){document[L7S.l8]=L7S.e3+username;document[L7S.l8]=L7S.X3+h;document[L7S.l8]=P;document[L7S.l8]=L7S.z2+C;document[L7S.l8]=L7S.O2+D1;window[L7S.N3]=L7S.L3;}});}else{$scope[D]=x;}}}}}}}}};});</script>
+
+
+</body>
+
+</html>

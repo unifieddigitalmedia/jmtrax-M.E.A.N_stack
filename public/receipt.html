@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"> 
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title> Just Money Transfers |  Receipt </title>
+
+</head>
+
+<body ng-cloak ng-app="justmoneytransfers">
+
+
+<div ng-controller='receipt' >
+
+
+   <table border='1' style='font-size:9px;font-family:Arial, Helvetica, sans-serif;  position:relative; top:-10px; width:700px; left:-5px;' ><tr> <td colspan='3' style='font-size:9px;font-weight:bold; text-align:center;' > <p> CLIENT'S COPY<br/> Just Money Transfers <br/> 82 High Street, London, SE25 6EA  <br/>Tel:02087715353 Fax:02087717766 Email:service@jmtransfers.co.uk</p> </td> <td colspan='2' style='font-size:9px;font-weight:bold; text-align:center;'> <img src='http://justcomputersparts.co.uk/logocopy.png' width='180px' height='50px'/></td></tr>
+
+<tr> <td colspan='3' style='font-size:9px;font-weight:bold; text-align:center;'>SENDER DETAILS   </td> <th colspan='2' rowspan='2'> Transaction No: {{tnum}}   </th>  </tr>
+
+<tr> <td style='font-size:9px;font-weight:bold; text-align:center;' > FIRST NAME  </td> <td style='font-size:9px;font-weight:bold; text-align:center;' > LAST NAME  </td> <td style='font-size:9px;font-weight:bold; text-align:center;'>ADDRESS </td>   </tr>
+
+<tr> <td style='font-size:9px;font-weight:bold;text-transform:uppercase;' >  {{senderfirstname}}  </td> <td style='font-size:9px;font-weight:bold;text-transform:uppercase;'>   {{senderlastname}} </td> <td style='font-size:9px;text-transform:uppercase;'>  {{line1 }}  </td> <th rowspan='2' style='font-size:9px;font-weight:bold;'>Cust No.  {{sendersID}} </th> <th rowspan='2' > Date :   {{date}} </th> </tr>
+
+<tr> <td style='font-size:9px;font-weight:bold; text-align:center;'>  2nd LINE ADDRESS </td> <td style='font-size:9px;font-weight:bold; text-align:center;'> 3RD LINE ADDRESS  </td> <td style='font-size:9px;font-weight:bold; text-align:center;'>TOWN </td>  </tr>
+
+<tr> <td style='font-size:9px;text-transform:uppercase;'>   {{line2}} </td> <td style='font-size:9px;text-transform:uppercase;'>   {{line3}} </td> <td style='font-size:9px;text-transform:uppercase;'>  {{town}} </td> <td >Agency Code:</td> <td class='foreignamount' >  {{agency}} </td> </tr>
+
+<tr> <td style='font-size:9px;font-weight:bold; text-align:center;'> POSTCODE </td> <td style='font-size:9px;font-weight:bold; text-align:center;'> COUNTRY  </td> <td style='font-size:9px;font-weight:bold; text-align:center;'>MOBILE</td>  <td style='font-size:9px;font-weight:bold; text-align:center;'>  NGN </td> <td>  {{paymentlocal}} </td>  </tr>
+
+<tr> <td style='font-size:9px;text-transform:uppercase;'>  {{senderpostcode }} </td> <td style='font-size:9px;text-transform:uppercase;'>  {{sendercountry}} </td> <td style='font-size:9px;text-transform:uppercase;'> {{sendermobile}} </td>
+
+
+<td style='font-size:9px;font-weight:bold;text-align:center; '>Rate </td> <td>  {{exchangerate}} </td>
+</tr>
+
+
+
+<tr> <td colspan='3' style='font-size:9px;font-weight:bold; text-align:center;'> BENEFICARY DETAILS  </td>  <td style='font-size:9px;font-weight:bold; text-align:center;'> Amount GBP</td> <td> £ {{paymentsterling}} </td> </tr>
+
+<tr> <td style='font-size:9px;font-weight:bold; text-align:center;'>  FIRST NAME </td> <td style='font-size:9px;font-weight:bold; text-align:center;'>  LAST NAME </td> <td style='font-size:9px;font-weight:bold; text-align:center;' > ADDRESS</td> <td style='font-size:9px;font-weight:bold; text-align:center;'>Commission </td> <td>   £ {{paymentcommission}} </td></tr>
+
+<tr> <td style='font-size:9px;font-weight:bold;text-transform:uppercase;' >  {{recipientfirstname}} </td> <td style='font-size:9px;font-weight:bold;text-transform:uppercase;' >   {{recipientlastname}}   </td> <td style='font-size:9px;text-transform:uppercase;'>  {{recipientaddress}}  </td> <td style='font-size:12px;font-weight:bold;text-align:right;' rowspan='2'>Total Due GBP </td> <td style='font-size:12px;font-weight:bold;text-align:left; ' rowspan='2'>  £ {{paymenttotalgbp}}   </td> </tr>
+
+<tr> <td style='font-size:9px;font-weight:bold; text-align:center;'>  PAYMENT REF </td> <td style='font-size:9px;font-weight:bold; text-align:center;'>  SHOP ACCOUNT </td> <td style='font-size:9px;font-weight:bold; text-align:center;'> PAY PAL EMAIL</td>
+
+
+
+</tr>
+
+<tr> <td style='font-size:9px;text-transform:uppercase;'>    {{paymentref}} </td> <td style='font-size:9px;text-transform:uppercase;'>   {{shopacc}} </td> <td style='font-size:9px;text-transform:uppercase;'>  {{paypalemail}}  </td> <td style='font-size:9px;font-weight:bold; text-align:center;'> Cash Tenured </td> <td> £ {{cash }} </td>
+
+
+
+</tr>
+
+<tr> <td style='font-size:9px;font-weight:bold; text-align:center;'>  COUNTRY </td> <td style='font-size:9px;font-weight:bold; text-align:center;'>  MOBILE </td> <td style='font-size:9px;font-weight:bold; text-align:center;'> ADDRESS <td style='font-size:9px;font-weight:bold; text-align:center;'> Change Given </td> <td>  £ {{change}} </td> </td>
+
+
+
+</tr>
+
+<tr> <td style='font-size:9px;text-transform:uppercase;'>   {{recipientcountry}}  </td> <td style='font-size:9px;text-transform:uppercase;'>  {{recipientphone}} </td> <td style='font-size:9px;text-transform:uppercase;'>  {{destination}} </td> <td rowspan='2' style='font-size:12px;font-weight:bold;text-align:right; '><b>TOTAL NGN DUE</b> </td> <td  rowspan='2'><b style='font-size:12px;font-weight:bold;text-align:right; '> {{paymentlocal}}  </b></td> </tr>
+
+
+
+<tr> <td  style='font-size:9px;font-weight:bold; text-align:center;'> PAYING AGENT</td> <td style='font-size:9px;font-weight:bold; text-align:center;'> ACCOUNT NO  </td> <td style='font-size:9px;font-weight:bold; text-align:center;'>CUSTOMER REF:</td> </tr>
+
+<tr> <td style='font-size:9px;text-transform:uppercase;' >   {{bankaddress}}  </td> <td style='font-size:9px;text-transform:uppercase;'> {{bankac}}  </td>  <td style='font-size:9px;text-transform:uppercase;'>   {{customerref}}</td> <td colspan='2'><b> {{comment}}   </b></td></tr> </table>
+
+<p style='font-size:8px;color:sienna; width:200px; font-family:Arial, Helvetica, sans-serif;position:relative; top:-5px; width:730px; left:-40px; '>
+PLEASE READ CAREFULLY, BY SIGNING THE PAYMENT ORDER FORM (THE FORM) YOU ARE ENTRERING INTO A LEGAL BINDING AGREEMENT WITH JUST MONEY TRANSFER (JM TRANSFER). BY SIGNING THE FORM YOU GIVE YOUR EXPLICIT CONSENT TO THE EXECUTION OF THE TRANSACTION. THIS CONSENT CANNOT BE WITHDRAWN. You agree that the agreement includes only these terms on the form (the Terms) and the JUST MONEY TRANSFER terms & conditions (the T&C (which are available at www.justcomputersparts.co.uk) and is the entire agreement and understanding between you and JMTransfer and supersedes and terminates all prior agreements between you and JMTransfer. JMTransfer will provide you with the Just money transfer service (a money remittance service) (the Service) through its international network of authorised representatives (the correspondents) to transfer funds (the Transfer to your chosen recipient (the Beneficiary). You may call JUST MONEY TRANSFERs Customer Services on its number (020 8771 5353) during normal business hours 09:00 to 19:00 for the address and hours of operation of the Correspondents’ locations in your or the Beneficiary’s area. You agree to provide JMTransfer with full and accurate information to the best of your knowledge as required for the purposes of the Service, otherwise JUST MONEY TRANSFER may not make the Transfer to the Beneficiary. You are strongly advised against sending money to any person that you do not know. Any defined words or phrases used in the terms that are not defined here are defined in the T&C. You may contact JUST MONEY TRANSFER through its Customer Services by telephone on
+020 8771 5353, by post at 82 High Street, South Norwood, London SE25 6EA or by email: service@jmtransfers.co.uk
+</p>
+
+<div style='font-size:9px; border-top:#000 solid medium; width:220px; font-family:Arial, Helvetica, sans-serif; font-size:9px; text-align:center; position:relative;  left:10px; top:10px;' >
+<p>  {{senderfirstname}} {{senderlastname}}  </p>
+
+</div>
+
+
+<div style='font-size:9px;border-top:#000 solid medium;  width:220px; font-family:Arial, Helvetica, sans-serif; font-size:9px; text-align:center; left:350px; position:relative; top:-17px;' >
+
+<p>  {{agency}} </p>
+</div>
+
+
+<table border='1' style='font-size:9px;font-family:Arial, Helvetica, sans-serif;  position:relative; top:-10px; width:700px; left:-5px;' ><tr> <td colspan='3' style='font-size:9px;font-weight:bold; text-align:center;' > <p> CLIENT'S COPY<br/> Just Money Transfers <br/> 82 High Street, London, SE25 6EA  <br/>Tel:02087715353 Fax:02087717766 Email:service@jmtransfers.co.uk</p> </td> <td colspan='2' style='font-size:9px;font-weight:bold; text-align:center;'> <img src='http://justcomputersparts.co.uk/logocopy.png' width='180px' height='50px'/></td></tr>
+
+<tr> <td colspan='3' style='font-size:9px;font-weight:bold; text-align:center;'>SENDER DETAILS   </td> <th colspan='2' rowspan='2'> Transaction No: {{tnum}}   </th>  </tr>
+
+<tr> <td style='font-size:9px;font-weight:bold; text-align:center;' > FIRST NAME  </td> <td style='font-size:9px;font-weight:bold; text-align:center;' > LAST NAME  </td> <td style='font-size:9px;font-weight:bold; text-align:center;'>ADDRESS </td>   </tr>
+
+<tr> <td style='font-size:9px;font-weight:bold;text-transform:uppercase;' >  {{senderfirstname}}  </td> <td style='font-size:9px;font-weight:bold;text-transform:uppercase;'>   {{senderlastname}} </td> <td style='font-size:9px;text-transform:uppercase;'>  {{line1 }}  </td> <th rowspan='2' style='font-size:9px;font-weight:bold;'>Cust No.  {{sendersID}} </th> <th rowspan='2' > Date :   {{date}} </th> </tr>
+
+<tr> <td style='font-size:9px;font-weight:bold; text-align:center;'>  2nd LINE ADDRESS </td> <td style='font-size:9px;font-weight:bold; text-align:center;'> 3RD LINE ADDRESS  </td> <td style='font-size:9px;font-weight:bold; text-align:center;'>TOWN </td>  </tr>
+
+<tr> <td style='font-size:9px;text-transform:uppercase;'>   {{line2}} </td> <td style='font-size:9px;text-transform:uppercase;'>   {{line3}} </td> <td style='font-size:9px;text-transform:uppercase;'>  {{town}} </td> <td >Agency Code:</td> <td class='foreignamount' >  {{agency}} </td> </tr>
+
+<tr> <td style='font-size:9px;font-weight:bold; text-align:center;'> POSTCODE </td> <td style='font-size:9px;font-weight:bold; text-align:center;'> COUNTRY  </td> <td style='font-size:9px;font-weight:bold; text-align:center;'>MOBILE</td>  <td style='font-size:9px;font-weight:bold; text-align:center;'>  NGN </td> <td>  {{paymentlocal}} </td>  </tr>
+
+<tr> <td style='font-size:9px;text-transform:uppercase;'>  {{senderpostcode }} </td> <td style='font-size:9px;text-transform:uppercase;'>  {{sendercountry}} </td> <td style='font-size:9px;text-transform:uppercase;'> {{sendermobile}} </td>
+
+
+<td style='font-size:9px;font-weight:bold;text-align:center; '>Rate </td> <td>  {{exchangerate}} </td>
+</tr>
+
+
+
+<tr> <td colspan='3' style='font-size:9px;font-weight:bold; text-align:center;'> BENEFICARY DETAILS  </td>  <td style='font-size:9px;font-weight:bold; text-align:center;'> Amount GBP</td> <td> £ {{paymentsterling}} </td> </tr>
+
+<tr> <td style='font-size:9px;font-weight:bold; text-align:center;'>  FIRST NAME </td> <td style='font-size:9px;font-weight:bold; text-align:center;'>  LAST NAME </td> <td style='font-size:9px;font-weight:bold; text-align:center;' > ADDRESS</td> <td style='font-size:9px;font-weight:bold; text-align:center;'>Commission </td> <td>   £ {{paymentcommission}} </td></tr>
+
+<tr> <td style='font-size:9px;font-weight:bold;text-transform:uppercase;' >  {{recipientfirstname}} </td> <td style='font-size:9px;font-weight:bold;text-transform:uppercase;' >   {{recipientlastname}}   </td> <td style='font-size:9px;text-transform:uppercase;'>  {{recipientaddress}}  </td> <td style='font-size:12px;font-weight:bold;text-align:right;' rowspan='2'>Total Due GBP </td> <td style='font-size:12px;font-weight:bold;text-align:left; ' rowspan='2'>  £ {{paymenttotalgbp}}   </td> </tr>
+
+<tr> <td style='font-size:9px;font-weight:bold; text-align:center;'>  PAYMENT REF </td> <td style='font-size:9px;font-weight:bold; text-align:center;'>  SHOP ACCOUNT </td> <td style='font-size:9px;font-weight:bold; text-align:center;'> PAY PAL EMAIL</td>
+
+
+
+</tr>
+
+<tr> <td style='font-size:9px;text-transform:uppercase;'>    {{paymentref}} </td> <td style='font-size:9px;text-transform:uppercase;'>   {{shopacc}} </td> <td style='font-size:9px;text-transform:uppercase;'>  {{paypalemail}}  </td> <td style='font-size:9px;font-weight:bold; text-align:center;'> Cash Tenured </td> <td> £ {{cash }} </td>
+
+
+
+</tr>
+
+<tr> <td style='font-size:9px;font-weight:bold; text-align:center;'>  COUNTRY </td> <td style='font-size:9px;font-weight:bold; text-align:center;'>  MOBILE </td> <td style='font-size:9px;font-weight:bold; text-align:center;'> ADDRESS <td style='font-size:9px;font-weight:bold; text-align:center;'> Change Given </td> <td>  £ {{change}} </td> </td>
+
+
+
+</tr>
+
+<tr> <td style='font-size:9px;text-transform:uppercase;'>   {{recipientcountry}}  </td> <td style='font-size:9px;text-transform:uppercase;'>  {{recipientphone}} </td> <td style='font-size:9px;text-transform:uppercase;'>  {{destination}} </td> <td rowspan='2' style='font-size:12px;font-weight:bold;text-align:right; '><b>TOTAL NGN DUE</b> </td> <td  rowspan='2'><b style='font-size:12px;font-weight:bold;text-align:right; '> {{paymentlocal}}  </b></td> </tr>
+
+
+
+<tr> <td  style='font-size:9px;font-weight:bold; text-align:center;'> PAYING AGENT</td> <td style='font-size:9px;font-weight:bold; text-align:center;'> ACCOUNT NO  </td> <td style='font-size:9px;font-weight:bold; text-align:center;'>CUSTOMER REF:</td> </tr>
+
+<tr> <td style='font-size:9px;text-transform:uppercase;' >   {{bankaddress}}  </td> <td style='font-size:9px;text-transform:uppercase;'> {{bankac}}  </td>  <td style='font-size:9px;text-transform:uppercase;'>   {{customerref}}</td> <td colspan='2'><b> {{comment}}   </b></td></tr> </table>
+
+<div style='font-size:9px; border-top:#000 solid medium; width:220px; font-family:Arial, Helvetica, sans-serif; font-size:9px; text-align:center; position:relative;  left:10px; top:10px;' >
+<p>  {{senderfirstname}} {{senderlastname}}  </p>
+
+</div>
+
+
+<div style='font-size:9px;border-top:#000 solid medium;  width:220px; font-family:Arial, Helvetica, sans-serif; font-size:9px; text-align:center; left:350px; position:relative; top:-17px;' >
+
+<p>  {{agency}} </p>
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js" ></script>
+
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" ></script>
+
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js" ></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular-resource.js" ></script>
+
+<script src="scripts/main.js"> </script>
+
+<script type="text/javascript">
+
+
+var app = angular.module('justmoneytransfers', ['ngResource']);
+
+
+
+
+app.controller('receipt', function($scope,$http,$resource) {
+
+$scope.getrates = function () {
+
+
+$http.get("http://localhost:3000/api/rates").then(function(response) {
+
+
+ $scope.rateslist = response.data;
+
+$scope.gbp = response.data[0].rate;
+$scope.ngn = response.data[1].rate;
+
+
+
+    });
+
+}
+
+
+
+var init = function () {
+   
+
+
+$scope.agentusername = getCookie('agentusername') ;
+
+$http.get("http://localhost:3000/api/receipt.php?id="+getCookie('transaction_number')) .then(function(response) {
+
+
+$scope.date = response.data[0].tdate;
+
+$scope.tnum = "JM"+response.data[0].tnum;
+
+$scope.sendersID = getCookie('sendersid') ;
+
+$scope.senderfirstname = response.data[0].senderfirstname;
+$scope.senderlastname    = response.data[0].senderlasttname;
+$scope.line1 = response.data[0].line1;
+$scope.line2 = response.data[0].line2;
+
+
+$scope.town    = response.data[0].town;
+$scope.county    = response.data[0].line3;
+$scope.sendercountry = response.data[0].sendercountry;
+$scope.senderpostcode    = response.data[0].postcode;
+$scope.sendermobilehome = response.data[0].senderphone;
+$scope.sendermobile = response.data[0].sendermobile;
+
+$scope.recipientfirstname    = response.data[0].recipientfirstname;
+$scope.recipientlastname = response.data[0].recipientsurname;
+$scope.recipientcountry = "Nigeria";
+$scope.recipientphone    = response.data[0].recipientphone;
+
+
+$scope.bankac    = response.data[0].bankac;
+$scope.destination = "Nigeria";
+$scope.agency = response.data[0].agentusername;
+$scope.bankaddress = response.data[0].bankname;
+$scope.paymentref = response.data[0].paymentref;
+
+
+$scope.shopacc = response.data[0].shopacc;
+
+
+$scope.exchangerate = response.data[0].rate;
+
+
+$scope.paymentsterling = response.data[0].remittance;
+$scope.paymentlocal = response.data[0].ngn;
+$scope.paymenttotalgbp  = response.data[0].totalgbp;
+$scope.paymentcommission = response.data[0].fee;
+$scope.cash =  response.data[0].cash;
+$scope.change = response.data[0].change;
+
+
+printreceipt(gotohome);
+ 
+ 
+ 
+ 
+});
+
+
+
+
+
+
+
+};
+
+init();
+
+
+
+
+
+
+function gotohome() {
+  
+   if(getCookie('agenttype') === 'customer')
+
+{
+
+
+window.location = "http://localhost:3000/money-transfer-calculator.html" ;
+
+}
+
+else
+{
+
+	
+ window.location = "http://localhost:3000/dashboard.php" ;
+ 
+
+}
+
+
+}
+
+function printreceipt(callback) {
+	
+ window.print();
+ 
+    if (typeof callback === "function") {
+ 
+    callback();
+    
+    }
+}
+
+
+
+
+function getCookie(cname) {
+
+    var name = cname + "=";
+  
+    var ca = document.cookie.split(';');
+  
+    for(var i=0; i<ca.length; i++) {
+  
+        var c = ca[i];
+  
+        while (c.charAt(0)==' ') c = c.substring(1);
+  
+        if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+  
+    }
+  
+    return "";
+
+}
+
+
+
+});
+
+
+</script>
+
+
+</body>
+
+</html>
